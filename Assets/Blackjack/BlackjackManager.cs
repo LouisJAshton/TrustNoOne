@@ -48,7 +48,7 @@ public class BlackjackManager
     public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
         if (player1.IsStanding && player2.IsStanding) {
-            Debug.Log("Both standing");
+            //Debug.Log("Both standing");
             throw new BothStandingException();
         }
         
