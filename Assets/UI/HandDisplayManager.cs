@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class HandDisplayManager : MonoBehaviour
 {
     [SerializeField] private CardObjectFactory cardObjectFactory;
     [SerializeField] private RectTransform handContainer;
+    [SerializeField] private TMP_Text scoreText;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
     
@@ -30,6 +32,9 @@ public class HandDisplayManager : MonoBehaviour
     {
         var toAdd = new List<CardInfo>();
         var toRemove = new List<CardInfo>();
+
+        var score = BlackjackManager.CalculateScore(cardInfos);
+        scoreText.text = score > 21 ? "BUST" : score.ToString();
 
         foreach (var cardInfo in cardInfos) {
             if(!_cardObjects.ContainsKey(cardInfo))

@@ -13,7 +13,7 @@ public class DealerTurnStrategy : ITurnStrategy
     {
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
         
-        if (BlackjackManager.CalculateScore(self.Hand) <= 18) {
+        if (BlackjackManager.CalculateScore(self.Hand) < 18) {
             GameManager.Instance.blackjackManager.Draw(self);
         }
     }
@@ -23,22 +23,19 @@ public class PlayerTurnStrategy : ITurnStrategy
 {
     public async UniTask TakeTurn(PlayerData self, CancellationToken cancellationToken)
     {
+        if (BlackjackManager.CalculateScore(self.Hand) > 21)
+            return;
+        
         while (!cancellationToken.IsCancellationRequested) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 GameManager.Instance.blackjackManager.Draw(self);
                 break;
             }
-        
-            if (Input.GetKeyDown(KeyCode.Return)) {
-                var score = BlackjackManager.CalculateScore(GameManager.Instance.blackjackManager.dealer.Hand);
-                Debug.Log(score);
-                if (score > 21) {
-                    Debug.Log("Bust!");
-                }
 
+            if (Input.GetKeyDown(KeyCode.Return)) {
                 break;
             }
-
+            
             if (Input.GetKeyDown(KeyCode.Backspace)) {
                 GameManager.Instance.blackjackManager.Reshuffle();
                 break;
