@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class PlayerData
 {
     [SerializeField] private List<CardInfo> hand;
+    public ITurnStrategy turnStrategy;
     
     public List<CardInfo> Hand => hand;
     

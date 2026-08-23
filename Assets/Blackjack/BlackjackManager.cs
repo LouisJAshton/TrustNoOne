@@ -27,6 +27,12 @@ public class BlackjackManager
             if (card) deck.Add(card.BaseInfo);
         }
     }
+
+    public async UniTask TakeTurn()
+    {
+        await player.turnStrategy.TakeTurn();
+        await dealer.turnStrategy.TakeTurn();
+    }
     
     public int CalculateScore(List<CardInfo> cards)
     {
@@ -96,14 +102,4 @@ public class BlackjackManager
         
         Debug.Log(sb.ToString());
     }
-}
-
-public interface IDrawStrategy
-{
-    public CardInfo Draw(List<CardInfo> deck);
-}
-
-public interface ITurnStrategy
-{
-    public UniTask TakeTurn();
 }
