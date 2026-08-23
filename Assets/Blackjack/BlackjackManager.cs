@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -9,13 +10,11 @@ using Random = UnityEngine.Random;
 public class BlackjackManager
 {
     public const int MAX = 21;
-
-    [SerializeField] private List<BaseCardInfo> baseDeck;
     
-    [SerializeField] private List<CardInfo> deck;
+    private List<CardInfo> deck;
 
-    [SerializeField] public PlayerData player;
-    [SerializeField] public PlayerData dealer;
+    public PlayerData player;
+    public PlayerData dealer;
 
     public void Initialise()
     {
@@ -97,4 +96,14 @@ public class BlackjackManager
         
         Debug.Log(sb.ToString());
     }
+}
+
+public interface IDrawStrategy
+{
+    public CardInfo Draw(List<CardInfo> deck);
+}
+
+public interface ITurnStrategy
+{
+    public UniTask TakeTurn();
 }
