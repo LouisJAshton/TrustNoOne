@@ -15,9 +15,16 @@ public class GameManager : MonoBehaviour
             Instance = this;
         
         blackjackManager.Initialise();
-
+        
         while (!destroyCancellationToken.IsCancellationRequested) {
-            await blackjackManager.TakeTurn(destroyCancellationToken);
+            try {
+                await blackjackManager.TakeTurn(destroyCancellationToken);
+            }
+            catch (RoundEndedException) {
+                break;
+            }
         }
+        
+        await blackjackManager.Dealer(destroyCancellationToken);
     }
 }

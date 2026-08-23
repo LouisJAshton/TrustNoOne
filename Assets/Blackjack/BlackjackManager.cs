@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -14,13 +16,16 @@ public class BlackjackManager
     
     private List<CardInfo> deck;
 
-    public PlayerData player;
+    [FormerlySerializedAs("player")] public PlayerData player1;
+    public PlayerData player2;
+    
     public PlayerData dealer;
 
     public void Initialise()
     {
-        player.turnStrategy = new PlayerTurnStrategy();
-        dealer.turnStrategy = new DealerTurnStrategy();
+        player1.turnStrategy = new PlayerTurnStrategy(player1);
+        player2.turnStrategy = new AITurnStrategy(player2);
+        dealer.turnStrategy = new DealerTurnStrategy(dealer);
         
         deck = new List<CardInfo>();
         
@@ -34,8 +39,13 @@ public class BlackjackManager
 
     public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        await player.turnStrategy.TakeTurn(player, cancellationToken);
-        await dealer.turnStrategy.TakeTurn(dealer, cancellationToken);
+        if (player1.isStanding && player2.isStanding) {
+            Debug.Log("Both standing");
+            throw new BothStandingException();
+        }
+        
+        await player1.turnStrategy.TakeTurn(cancellationToken);
+        await player2.turnStrategy.TakeTurn(cancellationToken);
     }
     
     public static int CalculateScore(List<CardInfo> cards)
@@ -90,8 +100,8 @@ public class BlackjackManager
     public void Reshuffle()
     {
         Initialise();
-        player.Clear();
-        dealer.Clear();
+        player1.Reset();
+        dealer.Reset();
     }
 
     public void DebugDealerHand()
@@ -105,5 +115,15 @@ public class BlackjackManager
         }
         
         Debug.Log(sb.ToString());
+    }
+
+    public async UniTask Dealer(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested) {
+            bool isStanding = await dealer.turnStrategy.TakeTurn(cancellationToken);
+            if (isStanding) {
+                return;
+            }
+        }
     }
 }

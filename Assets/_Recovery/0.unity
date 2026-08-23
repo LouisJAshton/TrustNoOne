@@ -592,79 +592,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &820667841
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1738207251}
-    m_Modifications:
-    - target: {fileID: 2093869264226077898, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_Name
-      value: Player Hand Display
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
---- !u!4 &820667842 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-  m_PrefabInstance: {fileID: 820667841}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &820667843 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
-  m_PrefabInstance: {fileID: 820667841}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285a4b864c057344fb4050da73e850c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandDisplayManager
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +654,7 @@ GameObject:
   - component: {fileID: 952636540}
   - component: {fileID: 952636539}
   m_Layer: 0
-  m_Name: Player 1 Hand
+  m_Name: Player Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,14 +747,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952636538}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29122618, y: 0.012715214, z: -0.041725002, w: 0.9556593}
-  m_LocalPosition: {x: -3.8649, y: -1.8589534, z: -1.247}
-  m_LocalScale: {x: 8.00528, y: 3.794116, z: 3.794116}
+  m_LocalRotation: {x: 0.2915024, y: -0, z: -0, w: 0.95657015}
+  m_LocalPosition: {x: 0, y: -1.8589534, z: -1.2344283}
+  m_LocalScale: {x: 13.1, y: 6.208768, z: 6.208768}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 450550883}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 33.896, y: 0, z: -5}
+  m_LocalEulerAnglesHint: {x: 33.896, y: 0, z: 0}
 --- !u!1001 &1177393733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,120 +828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285a4b864c057344fb4050da73e850c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandDisplayManager
---- !u!1 &1738207247
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1738207251}
-  - component: {fileID: 1738207250}
-  - component: {fileID: 1738207249}
-  - component: {fileID: 1738207248}
-  m_Layer: 0
-  m_Name: Player 2 Hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!64 &1738207248
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738207247}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1738207249
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738207247}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1738207250
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738207247}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1738207251
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738207247}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.29122618, y: -0.012715214, z: 0.041725002, w: 0.9556593}
-  m_LocalPosition: {x: 4.3849, y: -1.8589534, z: -1.247}
-  m_LocalScale: {x: 8.00528, y: 3.794116, z: 3.794116}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 820667842}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 33.896, y: 0, z: 5}
 --- !u!1 &1934027153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,31 +858,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   blackjackManager:
-    player1:
+    player:
       hand: []
       isStanding: 0
       OnHandUpdated:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 450550884}
-            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
-            m_MethodName: UpdateHand
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    player2:
-      hand: []
-      isStanding: 0
-      OnHandUpdated:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 820667843}
             m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
             m_MethodName: UpdateHand
             m_Mode: 0
@@ -1181,5 +976,4 @@ SceneRoots:
   - {fileID: 613622460}
   - {fileID: 1934027155}
   - {fileID: 952636542}
-  - {fileID: 1738207251}
   - {fileID: 200605798}

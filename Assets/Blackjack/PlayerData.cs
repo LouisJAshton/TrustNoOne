@@ -9,11 +9,13 @@ public class PlayerData
 {
     [SerializeField] private List<CardInfo> hand;
     public ITurnStrategy turnStrategy;
+
+    public bool isStanding = false;
     
     public List<CardInfo> Hand => hand;
     
     public UnityEvent<List<CardInfo>> OnHandUpdated;
-
+    
     public void AddCards(params CardInfo[] cards)
     {
         hand.AddRange(cards);
@@ -26,8 +28,9 @@ public class PlayerData
         OnHandUpdated?.Invoke(hand);
     }
 
-    public void Clear()
+    public void Reset()
     {
+        isStanding = false;
         hand.Clear();
         OnHandUpdated?.Invoke(hand);
     }
