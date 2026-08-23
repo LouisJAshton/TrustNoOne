@@ -12,19 +12,14 @@ public class BlackjackManager
 
     [SerializeField] private List<BaseCardInfo> baseDeck;
     
-    [SerializeField] public List<CardInfo> hand;
     [SerializeField] private List<CardInfo> deck;
-    
-    public UnityEvent<CardInfo> OnDraw;
+
+    [SerializeField] public PlayerData player;
+    [SerializeField] public PlayerData dealer;
 
     public void Initialise()
     {
-        hand = new List<CardInfo>();
         deck = new List<CardInfo>();
-        
-        // foreach (var card in baseDeck) {
-        //     deck.Add(card.BaseInfo);
-        // }
         
         var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
         foreach (var cardInfo in cards) {
@@ -78,17 +73,22 @@ public class BlackjackManager
         
         //TODO Replace with actual draw
         var card = deck[Random.Range(0, deck.Count)];
-        
-        hand.Add(card);
-        OnDraw.Invoke(card);
-        
         deck.Remove(card);
+        dealer.AddCards(card);
+    }
+
+    //TODO Use unitask for juice
+    public void Reshuffle()
+    {
+        Initialise();
+        player.Clear();
+        dealer.Clear();
     }
 
     public void DebugDealerHand()
     {
         StringBuilder sb = new();
-        foreach (var card in hand) {
+        foreach (var card in dealer.Hand) {
             sb.Append(card.rankName);
             sb.Append(" of ");
             sb.Append(card.suit);

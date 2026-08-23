@@ -831,8 +831,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.2915024, y: -0, z: -0, w: 0.95657015}
   m_LocalPosition: {x: 0, y: -0.19884789, z: -0.11905837}
-  m_LocalScale: {x: 15.74, y: 7.46, z: 7.46}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 13.1, y: 6.208768, z: 6.208768}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 450550883}
   m_Father: {fileID: 0}
@@ -872,28 +872,38 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ce4e4cd89ef5e0443b490a6b3deb3ae0, type: 2}
     - {fileID: 11400000, guid: 58937f35f3b207d46bf0f61506ef9df9, type: 2}
     - {fileID: 11400000, guid: 6cc7fef284bde39479cc3071b4cbeb74, type: 2}
-    hand: []
     deck:
     - rankName: 
       texture: {fileID: 0}
       rank: 0
       suit: 0
-    OnDraw:
+    player:
+      hand: []
+      OnHandUpdated:
+        m_PersistentCalls:
+          m_Calls: []
+    dealer:
+      hand: []
+      OnHandUpdated:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 450550884}
+            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
+            m_MethodName: UpdateHand
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+  playerData:
+    hand: []
+    OnHandUpdated:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 450550884}
-          m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
-          m_MethodName: DrawCard
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  playerData: {fileID: 11400000, guid: 3d2ff63407a76cf49b9ac84aaf782967, type: 2}
+        m_Calls: []
 --- !u!4 &1934027155
 Transform:
   m_ObjectHideFlags: 0

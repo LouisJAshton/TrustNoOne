@@ -20,11 +20,16 @@ public class GameManager : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.Return)) {
-            var score = blackjackManager.CalculateScore(blackjackManager.hand);
+            var score = blackjackManager.CalculateScore(blackjackManager.dealer.Hand);
             Debug.Log(score);
             if (score > 21) {
                 Debug.Log("Bust!");
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Backspace)) {
+            blackjackManager.Reshuffle();
+        }
+            
     }
 }
