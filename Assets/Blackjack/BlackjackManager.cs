@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class BlackjackManager
@@ -11,7 +12,7 @@ public class BlackjackManager
 
     [SerializeField] private List<BaseCardInfo> baseDeck;
     
-    [SerializeField] private List<CardInfo> hand;
+    [SerializeField] public List<CardInfo> hand;
     [SerializeField] private List<CardInfo> deck;
     
     public UnityEvent<CardInfo> OnDraw;
@@ -20,20 +21,26 @@ public class BlackjackManager
     {
         hand = new List<CardInfo>();
         deck = new List<CardInfo>();
-
-        foreach (var card in baseDeck) {
-            deck.Add(card.BaseInfo);
+        
+        // foreach (var card in baseDeck) {
+        //     deck.Add(card.BaseInfo);
+        // }
+        
+        var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
+        foreach (var cardInfo in cards) {
+            var card = cardInfo as BaseCardInfo;
+            
+            if (card) deck.Add(card.BaseInfo);
         }
     }
     
-    public int CalculateScore(PlayerData playerData)
+    public int CalculateScore(List<CardInfo> cards)
     {
         var total = 0;
         var acesCount = 0;
         
         var totalHand = new List<CardInfo>();
-        totalHand.AddRange(hand);
-        totalHand.AddRange(playerData.Hand);
+        totalHand.AddRange(cards);
 
         foreach (var card in totalHand) {
             
@@ -47,7 +54,7 @@ public class BlackjackManager
             }
         }
 
-        for (var i = acesCount; i >= 0; i--) {
+        for (var i = acesCount; i >= 1; i--) {
             var acesValue = i * 11;
             
             if (acesValue + total <= 21) {
@@ -70,12 +77,12 @@ public class BlackjackManager
         }
         
         //TODO Replace with actual draw
-        var card = deck[0];
+        var card = deck[Random.Range(0, deck.Count)];
         
         hand.Add(card);
         OnDraw.Invoke(card);
         
-        deck.RemoveAt(0);
+        deck.Remove(card);
     }
 
     public void DebugDealerHand()
@@ -87,5 +94,7 @@ public class BlackjackManager
             sb.Append(card.suit);
             sb.Append("s | ");
         }
+        
+        Debug.Log(sb.ToString());
     }
 }

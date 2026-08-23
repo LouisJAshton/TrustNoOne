@@ -20,7 +20,11 @@ public class GameManager : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.Return)) {
-            Debug.Log(blackjackManager.CalculateScore(playerData));
+            var score = blackjackManager.CalculateScore(blackjackManager.hand);
+            Debug.Log(score);
+            if (score > 21) {
+                Debug.Log("Bust!");
+            }
         }
     }
 }
