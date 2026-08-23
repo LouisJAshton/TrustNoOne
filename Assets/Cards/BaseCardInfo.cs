@@ -1,15 +1,30 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "Scriptable Objects/CardData")]
 public class BaseCardInfo : ScriptableObject
 {
-    public CardInfo baseCardInfo;
+    public CardInfo BaseInfo => _cardInfo.Clone();
+    
+    [FormerlySerializedAs("baseCardInfo")] public CardInfo _cardInfo;
+    
 }
 
 [Serializable]
-public struct CardInfo
+public class CardInfo
 {
+    public CardInfo Clone()
+    {
+        var output = new CardInfo();
+        output.rank = rank;
+        output.rankName = rankName;
+        output.suit = suit;
+        output.texture = texture;
+        
+        return output;
+    }
+    
     //[Flags]
     public enum Suit
     {

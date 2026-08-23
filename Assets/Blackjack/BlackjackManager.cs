@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class BlackjackManager
@@ -12,6 +13,8 @@ public class BlackjackManager
     
     [SerializeField] private List<CardInfo> hand;
     [SerializeField] private List<CardInfo> deck;
+    
+    public UnityEvent<CardInfo> OnDraw;
 
     public void Initialise()
     {
@@ -19,7 +22,7 @@ public class BlackjackManager
         deck = new List<CardInfo>();
 
         foreach (var card in baseDeck) {
-            deck.Add(card.baseCardInfo);
+            deck.Add(card.BaseInfo);
         }
     }
     
@@ -67,7 +70,11 @@ public class BlackjackManager
         }
         
         //TODO Replace with actual draw
-        hand.Add(deck[0]);
+        var card = deck[0];
+        
+        hand.Add(card);
+        OnDraw.Invoke(card);
+        
         deck.RemoveAt(0);
     }
 
