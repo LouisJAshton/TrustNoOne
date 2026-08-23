@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -104,9 +105,10 @@ public class BlackjackManager
     //TODO Use unitask for juice
     public void Reshuffle()
     {
-        Initialise();
         player1.Reset();
+        player2.Reset();
         dealer.Reset();
+        Initialise();
     }
 
     public void DebugDealerHand()
@@ -130,5 +132,53 @@ public class BlackjackManager
                 return;
             }
         }
+    }
+
+    public async UniTask<List<PlayerData>> CalculateWinner(CancellationToken cancellationToken)
+    {
+        await UniTask.Delay(1000, cancellationToken: cancellationToken);
+        
+        List<PlayerData> winners = new List<PlayerData>();
+        List<PlayerData> players = new List<PlayerData>()
+        {
+            player1, player2, dealer
+        };
+
+        foreach (var player in players.ToList().Where(player => CalculateScore(player.Hand) > 21)) {
+            players.Remove(player);
+        }
+
+        if (CheckForBlackjacks(players, out winners)) {
+            return winners;
+        }
+
+        if (!players.Contains(dealer)) {
+            return players;
+        }
+
+        foreach (var player in players) {
+            if (CalculateScore(player.Hand) > CalculateScore(dealer.Hand)) {
+                winners.Add(player);
+            }
+        }
+
+        return winners;
+    }
+
+    bool CheckForBlackjacks(List<PlayerData> players, out List<PlayerData> winners)
+    {
+        winners = new List<PlayerData>();
+        
+        foreach (var player in players) {
+            if (player.Hand.Count != 2) {
+                return false;
+            }
+
+            if (CalculateScore(player.Hand) == MAX) {
+                winners.Add(player);
+            }
+        }
+        
+        return winners.Count > 0;
     }
 }

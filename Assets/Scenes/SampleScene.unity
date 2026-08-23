@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   blackjackManager:
     player1:
-      hand: []
+      playerName: You
       isStanding: 0
       OnHandUpdated:
         m_PersistentCalls:
@@ -1064,7 +1064,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     player2:
-      hand: []
+      playerName: Enemy
       isStanding: 0
       OnHandUpdated:
         m_PersistentCalls:
@@ -1082,7 +1082,7 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     dealer:
-      hand: []
+      playerName: Dealer
       isStanding: 0
       OnHandUpdated:
         m_PersistentCalls:

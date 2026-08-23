@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,12 +11,20 @@ public class GameManager : MonoBehaviour
     
     private async void Awake()
     {
-        if(Instance)
+        if(Instance && Instance != this)
             Destroy(gameObject);
         else
             Instance = this;
-        
-        blackjackManager.Initialise();
+
+        while (destroyCancellationToken.IsCancellationRequested == false) {
+            await PlayRound();
+            await UniTask.WaitForSeconds(2, cancellationToken: destroyCancellationToken);
+        }
+    }
+
+    private async Task PlayRound()
+    {
+        blackjackManager.Reshuffle();
         
         while (!destroyCancellationToken.IsCancellationRequested) {
             try {
@@ -26,5 +36,11 @@ public class GameManager : MonoBehaviour
         }
         
         await blackjackManager.Dealer(destroyCancellationToken);
+        
+        var winners = await blackjackManager.CalculateWinner(destroyCancellationToken);
+
+        foreach (var winner in winners) {
+            print(winner.playerName + " wins!");
+        }
     }
 }

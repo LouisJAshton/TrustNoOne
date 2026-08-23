@@ -7,32 +7,34 @@ using UnityEngine.Events;
 [Serializable]
 public class PlayerData
 {
-    [SerializeField] private List<CardInfo> hand;
+    [SerializeField] public string playerName;
+    
+    private List<CardInfo> _hand = new();
     public ITurnStrategy turnStrategy;
 
     public bool isStanding = false;
     
-    public List<CardInfo> Hand => hand;
+    public List<CardInfo> Hand => _hand;
     
     public UnityEvent<List<CardInfo>> OnHandUpdated;
     
     public void AddCards(params CardInfo[] cards)
     {
-        hand.AddRange(cards);
-        OnHandUpdated?.Invoke(hand);
+        _hand.AddRange(cards);
+        OnHandUpdated?.Invoke(_hand);
     }
 
     public void RemoveCards(params CardInfo[] cards)
     {
-        hand.RemoveAll(cards.Contains);
-        OnHandUpdated?.Invoke(hand);
+        _hand.RemoveAll(cards.Contains);
+        OnHandUpdated?.Invoke(_hand);
     }
 
     public void Reset()
     {
         isStanding = false;
-        hand.Clear();
-        OnHandUpdated?.Invoke(hand);
+        _hand.Clear();
+        OnHandUpdated?.Invoke(_hand);
     }
     
 }
