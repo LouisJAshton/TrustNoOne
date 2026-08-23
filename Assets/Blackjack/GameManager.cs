@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     
     [SerializeField] public BlackjackManager blackjackManager;
+
+    [SerializeField] public UnityEvent<string[]> OnRoundWon;
     
     private async void Awake()
     {
@@ -45,5 +48,12 @@ public class GameManager : MonoBehaviour
         foreach (var winner in winners) {
             print(winner.playerName + " wins!");
         }
+
+        List<string> winnerStrings = new List<string>();
+        foreach (var winner in winners) {
+            winnerStrings.Add(winner.playerName);
+        }
+        
+        OnRoundWon.Invoke(winnerStrings.ToArray());
     }
 }

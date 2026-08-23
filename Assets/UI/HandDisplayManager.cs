@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -6,14 +7,30 @@ using UnityEngine.UI;
 
 public class HandDisplayManager : MonoBehaviour
 {
+    //TODO use shared serialised reference
+    [SerializeField] private string playerName;
+    
     [SerializeField] private CardObjectFactory cardObjectFactory;
     [SerializeField] private RectTransform handContainer;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image standingImage;
+    [SerializeField] private ParticleSystem winParticles;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
-    
+
+    private void Start()
+    {
+        GameManager.Instance.OnRoundWon.AddListener(PlayParticles);
+    }
+
+    private void PlayParticles(params string[] player)
+    {
+        if (player.Contains(playerName)) {
+            winParticles.Play();
+        }
+    }
+
     public void DrawCard(CardInfo cardInfo)
     {
         var co = cardObjectFactory.Create(cardInfo);
