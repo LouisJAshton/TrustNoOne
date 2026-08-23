@@ -36,11 +36,13 @@ public class BlackjackManager
             if (card) deck.Add(card.BaseInfo);
         }
         
+        Draw(player1);
+        Draw(player2);
+        Draw(player1);
+        Draw(player2);
+        
         Draw(dealer);
-        Draw(player1);
-        Draw(player2);
-        Draw(player1);
-        Draw(player2);
+        Draw(dealer);
     }
 
     public async UniTask TakeTurn(CancellationToken cancellationToken)
@@ -165,7 +167,12 @@ public class BlackjackManager
         return winners;
     }
 
-    bool CheckForBlackjacks(List<PlayerData> players, out List<PlayerData> winners)
+    public bool CheckForBlackjacks(out List<PlayerData> winners)
+    {
+        return CheckForBlackjacks(new List<PlayerData>() {player1, player2, dealer}, out winners);
+    }
+    
+    public bool CheckForBlackjacks(List<PlayerData> players, out List<PlayerData> winners)
     {
         winners = new List<PlayerData>();
         

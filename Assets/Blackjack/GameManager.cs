@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -25,17 +26,19 @@ public class GameManager : MonoBehaviour
     private async Task PlayRound()
     {
         blackjackManager.Reshuffle();
-        
-        while (!destroyCancellationToken.IsCancellationRequested) {
-            try {
-                await blackjackManager.TakeTurn(destroyCancellationToken);
+
+        if (!blackjackManager.CheckForBlackjacks(out var blackjacks)) {
+            while (!destroyCancellationToken.IsCancellationRequested) {
+                try {
+                    await blackjackManager.TakeTurn(destroyCancellationToken);
+                }
+                catch (RoundEndedException) {
+                    break;
+                }
             }
-            catch (RoundEndedException) {
-                break;
-            }
+            
+            await blackjackManager.Dealer(destroyCancellationToken);
         }
-        
-        await blackjackManager.Dealer(destroyCancellationToken);
         
         var winners = await blackjackManager.CalculateWinner(destroyCancellationToken);
 
