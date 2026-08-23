@@ -600,6 +600,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1738207251}
     m_Modifications:
+    - target: {fileID: 606957450912778744, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_text
+      value: 'Enemy
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 2093869264226077898, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_Name
       value: Player Hand Display
@@ -836,6 +842,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 200605798}
     m_Modifications:
+    - target: {fileID: 606957450912778744, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_text
+      value: Dealer
+      objectReference: {fileID: 0}
     - target: {fileID: 2093869264226077898, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_Name
       value: Dealer Hand Display
@@ -1122,6 +1132,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 952636542}
     m_Modifications:
+    - target: {fileID: 606957450912778744, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_text
+      value: You
+      objectReference: {fileID: 0}
+    - target: {fileID: 606957450912778744, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2093869264226077898, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_Name
       value: Player Hand Display
