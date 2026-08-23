@@ -6,7 +6,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BlackjackManager blackjackManager;
 
     [SerializeField] private PlayerData playerData;
-    
+
+    private void Awake()
+    {
+        blackjackManager.Initialise();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {

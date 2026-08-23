@@ -7,9 +7,21 @@ using UnityEngine;
 public class BlackjackManager
 {
     public const int MAX = 21;
+
+    [SerializeField] private List<BaseCardInfo> baseDeck;
     
     [SerializeField] private List<CardInfo> hand;
     [SerializeField] private List<CardInfo> deck;
+
+    public void Initialise()
+    {
+        hand = new List<CardInfo>();
+        deck = new List<CardInfo>();
+
+        foreach (var card in baseDeck) {
+            deck.Add(card.baseCardInfo);
+        }
+    }
     
     public int CalculateScore(PlayerData playerData)
     {
