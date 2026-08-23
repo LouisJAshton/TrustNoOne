@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   _cardInfo:
     rankName: A
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 7da1656e1a7ef704088d27e853e010b8, type: 3}
     rank: 1
     suit: 2
