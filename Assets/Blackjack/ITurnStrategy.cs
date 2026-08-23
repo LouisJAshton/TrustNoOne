@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ITurnStrategy
 {
-    public UniTask<bool> TakeTurn(CancellationToken cancellationToken);
+    public UniTask TakeTurn(CancellationToken cancellationToken);
 }
 
 public class AITurnStrategy : ITurnStrategy
@@ -16,11 +16,8 @@ public class AITurnStrategy : ITurnStrategy
         _self = self;
     }
     
-    public async UniTask<bool> TakeTurn(CancellationToken cancellationToken)
+    public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        if (_self.IsStanding)
-            return true;
-        
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
 
         if (BlackjackManager.CalculateScore(_self.Hand) < 18) {
@@ -29,8 +26,6 @@ public class AITurnStrategy : ITurnStrategy
         else {
             _self.IsStanding = true;
         }
-
-        return _self.IsStanding || BlackjackManager.CalculateScore(_self.Hand) > 21;
     }
 }
 
@@ -43,11 +38,8 @@ public class DealerTurnStrategy : ITurnStrategy
         _self = self;
     }
 
-    public async UniTask<bool> TakeTurn(CancellationToken cancellationToken)
+    public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        if (_self.IsStanding)
-            return true;
-        
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
 
         if (BlackjackManager.CalculateScore(_self.Hand) < 18) {
@@ -56,8 +48,6 @@ public class DealerTurnStrategy : ITurnStrategy
         else {
             _self.IsStanding = true;
         }
-
-        return _self.IsStanding || BlackjackManager.CalculateScore(_self.Hand) > 21;
     }
 }
 
@@ -70,14 +60,8 @@ public class PlayerTurnStrategy : ITurnStrategy
         _self = self;
     }
     
-    public async UniTask<bool> TakeTurn(CancellationToken cancellationToken)
+    public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        if (BlackjackManager.CalculateScore(_self.Hand) > 21)
-            return true;
-
-        if (_self.IsStanding)
-            return true;
-        
         while (!cancellationToken.IsCancellationRequested) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 GameManager.Instance.blackjackManager.Draw(_self);
@@ -96,7 +80,5 @@ public class PlayerTurnStrategy : ITurnStrategy
             
             await UniTask.Yield();
         }
-
-        return _self.IsStanding || BlackjackManager.CalculateScore(_self.Hand) > 21;
     }
 }

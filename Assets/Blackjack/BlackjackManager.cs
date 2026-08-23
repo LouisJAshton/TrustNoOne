@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -48,12 +46,24 @@ public class BlackjackManager
     public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
         if (player1.IsStanding && player2.IsStanding) {
-            //Debug.Log("Both standing");
             throw new BothStandingException();
         }
+
+        await TurnCycle(player1, cancellationToken);
+        await TurnCycle(player2, cancellationToken);
+    }
+
+    private async UniTask TurnCycle(PlayerData player, CancellationToken token)
+    {
+        if (CalculateScore(player.Hand) > 21 || player.IsStanding)
+            return;
         
-        player1.IsStanding = await player1.turnStrategy.TakeTurn(cancellationToken);
-        player2.IsStanding = await player2.turnStrategy.TakeTurn(cancellationToken);
+        await player.turnStrategy.TakeTurn(token);
+        if (CalculateScore(player.Hand) > 21) {
+            player.IsStanding = true;
+        }
+
+        await UniTask.Yield();
     }
     
     public static int CalculateScore(List<CardInfo> cards)
@@ -129,7 +139,7 @@ public class BlackjackManager
     public async UniTask Dealer(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested) {
-            dealer.IsStanding = await dealer.turnStrategy.TakeTurn(cancellationToken);
+            await dealer.turnStrategy.TakeTurn(cancellationToken);
             if (dealer.IsStanding) {
                 return;
             }
