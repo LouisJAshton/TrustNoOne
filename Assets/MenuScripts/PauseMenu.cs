@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject CreditsMenu;
 
-    private void Start()
+    private void Awake()
     {
         Pause.SetActive(false);
         PausedMenu.SetActive(false);
