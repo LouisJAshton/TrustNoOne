@@ -18,7 +18,7 @@ public class AITurnStrategy : ITurnStrategy
     
     public async UniTask<bool> TakeTurn(CancellationToken cancellationToken)
     {
-        if (_self.isStanding)
+        if (_self.IsStanding)
             return true;
         
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
@@ -27,10 +27,10 @@ public class AITurnStrategy : ITurnStrategy
             GameManager.Instance.blackjackManager.Draw(_self);
         }
         else {
-            _self.isStanding = true;
+            _self.IsStanding = true;
         }
         
-        return _self.isStanding;
+        return _self.IsStanding;
     }
 }
 
@@ -45,7 +45,7 @@ public class DealerTurnStrategy : ITurnStrategy
 
     public async UniTask<bool> TakeTurn(CancellationToken cancellationToken)
     {
-        if (_self.isStanding)
+        if (_self.IsStanding)
             return true;
         
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
@@ -54,10 +54,10 @@ public class DealerTurnStrategy : ITurnStrategy
             GameManager.Instance.blackjackManager.Draw(_self);
         }
         else {
-            _self.isStanding = true;
+            _self.IsStanding = true;
         }
         
-        return _self.isStanding;
+        return _self.IsStanding;
     }
 }
 
@@ -75,7 +75,7 @@ public class PlayerTurnStrategy : ITurnStrategy
         if (BlackjackManager.CalculateScore(_self.Hand) > 21)
             return true;
 
-        if (_self.isStanding)
+        if (_self.IsStanding)
             return true;
         
         while (!cancellationToken.IsCancellationRequested) {
@@ -85,7 +85,7 @@ public class PlayerTurnStrategy : ITurnStrategy
             }
 
             if (Input.GetKeyDown(KeyCode.Return)) {
-                _self.isStanding = true;
+                _self.IsStanding = true;
                 break;
             }
             
@@ -97,6 +97,6 @@ public class PlayerTurnStrategy : ITurnStrategy
             await UniTask.Yield();
         }
 
-        return _self.isStanding;
+        return _self.IsStanding;
     }
 }

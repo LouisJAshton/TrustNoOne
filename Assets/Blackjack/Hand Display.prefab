@@ -48,6 +48,7 @@ MonoBehaviour:
   cardObjectFactory: {fileID: 11400000, guid: 534cbe47ee97d824d83ef25172a7ed39, type: 2}
   handContainer: {fileID: 7107384089877089005}
   scoreText: {fileID: 6299071524274684003}
+  nameText: {fileID: 606957450912778744}
 --- !u!1 &2213814637189188109
 GameObject:
   m_ObjectHideFlags: 0

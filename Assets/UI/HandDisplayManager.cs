@@ -8,6 +8,7 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private CardObjectFactory cardObjectFactory;
     [SerializeField] private RectTransform handContainer;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text nameText;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
     
@@ -16,6 +17,11 @@ public class HandDisplayManager : MonoBehaviour
         var co = cardObjectFactory.Create(cardInfo);
         co.transform.SetParent(handContainer, false);
         _cardObjects.Add(cardInfo, co);
+    }
+
+    public void UpdateStanding(bool isStanding)
+    {
+        nameText.color = !isStanding ? Color.green : Color.red;
     }
 
     public void Clear()

@@ -12,11 +12,20 @@ public class PlayerData
     private List<CardInfo> _hand = new();
     public ITurnStrategy turnStrategy;
 
-    public bool isStanding = false;
-    
+    private bool isStanding = false;
+
+    public bool IsStanding {
+        get => isStanding;
+        set {
+            isStanding = value;
+            OnStandingUpdated.Invoke(value);
+        }
+    }
+
     public List<CardInfo> Hand => _hand;
     
     public UnityEvent<List<CardInfo>> OnHandUpdated;
+    public UnityEvent<bool> OnStandingUpdated;
     
     public void AddCards(params CardInfo[] cards)
     {
@@ -32,7 +41,7 @@ public class PlayerData
 
     public void Reset()
     {
-        isStanding = false;
+        IsStanding = false;
         _hand.Clear();
         OnHandUpdated?.Invoke(_hand);
     }

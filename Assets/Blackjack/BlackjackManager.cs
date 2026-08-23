@@ -47,13 +47,13 @@ public class BlackjackManager
 
     public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        if (player1.isStanding && player2.isStanding) {
+        if (player1.IsStanding && player2.IsStanding) {
             Debug.Log("Both standing");
             throw new BothStandingException();
         }
         
-        player1.isStanding = await player1.turnStrategy.TakeTurn(cancellationToken);
-        player2.isStanding = await player2.turnStrategy.TakeTurn(cancellationToken);
+        player1.IsStanding = await player1.turnStrategy.TakeTurn(cancellationToken);
+        player2.IsStanding = await player2.turnStrategy.TakeTurn(cancellationToken);
     }
     
     public static int CalculateScore(List<CardInfo> cards)
@@ -129,8 +129,8 @@ public class BlackjackManager
     public async UniTask Dealer(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested) {
-            bool isStanding = await dealer.turnStrategy.TakeTurn(cancellationToken);
-            if (isStanding) {
+            dealer.IsStanding = await dealer.turnStrategy.TakeTurn(cancellationToken);
+            if (dealer.IsStanding) {
                 return;
             }
         }
