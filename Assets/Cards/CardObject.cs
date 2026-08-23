@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[ExecuteAlways]
 public class CardObject : MonoBehaviour
 {
     [SerializeField] private BaseCardInfo baseCardInfo;
@@ -10,7 +11,7 @@ public class CardObject : MonoBehaviour
     [SerializeField] private RawImage image;
     [SerializeField] private TMP_Text[] ranks;
 
-    private void Awake()
+    private void Update()
     {
         SetCardInfo(baseCardInfo.baseCardInfo);
     }
