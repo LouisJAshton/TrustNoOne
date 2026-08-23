@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,9 @@ public class BlackjackManager
 
     public void Initialise()
     {
+        player.turnStrategy = new PlayerTurnStrategy();
+        dealer.turnStrategy = new DealerTurnStrategy();
+        
         deck = new List<CardInfo>();
         
         var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
@@ -28,13 +32,13 @@ public class BlackjackManager
         }
     }
 
-    public async UniTask TakeTurn()
+    public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        await player.turnStrategy.TakeTurn();
-        await dealer.turnStrategy.TakeTurn();
+        await player.turnStrategy.TakeTurn(player, cancellationToken);
+        await dealer.turnStrategy.TakeTurn(dealer, cancellationToken);
     }
     
-    public int CalculateScore(List<CardInfo> cards)
+    public static int CalculateScore(List<CardInfo> cards)
     {
         var total = 0;
         var acesCount = 0;
@@ -69,7 +73,7 @@ public class BlackjackManager
         return total;
     }
 
-    public void Draw()
+    public void Draw(PlayerData activePlayer)
     {
         if (deck == null || deck.Count == 0) {
             Debug.Log("Drawing from empty deck");
@@ -79,7 +83,7 @@ public class BlackjackManager
         //TODO Replace with actual draw
         var card = deck[Random.Range(0, deck.Count)];
         deck.Remove(card);
-        dealer.AddCards(card);
+        activePlayer.AddCards(card);
     }
 
     //TODO Use unitask for juice

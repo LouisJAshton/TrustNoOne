@@ -3,33 +3,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private BlackjackManager blackjackManager;
+    public static GameManager Instance;
+    
+    [SerializeField] public BlackjackManager blackjackManager;
 
     [SerializeField] private PlayerData playerData;
 
-    private void Awake()
+    private async void Awake()
     {
-        blackjackManager.Initialise();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            blackjackManager.Draw();
-            blackjackManager.DebugDealerHand();
-        }
+        if(Instance)
+            Destroy(gameObject);
+        else
+            Instance = this;
         
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            var score = blackjackManager.CalculateScore(blackjackManager.dealer.Hand);
-            Debug.Log(score);
-            if (score > 21) {
-                Debug.Log("Bust!");
-            }
-        }
+        blackjackManager.Initialise();
 
-        if (Input.GetKeyDown(KeyCode.Backspace)) {
-            blackjackManager.Reshuffle();
+        while (!destroyCancellationToken.IsCancellationRequested) {
+            await blackjackManager.TakeTurn(destroyCancellationToken);
         }
-            
     }
 }
