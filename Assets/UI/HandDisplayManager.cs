@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HandDisplayManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private RectTransform handContainer;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text nameText;
+    [SerializeField] private Image standingImage;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
     
@@ -21,7 +23,8 @@ public class HandDisplayManager : MonoBehaviour
 
     public void UpdateStanding(bool isStanding)
     {
-        nameText.color = !isStanding ? Color.green : Color.red;
+        // nameText.color = !isStanding ? Color.green : Color.red;
+        standingImage.enabled = isStanding;
     }
 
     public void Clear()

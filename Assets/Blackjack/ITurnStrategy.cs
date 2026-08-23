@@ -29,8 +29,8 @@ public class AITurnStrategy : ITurnStrategy
         else {
             _self.IsStanding = true;
         }
-        
-        return _self.IsStanding;
+
+        return _self.IsStanding || BlackjackManager.CalculateScore(_self.Hand) > 21;
     }
 }
 
@@ -56,8 +56,8 @@ public class DealerTurnStrategy : ITurnStrategy
         else {
             _self.IsStanding = true;
         }
-        
-        return _self.IsStanding;
+
+        return _self.IsStanding || BlackjackManager.CalculateScore(_self.Hand) > 21;
     }
 }
 
@@ -97,6 +97,6 @@ public class PlayerTurnStrategy : ITurnStrategy
             await UniTask.Yield();
         }
 
-        return _self.IsStanding;
+        return _self.IsStanding || BlackjackManager.CalculateScore(_self.Hand) > 21;
     }
 }
