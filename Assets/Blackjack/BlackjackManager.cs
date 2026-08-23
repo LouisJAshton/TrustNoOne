@@ -28,13 +28,18 @@ public class BlackjackManager
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
         
         deck = new List<CardInfo>();
-        
         var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
         foreach (var cardInfo in cards) {
             var card = cardInfo as BaseCardInfo;
             
             if (card) deck.Add(card.BaseInfo);
         }
+        
+        Draw(dealer);
+        Draw(player1);
+        Draw(player2);
+        Draw(player1);
+        Draw(player2);
     }
 
     public async UniTask TakeTurn(CancellationToken cancellationToken)
@@ -44,8 +49,8 @@ public class BlackjackManager
             throw new BothStandingException();
         }
         
-        await player1.turnStrategy.TakeTurn(cancellationToken);
-        await player2.turnStrategy.TakeTurn(cancellationToken);
+        player1.isStanding = await player1.turnStrategy.TakeTurn(cancellationToken);
+        player2.isStanding = await player2.turnStrategy.TakeTurn(cancellationToken);
     }
     
     public static int CalculateScore(List<CardInfo> cards)
