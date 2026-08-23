@@ -541,8 +541,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   blackjackManager:
+    baseDeck:
+    - {fileID: 11400000, guid: 8f5e3d5f172302d499e22a4d961d2d58, type: 2}
+    - {fileID: 11400000, guid: ce4e4cd89ef5e0443b490a6b3deb3ae0, type: 2}
+    - {fileID: 11400000, guid: 58937f35f3b207d46bf0f61506ef9df9, type: 2}
+    - {fileID: 11400000, guid: 6cc7fef284bde39479cc3071b4cbeb74, type: 2}
     hand: []
-    deck: []
+    deck:
+    - rankName: 
+      texture: {fileID: 0}
+      rank: 0
+      suit: 0
   playerData: {fileID: 11400000, guid: 3d2ff63407a76cf49b9ac84aaf782967, type: 2}
 --- !u!4 &1934027155
 Transform:
