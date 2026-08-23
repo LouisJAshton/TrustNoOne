@@ -522,10 +522,10 @@ PrefabInstance:
     - target: {fileID: 856826542454568001, guid: 9908bb1c97d91034c9918ce687218199, type: 3}
       propertyPath: baseCardInfo
       value: 
-      objectReference: {fileID: 11400000, guid: ce4e4cd89ef5e0443b490a6b3deb3ae0, type: 2}
+      objectReference: {fileID: 11400000, guid: d460e68db51a6a3458b2f1d8853b1eec, type: 2}
     - target: {fileID: 944460390089526355, guid: 9908bb1c97d91034c9918ce687218199, type: 3}
       propertyPath: m_text
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 944460390089526355, guid: 9908bb1c97d91034c9918ce687218199, type: 3}
       propertyPath: m_fontColor.b
@@ -541,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3477859400016153737, guid: 9908bb1c97d91034c9918ce687218199, type: 3}
       propertyPath: m_text
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3477859400016153737, guid: 9908bb1c97d91034c9918ce687218199, type: 3}
       propertyPath: m_fontColor.b
