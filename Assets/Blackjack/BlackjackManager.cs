@@ -20,7 +20,7 @@ public class BlackjackManager
     
     private IScoringStrategy _scoringStrategy;
     
-    private List<CardInfo> deck;
+    public List<CardInfo> deck;
 
     [FormerlySerializedAs("player")] public PlayerData player1;
     public PlayerData player2;
@@ -36,6 +36,10 @@ public class BlackjackManager
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
 
+        player1.tutorStrategy = new AITutorStrategy(player1, this);
+        player2.tutorStrategy = new AITutorStrategy(player2, this);
+        dealer.tutorStrategy = new AITutorStrategy(dealer, this);
+        
         _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
         
         deck = new List<CardInfo>();
@@ -129,9 +133,10 @@ public class BlackjackManager
         deck.Remove(card);
         activePlayer.AddCards(card);
 
-        // if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
-        //     await activePlayer.tutorStrategy(token);
-        // }
+        if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
+            await activePlayer.tutorStrategy.Tutor(token);
+            activePlayer.RemoveCards(card);
+        }
     }
 
     //TODO Use unitask for juice

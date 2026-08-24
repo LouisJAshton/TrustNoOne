@@ -12,6 +12,8 @@ public class PlayerData
     
     private List<CardInfo> _hand = new();
     public ITurnStrategy turnStrategy;
+    
+    public ITutorStrategy tutorStrategy;
 
     private bool isStanding = false;
 
