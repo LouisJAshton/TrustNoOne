@@ -40,14 +40,14 @@ public class PlayerMove : MonoBehaviour
         if (disableMovement == 0 && MoveAction.WasPerformedThisFrame())
         {
             Debug.Log("MOVED");
-            disableMovement = 20;
+            disableMovement = 22;
             NewPos = transform.position + transform.forward*4.5f;
             move = true;
         }
         else if (disableMovement == 0 && RotateLAction.WasPerformedThisFrame())
         {
             Debug.Log("ROTATE:L");
-            disableMovement = 25;
+            disableMovement = 33;
             NewRot = currentRot.eulerAngles;
             NewRot.y = NewRot.y - 90;
             rotate = true;
@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour
         else if (disableMovement == 0 && RotateRAction.WasPerformedThisFrame())
         {
             Debug.Log("ROTATE:R");
-            disableMovement = 25;
+            disableMovement = 33;
             NewRot = currentRot.eulerAngles;
             NewRot.y = NewRot.y + 90;
             rotate = true;
