@@ -127,11 +127,14 @@ public class BlackjackManager
             Debug.Log("Drawing from empty deck");
             return;
         }
+
         
         //TODO Replace with actual draw
         var card = deck[Random.Range(0, deck.Count)];
         deck.Remove(card);
         activePlayer.AddCards(card);
+        
+        await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
 
         if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
             await activePlayer.tutorStrategy.Tutor(token);

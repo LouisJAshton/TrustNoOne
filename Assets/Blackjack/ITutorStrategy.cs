@@ -43,7 +43,7 @@ public class AITutorStrategy : ITutorStrategy
         var currentScore = BlackjackManager.CalculateScore(_playerData);
         var delta = BlackjackManager.MAX - currentScore;
         
-        delta = Mathf.Min(delta, 10);
+        delta = Mathf.Min(delta, 11);
 
         var card = SearchCardOfRank(delta);
         
@@ -59,7 +59,7 @@ public class AITutorStrategy : ITutorStrategy
         {
             for (int i = delta1; i >= 0; i--) {
                 foreach (var deckCard in deck) {
-                    if(deckCard.specialEffects == 0 && deckCard.rank == i)
+                    if(deckCard.specialEffects == 0 && (deckCard.rank == i || (deckCard.rank == 1 && delta == 11)))
                         return deckCard;            
                 }
             }

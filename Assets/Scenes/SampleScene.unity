@@ -2027,6 +2027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   blackjackManager:
+    deck: []
     player1:
       playerName: You
       OnHandUpdated:
