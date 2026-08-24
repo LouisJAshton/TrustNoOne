@@ -20,8 +20,14 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
         while (destroyCancellationToken.IsCancellationRequested == false) {
-            await PlayRound();
-            await UniTask.WaitForSeconds(2, cancellationToken: destroyCancellationToken);
+            try {
+                await PlayRound();
+                await UniTask.WaitForSeconds(2, cancellationToken: destroyCancellationToken);
+            }
+            catch (GameOverException) {
+                print("Game Over");
+                break;
+            }
         }
     }
 

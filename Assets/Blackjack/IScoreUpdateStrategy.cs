@@ -25,8 +25,8 @@ public class PlayerScoreUpdateStrategy : IScoreUpdateStrategy
         if (score > BlackjackManager.MAX) {
             return;
         }
-        
-        score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand) % BlackjackManager.MAX;
+
+        //score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);// % BlackjackManager.MAX;
 
         await _blackjackManager.ChangeScore(score, token);
     }
@@ -50,7 +50,7 @@ public class EnemyScoreUpdateStrategy : IScoreUpdateStrategy
             return;
         }
         
-        score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);// % BlackjackManager.MAX;
+        //score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);// % BlackjackManager.MAX;
 
         await _blackjackManager.ChangeScore(-score, token);
     }
