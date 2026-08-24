@@ -10,14 +10,14 @@ public class HandDisplayManager : MonoBehaviour
     //TODO use shared serialised reference
     [SerializeField] private string playerName;
     
-    [SerializeField] private CardObjectFactory cardObjectFactory;
+    [SerializeField] private BaseCardObjectFactory cardObjectFactory;
     [SerializeField] private RectTransform handContainer;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image standingImage;
     [SerializeField] private ParticleSystem winParticles;
     
-    private Dictionary<CardInfo, CardObject> _cardObjects = new();
+    private Dictionary<CardInfo, GameObject> _cardObjects = new();
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class HandDisplayManager : MonoBehaviour
     {
         var co = cardObjectFactory.Create(cardInfo);
         co.transform.SetParent(handContainer, false);
-        _cardObjects.Add(cardInfo, co);
+        _cardObjects.Add(cardInfo, (GameObject)co);
     }
 
     public void UpdateStanding(bool isStanding)

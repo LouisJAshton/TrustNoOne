@@ -9,13 +9,13 @@ public class CardObject : MonoBehaviour
     [SerializeField] private BaseCardInfo baseCardInfo;
 
     [SerializeField] private RawImage image;
-    [SerializeField] private TMP_Text[] ranks;
+    private TMP_Text[] _ranks;
 
     public void SetCardInfo(CardInfo cardInfo)
     {
         image.texture = cardInfo.texture;
 
-        foreach (var rank in ranks) {
+        foreach (var rank in _ranks) {
             rank.color = cardInfo.GetColour();
             rank.text = cardInfo.rankName;
         }
