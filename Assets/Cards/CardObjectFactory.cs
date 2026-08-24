@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardObjectFactory", menuName = "Scriptable Objects/CardObjectFactory")]
-public class CardObjectFactory : BaseCardObjectFactory
+public class CardObjectFactory : ScriptableObject
 {
     [SerializeField] private CardObject cardObjectPrefab;
     
-    public override GameObject Create(CardInfo cardInfo)
+    public CardObject Create(CardInfo cardInfo)
     {
         if (!cardObjectPrefab) {
             Debug.LogError("CardObjectFactory: cardObjectPrefab is null");
@@ -15,11 +15,6 @@ public class CardObjectFactory : BaseCardObjectFactory
         var cardObject = Instantiate(cardObjectPrefab);
         cardObject.SetCardInfo(cardInfo);
         
-        return cardObject.gameObject;
+        return cardObject;
     }
-}
-
-public abstract class BaseCardObjectFactory : ScriptableObject
-{
-    public abstract GameObject Create(CardInfo cardInfo);
 }
