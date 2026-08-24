@@ -21,11 +21,11 @@ public class CardInfo
         output.rankName = rankName;
         output.suit = suit;
         output.texture = texture;
+        output.specialEffects = specialEffects;
         
         return output;
     }
     
-    //[Flags]
     public enum Suit
     {
         Heart = 1,
@@ -34,11 +34,24 @@ public class CardInfo
         Spade = 8
     }
 
+    [Flags]
+    public enum SpecialEffect
+    {
+        Double = 1,
+        Blessed = 2,
+        Shield = 4,
+        Tutor = 8,
+        SwapCard = 16,
+        Lose = 32,
+        SwapHand = 64,
+    }
+    
     public string rankName;
     public Texture texture;
     [Range(1, 10)] public int rank;
     public Suit suit;
-
+    public SpecialEffect specialEffects;
+    
     public Color GetColour()
     {
         return suit switch
