@@ -11,11 +11,6 @@ public class CardObject : MonoBehaviour
     [SerializeField] private RawImage image;
     [SerializeField] private TMP_Text[] ranks;
 
-    private void Update()
-    {
-        SetCardInfo(baseCardInfo.baseCardInfo);
-    }
-
     public void SetCardInfo(CardInfo cardInfo)
     {
         image.texture = cardInfo.texture;

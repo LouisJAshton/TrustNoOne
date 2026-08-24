@@ -1,26 +1,59 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private BlackjackManager blackjackManager;
+    public static GameManager Instance;
+    
+    [SerializeField] public BlackjackManager blackjackManager;
 
-    [SerializeField] private PlayerData playerData;
-
-    private void Awake()
+    [SerializeField] public UnityEvent<string[]> OnRoundWon;
+    
+    private async void Awake()
     {
-        blackjackManager.Initialise();
+        if(Instance && Instance != this)
+            Destroy(gameObject);
+        else
+            Instance = this;
+
+        while (destroyCancellationToken.IsCancellationRequested == false) {
+            await PlayRound();
+            await UniTask.WaitForSeconds(2, cancellationToken: destroyCancellationToken);
+        }
     }
 
-    private void Update()
+    private async Task PlayRound()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            blackjackManager.Draw();
-            blackjackManager.DebugDealerHand();
+        blackjackManager.Reshuffle();
+
+        if (!blackjackManager.CheckForBlackjacks(out var blackjacks)) {
+            while (!destroyCancellationToken.IsCancellationRequested) {
+                try {
+                    await blackjackManager.TakeTurn(destroyCancellationToken);
+                }
+                catch (RoundEndedException) {
+                    break;
+                }
+            }
+            
+            await blackjackManager.Dealer(destroyCancellationToken);
         }
         
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            Debug.Log(blackjackManager.CalculateScore(playerData));
+        var winners = await blackjackManager.CalculateWinner(destroyCancellationToken);
+
+        foreach (var winner in winners) {
+            print(winner.playerName + " wins!");
         }
+
+        List<string> winnerStrings = new List<string>();
+        foreach (var winner in winners) {
+            winnerStrings.Add(winner.playerName);
+        }
+        
+        OnRoundWon.Invoke(winnerStrings.ToArray());
     }
 }
