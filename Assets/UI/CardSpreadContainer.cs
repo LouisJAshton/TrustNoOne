@@ -27,7 +27,7 @@ public class CardSpreadContainer : MonoBehaviour
         for (var i = 0; i < updatedCards.Count; i++) {
             var c = updatedCards[i];
 
-            var col = i - updatedCards.Count / 2.0f;
+            var col = i - updatedCards.Count / 2.0f + 0.5f;
             _cardPositions.Add(c, Quaternion.AngleAxis(col * spreadDelta, Vector3.back) * Vector3.up);
         }
     }
