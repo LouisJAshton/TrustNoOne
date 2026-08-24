@@ -15,7 +15,7 @@ public class BlackjackManager
 {
     public const int MAX = 21;
 
-    public const int MAX_SCORE = 9;
+    public const int MAX_SCORE = 7;
     private int _currentScore = 0;
     
     private IScoringStrategy _scoringStrategy;
@@ -204,7 +204,7 @@ public class BlackjackManager
         
         foreach (var player in players) {
             if (player.Hand.Count != 2) {
-                return false;
+                continue;
             }
 
             if (CalculateScore(player.Hand) == MAX) {
