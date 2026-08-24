@@ -15,15 +15,17 @@ public class BlackjackManager
 {
     public const int MAX = 21;
 
-    public const int MAX_SCORE = 100;
+    public const int MAX_SCORE = 9;
     private int _currentScore = 0;
+    
+    private IScoringStrategy _scoringStrategy;
     
     private List<CardInfo> deck;
 
     [FormerlySerializedAs("player")] public PlayerData player1;
     public PlayerData player2;
-    
     public PlayerData dealer;
+    
 
     public UnityEvent<int> OnScoreChange;
     public UnityEvent<string[]> OnRoundWon;
@@ -34,8 +36,7 @@ public class BlackjackManager
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
 
-        player1.ScoreUpdateStrategy = new PlayerScoreUpdateStrategy(this, player1);
-        player2.ScoreUpdateStrategy = new EnemyScoreUpdateStrategy(this, player2);
+        _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
         
         deck = new List<CardInfo>();
         var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
@@ -74,6 +75,11 @@ public class BlackjackManager
         }
 
         await UniTask.Yield();
+    }
+
+    public static int CalculateScore(PlayerData player)
+    {
+        return CalculateScore(player.Hand);
     }
     
     public static int CalculateScore(List<CardInfo> cards)
@@ -220,15 +226,8 @@ public class BlackjackManager
         
         OnRoundWon.Invoke(winnerStrings.ToArray());
 
-        foreach (var winner in winners) {
-            if (winner.ScoreUpdateStrategy != null) {
-                await winner.ScoreUpdateStrategy.UpdateScore(token);
-                Debug.Log($"Winner {winner.playerName}");
-            }
-        }
-
-        // await player1.ScoreUpdateStrategy.UpdateScore(token);
-        // await player2.ScoreUpdateStrategy.UpdateScore(token);
+        int delta = await _scoringStrategy.Score();
+        await ChangeScore(delta, token);
         
         if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
             throw new GameOverException();

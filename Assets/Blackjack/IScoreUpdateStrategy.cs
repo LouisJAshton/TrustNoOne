@@ -1,67 +1,70 @@
-﻿using System.Threading;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
-//TODO Refine how scoring works
-
-public interface IScoreUpdateStrategy
+public interface IScoringStrategy
 {
-    public UniTask UpdateScore(CancellationToken token);
+    public UniTask<int> Score();
 }
 
-public class PlayerScoreUpdateStrategy : IScoreUpdateStrategy
+public class WeightedScoringStrategy : IScoringStrategy
 {
-    private readonly PlayerData _playerData;
-    private readonly BlackjackManager _blackjackManager;
+    private readonly PlayerData _p1;
+    private readonly PlayerData _p2;
+    private readonly PlayerData _dealer;
     
-    public PlayerScoreUpdateStrategy(BlackjackManager blackjackManager, PlayerData playerData)
+    public WeightedScoringStrategy(PlayerData p1, PlayerData p2, PlayerData dealer)
     {
-        _blackjackManager = blackjackManager;
-        _playerData = playerData;
+        _p1 = p1;
+        _p2 = p2;
+        _dealer = dealer;
     }
-    
-    public async UniTask UpdateScore(CancellationToken token)
-    {
-        int score = BlackjackManager.CalculateScore(_playerData.Hand);
-        if (score > BlackjackManager.MAX) {
-            return;
-        }
 
-        int dealerScore = BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);
-        if (dealerScore <= BlackjackManager.MAX) {
-            score = score + dealerScore - BlackjackManager.MAX;
+    public UniTask<int> Score()
+    {
+        int dealerScore = BlackjackManager.CalculateScore(_dealer);
+        int p1Score = BlackjackManager.CalculateScore(_p1);
+        int p2Score = BlackjackManager.CalculateScore(_p2);
+
+        if (dealerScore > BlackjackManager.MAX)
+            dealerScore = 0;
+        
+        if (p1Score > BlackjackManager.MAX)
+            p1Score = 0;
+        
+        if (p2Score > BlackjackManager.MAX)
+            p2Score = 0;
+
+        int overallScore = 0;
+        
+        //Neither player beats the dealer
+        if (dealerScore > p2Score && dealerScore > p1Score) {
+            if (p1Score > p2Score) {
+                overallScore = 1;
+            }
+            else if (p2Score > p1Score) {
+                overallScore = -1;
+            }
         }
         
-        //score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);// % BlackjackManager.MAX;
-
-        await _blackjackManager.ChangeScore(score, token);
-    }
-}
-
-public class EnemyScoreUpdateStrategy : IScoreUpdateStrategy
-{
-    private readonly PlayerData _playerData;
-    private readonly BlackjackManager _blackjackManager;
-    
-    public EnemyScoreUpdateStrategy(BlackjackManager blackjackManager, PlayerData playerData)
-    {
-        _blackjackManager = blackjackManager;
-        _playerData = playerData;
-    }
-    
-    public async UniTask UpdateScore(CancellationToken token)
-    {
-        int score = BlackjackManager.CalculateScore(_playerData.Hand);
-        if (score > BlackjackManager.MAX) {
-            return;
-        }
-
-        int dealerScore = BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);
-        if (dealerScore <= BlackjackManager.MAX) {
-            score = score + dealerScore - BlackjackManager.MAX;
+        //Both players beat or match the dealer
+        else if (dealerScore <= p2Score && dealerScore <= p1Score) {
+            if (p1Score > p2Score) {
+                overallScore = 2;
+            }
+            else if (p2Score > p1Score) {
+                overallScore = -2;
+            }
         }
         
-        //score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);// % BlackjackManager.MAX;
-
-        await _blackjackManager.ChangeScore(-score, token);
+        //Only 1 player beats or matches the dealer
+        else if ((dealerScore >= p2Score && dealerScore > p1Score) || (dealerScore < p2Score && dealerScore >= p1Score)) {
+            if (p1Score > p2Score) {
+                overallScore = 3;
+            }
+            else if (p2Score > p1Score) {
+                overallScore = -3;
+            }
+        }
+        
+        return UniTask.FromResult(overallScore);
     }
 }
