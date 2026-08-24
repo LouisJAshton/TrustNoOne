@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class CardSpreadContainer : MonoBehaviour
 {
-    private Dictionary<CardObject, Vector3> _cardPositions = new Dictionary<CardObject, Vector3>();
+    private Dictionary<CardObject, Tuple<Vector3, Quaternion>> _cardPositions = new();
 
     private const float MAX_SPREAD_ANGLE = 135f;
-    private const float MAX_SPREAD_DELTA = 15f;
+    private const float MAX_SPREAD_DELTA = 20f;
     
     public void RefreshSpread()
     {
@@ -28,7 +28,7 @@ public class CardSpreadContainer : MonoBehaviour
             var c = updatedCards[i];
 
             var col = i - updatedCards.Count / 2.0f + 0.5f;
-            _cardPositions.Add(c, Quaternion.AngleAxis(col * spreadDelta, Vector3.back) * Vector3.up);
+            _cardPositions.Add(c, new Tuple<Vector3, Quaternion>(Quaternion.AngleAxis(col * spreadDelta, Vector3.back) * Vector3.up * 0.5f, Quaternion.AngleAxis(col * spreadDelta, Vector3.back)));
         }
     }
 
@@ -37,7 +37,8 @@ public class CardSpreadContainer : MonoBehaviour
         RefreshSpread();
         
         foreach (var kvp in _cardPositions) {
-            kvp.Key.transform.localPosition = Vector3.Lerp(kvp.Key.transform.localPosition, kvp.Value, 0.3f);
+            kvp.Key.transform.localPosition = Vector3.Lerp(kvp.Key.transform.localPosition, kvp.Value.Item1, 0.3f);
+            kvp.Key.transform.localRotation = Quaternion.Lerp(kvp.Key.transform.localRotation, kvp.Value.Item2, 0.3f);
         }
     }
 }
