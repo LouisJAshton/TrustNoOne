@@ -51,7 +51,6 @@ public class BlackjackManager
         Draw(player2);
         
         Draw(dealer);
-        Draw(dealer);
     }
 
     public async UniTask TakeTurn(CancellationToken cancellationToken)
@@ -223,11 +222,14 @@ public class BlackjackManager
 
         foreach (var winner in winners) {
             if (winner.ScoreUpdateStrategy != null) {
-                Debug.Log($"Winner {winner.playerName}");
                 await winner.ScoreUpdateStrategy.UpdateScore(token);
+                Debug.Log($"Winner {winner.playerName}");
             }
         }
 
+        // await player1.ScoreUpdateStrategy.UpdateScore(token);
+        // await player2.ScoreUpdateStrategy.UpdateScore(token);
+        
         if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
             throw new GameOverException();
         }
