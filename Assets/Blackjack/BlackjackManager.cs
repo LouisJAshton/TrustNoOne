@@ -222,7 +222,13 @@ public class BlackjackManager
         OnRoundWon.Invoke(winnerStrings.ToArray());
 
         foreach (var winner in winners) {
-            
+            if (winner.ScoreUpdateStrategy != null) {
+                await winner.ScoreUpdateStrategy.UpdateScore(token);
+            }
+        }
+
+        if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
+            throw new GameOverException();
         }
     }
 
@@ -233,3 +239,5 @@ public class BlackjackManager
         return UniTask.CompletedTask;
     }
 }
+
+public class GameOverException : Exception { }

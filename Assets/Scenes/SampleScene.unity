@@ -1639,9 +1639,12 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-  OnRoundWon:
-    m_PersistentCalls:
-      m_Calls: []
+    OnScoreChange:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRoundWon:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1934027155
 Transform:
   m_ObjectHideFlags: 0

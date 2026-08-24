@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SocialPlatforms;
 
 [Serializable]
 public class PlayerData
@@ -11,6 +12,7 @@ public class PlayerData
     
     private List<CardInfo> _hand = new();
     public ITurnStrategy turnStrategy;
+    public IScoreUpdateStrategy ScoreUpdateStrategy;
 
     private bool isStanding = false;
 
