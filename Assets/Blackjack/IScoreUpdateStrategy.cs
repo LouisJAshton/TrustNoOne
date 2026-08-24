@@ -55,7 +55,7 @@ public class WeightedScoringStrategy : IScoringStrategy
             }
         }
         
-        //Only 1 player beats or matches the dealer
+        //Only 1 player beats the dealer
         else if ((dealerScore >= p2Score && dealerScore < p1Score) || (dealerScore < p2Score && dealerScore >= p1Score)) {
             if (p1Score > p2Score) {
                 overallScore = 3;
