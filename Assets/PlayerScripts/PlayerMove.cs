@@ -1,7 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -11,9 +9,9 @@ public class PlayerMove : MonoBehaviour
     private InputAction RotateRAction;
 
     private Quaternion currentRot;
-    private Quaternion targetRot = new Quaternion(0, -0.70711f, 0, 0.70711f);//starting rotation
+    private Quaternion targetRot;
     private Vector3 currentPos;
-    private Vector3 targetPos = new Vector3 (0, 4, 0);//starting position
+    private Vector3 targetPos;
 
     private Vector3 NewRot;
     private Vector3 NewPos;
@@ -33,8 +31,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(0, 4, 0);
-        transform.rotation = new Quaternion(0, 0, 0, 0);
+        targetPos = transform.position;
+        targetRot = transform.rotation;
     }
 
     private void Update()
@@ -43,7 +41,7 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.Log("MOVED");
             disableMovement = 20;
-            NewPos = transform.position + transform.forward*4;
+            NewPos = transform.position + transform.forward*4.5f;
             move = true;
         }
         else if (disableMovement == 0 && RotateLAction.WasPerformedThisFrame())
