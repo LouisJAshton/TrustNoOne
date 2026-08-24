@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 
+//TODO Refine how scoring works
+
 public interface IScoreUpdateStrategy
 {
     public UniTask UpdateScore(CancellationToken token);
@@ -8,8 +10,8 @@ public interface IScoreUpdateStrategy
 
 public class PlayerScoreUpdateStrategy : IScoreUpdateStrategy
 {
-    private PlayerData _playerData;
-    private BlackjackManager _blackjackManager;
+    private readonly PlayerData _playerData;
+    private readonly BlackjackManager _blackjackManager;
     
     public PlayerScoreUpdateStrategy(BlackjackManager blackjackManager, PlayerData playerData)
     {
@@ -32,8 +34,8 @@ public class PlayerScoreUpdateStrategy : IScoreUpdateStrategy
 
 public class EnemyScoreUpdateStrategy : IScoreUpdateStrategy
 {
-    private PlayerData _playerData;
-    private BlackjackManager _blackjackManager;
+    private readonly PlayerData _playerData;
+    private readonly BlackjackManager _blackjackManager;
     
     public EnemyScoreUpdateStrategy(BlackjackManager blackjackManager, PlayerData playerData)
     {
@@ -48,7 +50,7 @@ public class EnemyScoreUpdateStrategy : IScoreUpdateStrategy
             return;
         }
         
-        score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand) % BlackjackManager.MAX;
+        score -= BlackjackManager.CalculateScore(_blackjackManager.dealer.Hand);// % BlackjackManager.MAX;
 
         await _blackjackManager.ChangeScore(-score, token);
     }

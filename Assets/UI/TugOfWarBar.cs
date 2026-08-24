@@ -1,16 +1,14 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TugOfWarBar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Slider slider;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        // GameManager.Instance.blackjackManager.OnScoreChange.AddListener(arg0 => slider.value = 0.4f);
+        GameManager.Instance.blackjackManager.OnScoreChange.AddListener(arg0 => slider.value = (float)arg0 / (float)BlackjackManager.MAX_SCORE);
     }
 }

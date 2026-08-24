@@ -223,6 +223,7 @@ public class BlackjackManager
 
         foreach (var winner in winners) {
             if (winner.ScoreUpdateStrategy != null) {
+                Debug.Log($"Winner {winner.playerName}");
                 await winner.ScoreUpdateStrategy.UpdateScore(token);
             }
         }
@@ -236,6 +237,7 @@ public class BlackjackManager
     {
         _currentScore += delta;
         OnScoreChange.Invoke(_currentScore);
+        Debug.Log($"Current score: {_currentScore}");
         return UniTask.CompletedTask;
     }
 }
