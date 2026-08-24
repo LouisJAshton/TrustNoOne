@@ -36,7 +36,7 @@ public class WeightedScoringStrategy : IScoringStrategy
         int overallScore = 0;
         
         //Neither player beats the dealer
-        if (dealerScore > p2Score && dealerScore > p1Score) {
+        if (dealerScore >= p2Score && dealerScore >= p1Score) {
             if (p1Score > p2Score) {
                 overallScore = 1;
             }
@@ -45,8 +45,8 @@ public class WeightedScoringStrategy : IScoringStrategy
             }
         }
         
-        //Both players beat or match the dealer
-        else if (dealerScore <= p2Score && dealerScore <= p1Score) {
+        //Both players beat the dealer
+        else if (dealerScore < p2Score && dealerScore < p1Score) {
             if (p1Score > p2Score) {
                 overallScore = 2;
             }
@@ -56,7 +56,7 @@ public class WeightedScoringStrategy : IScoringStrategy
         }
         
         //Only 1 player beats or matches the dealer
-        else if ((dealerScore >= p2Score && dealerScore > p1Score) || (dealerScore < p2Score && dealerScore >= p1Score)) {
+        else if ((dealerScore >= p2Score && dealerScore < p1Score) || (dealerScore < p2Score && dealerScore >= p1Score)) {
             if (p1Score > p2Score) {
                 overallScore = 3;
             }
