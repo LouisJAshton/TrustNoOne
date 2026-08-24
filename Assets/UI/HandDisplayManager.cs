@@ -35,6 +35,7 @@ public class HandDisplayManager : MonoBehaviour
     {
         var co = cardObjectFactory.Create(cardInfo);
         co.transform.SetParent(handContainer, false);
+        co.transform.position = Vector3.zero;
         _cardObjects.Add(cardInfo, co);
     }
 
