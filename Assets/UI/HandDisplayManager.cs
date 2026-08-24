@@ -21,7 +21,7 @@ public class HandDisplayManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnRoundWon.AddListener(PlayParticles);
+        GameManager.Instance.blackjackManager.OnRoundWon.AddListener(PlayParticles);
     }
 
     private void PlayParticles(params string[] player)

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -12,6 +14,9 @@ using Random = UnityEngine.Random;
 public class BlackjackManager
 {
     public const int MAX = 21;
+
+    public const int MAX_SCORE = 100;
+    private int _currentScore = 0;
     
     private List<CardInfo> deck;
 
@@ -20,11 +25,17 @@ public class BlackjackManager
     
     public PlayerData dealer;
 
+    public UnityEvent<int> OnScoreChange;
+    public UnityEvent<string[]> OnRoundWon;
+
     public void Initialise()
     {
         player1.turnStrategy = new PlayerTurnStrategy(player1);
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
+
+        player1.ScoreUpdateStrategy = new PlayerScoreUpdateStrategy(this, player1);
+        player2.ScoreUpdateStrategy = new EnemyScoreUpdateStrategy(this, player2);
         
         deck = new List<CardInfo>();
         var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
@@ -197,5 +208,28 @@ public class BlackjackManager
         }
         
         return winners.Count > 0;
+    }
+
+    public async UniTask UpdateWinners(CancellationToken token)
+    {
+        var winners = await CalculateWinner(token);
+
+        List<string> winnerStrings = new List<string>();
+        foreach (var winner in winners) {
+            winnerStrings.Add(winner.playerName);
+        }
+        
+        OnRoundWon.Invoke(winnerStrings.ToArray());
+
+        foreach (var winner in winners) {
+            
+        }
+    }
+
+    public UniTask ChangeScore(int delta, CancellationToken token)
+    {
+        _currentScore += delta;
+        OnScoreChange.Invoke(_currentScore);
+        return UniTask.CompletedTask;
     }
 }

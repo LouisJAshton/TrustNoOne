@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] public BlackjackManager blackjackManager;
 
-    [SerializeField] public UnityEvent<string[]> OnRoundWon;
     
     private async void Awake()
     {
@@ -43,17 +42,6 @@ public class GameManager : MonoBehaviour
             await blackjackManager.Dealer(destroyCancellationToken);
         }
         
-        var winners = await blackjackManager.CalculateWinner(destroyCancellationToken);
-
-        foreach (var winner in winners) {
-            print(winner.playerName + " wins!");
-        }
-
-        List<string> winnerStrings = new List<string>();
-        foreach (var winner in winners) {
-            winnerStrings.Add(winner.playerName);
-        }
-        
-        OnRoundWon.Invoke(winnerStrings.ToArray());
+        await blackjackManager.UpdateWinners(destroyCancellationToken);
     }
 }
