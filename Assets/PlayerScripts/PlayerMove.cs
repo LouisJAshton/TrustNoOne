@@ -11,9 +11,9 @@ public class PlayerMove : MonoBehaviour
     private InputAction RotateRAction;
 
     private Quaternion currentRot;
-    private Quaternion targetRot;
+    private Quaternion targetRot = new Quaternion(0, -0.70711f, 0, 0.70711f);//starting rotation
     private Vector3 currentPos;
-    private Vector3 targetPos;
+    private Vector3 targetPos = new Vector3 (0, 4, 0);//starting position
 
     private Vector3 NewRot;
     private Vector3 NewPos;
@@ -29,7 +29,12 @@ public class PlayerMove : MonoBehaviour
         MoveAction = InputSystem.actions.FindAction("Forward");
         RotateLAction = InputSystem.actions.FindAction("Left");
         RotateRAction = InputSystem.actions.FindAction("Right");
+    }
 
+    private void Start()
+    {
+        transform.position = new Vector3(0, 4, 0);
+        transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     private void Update()
@@ -37,14 +42,14 @@ public class PlayerMove : MonoBehaviour
         if (disableMovement == 0 && MoveAction.WasPerformedThisFrame())
         {
             Debug.Log("MOVED");
-            disableMovement = 40;
-            NewPos = gameObject.transform.forward*10;
+            disableMovement = 20;
+            NewPos = transform.position + transform.forward*4;
             move = true;
         }
         else if (disableMovement == 0 && RotateLAction.WasPerformedThisFrame())
         {
             Debug.Log("ROTATE:L");
-            disableMovement = 40;
+            disableMovement = 25;
             NewRot = currentRot.eulerAngles;
             NewRot.y = NewRot.y - 90;
             rotate = true;
@@ -52,7 +57,7 @@ public class PlayerMove : MonoBehaviour
         else if (disableMovement == 0 && RotateRAction.WasPerformedThisFrame())
         {
             Debug.Log("ROTATE:R");
-            disableMovement = 40;
+            disableMovement = 25;
             NewRot = currentRot.eulerAngles;
             NewRot.y = NewRot.y + 90;
             rotate = true;
@@ -62,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         {
             currentPos = transform.position;
             targetPos = NewPos;
-            Vector3 mov = Vector3.Slerp(currentPos, targetPos, 0.08f);
+            Vector3 mov = Vector3.Lerp(currentPos, targetPos, 0.1f);
             transform.position = mov;
         }
 
@@ -70,7 +75,7 @@ public class PlayerMove : MonoBehaviour
         {
             currentRot = transform.rotation;
             targetRot = Quaternion.Euler(NewRot);
-            Quaternion Rot = Quaternion.Slerp(currentRot, targetRot, 0.08f);
+            Quaternion Rot = Quaternion.Slerp(currentRot, targetRot, 0.1f);
             transform.rotation = Rot;
         }
     }
@@ -84,8 +89,8 @@ public class PlayerMove : MonoBehaviour
         else
         {
             transform.rotation = targetRot;
-            //transform.position = targetPos;
-           // move = false;
+            transform.position = targetPos;
+            move = false;
             rotate = false;
         }
     }
