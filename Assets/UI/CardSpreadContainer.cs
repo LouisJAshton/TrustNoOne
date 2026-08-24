@@ -37,7 +37,7 @@ public class CardSpreadContainer : MonoBehaviour
         RefreshSpread();
         
         foreach (var kvp in _cardPositions) {
-            kvp.Key.transform.localPosition = Vector3.Lerp(kvp.Key.transform.position, kvp.Value, 0.3f);
+            kvp.Key.transform.localPosition = Vector3.Lerp(kvp.Key.transform.localPosition, kvp.Value, 0.3f);
         }
     }
 }
