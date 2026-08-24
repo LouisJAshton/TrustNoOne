@@ -96,8 +96,12 @@ public class BlackjackManager
 
         foreach (var card in totalHand) {
             
+            //Handle instant loss
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Lose)) {
+                return 666;
+            }
             //Handle non-aces
-            if (card.rank != 1) {
+            else if (card.rank != 1) {
                 total += card.rank;
             }
             //Handle aces
@@ -176,7 +180,7 @@ public class BlackjackManager
 
     public async UniTask<List<PlayerData>> CalculateWinner(CancellationToken cancellationToken)
     {
-        await UniTask.Delay(1000, cancellationToken: cancellationToken);
+        await UniTask.Delay(100, cancellationToken: cancellationToken);
         
         List<PlayerData> winners = new List<PlayerData>();
         List<PlayerData> players = new List<PlayerData>()

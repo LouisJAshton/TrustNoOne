@@ -61,7 +61,7 @@ public class HandDisplayManager : MonoBehaviour
         var toRemove = new List<CardInfo>();
 
         var score = BlackjackManager.CalculateScore(cardInfos);
-        scoreText.text = score > 21 ? "BUST" : score.ToString();
+        scoreText.text = score > 21 ? score.ToString() +  " BUST" : score.ToString();
 
         foreach (var cardInfo in cardInfos) {
             if(!_cardObjects.ContainsKey(cardInfo))
