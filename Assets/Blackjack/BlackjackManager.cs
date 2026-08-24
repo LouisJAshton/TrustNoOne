@@ -70,8 +70,10 @@ public class BlackjackManager
 
     private async UniTask TurnCycle(PlayerData player, CancellationToken token)
     {
-        if (CalculateScore(player.Hand) > 21 || player.IsStanding)
+        if (CalculateScore(player.Hand) > 21 || player.IsStanding) {
+            player.IsStanding = true;
             return;
+        }
         
         await player.turnStrategy.TakeTurn(token);
         if (CalculateScore(player.Hand) > 21) {
