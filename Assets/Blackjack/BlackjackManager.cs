@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -12,19 +14,29 @@ using Random = UnityEngine.Random;
 public class BlackjackManager
 {
     public const int MAX = 21;
+
+    public const int MAX_SCORE = 7;
+    private int _currentScore = 0;
+    
+    private IScoringStrategy _scoringStrategy;
     
     private List<CardInfo> deck;
 
     [FormerlySerializedAs("player")] public PlayerData player1;
     public PlayerData player2;
-    
     public PlayerData dealer;
+    
+
+    public UnityEvent<int> OnScoreChange;
+    public UnityEvent<string[]> OnRoundWon;
 
     public void Initialise()
     {
         player1.turnStrategy = new PlayerTurnStrategy(player1);
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
+
+        _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
         
         deck = new List<CardInfo>();
         var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
@@ -39,7 +51,6 @@ public class BlackjackManager
         Draw(player1);
         Draw(player2);
         
-        Draw(dealer);
         Draw(dealer);
     }
 
@@ -64,6 +75,11 @@ public class BlackjackManager
         }
 
         await UniTask.Yield();
+    }
+
+    public static int CalculateScore(PlayerData player)
+    {
+        return CalculateScore(player.Hand);
     }
     
     public static int CalculateScore(List<CardInfo> cards)
@@ -188,7 +204,7 @@ public class BlackjackManager
         
         foreach (var player in players) {
             if (player.Hand.Count != 2) {
-                return false;
+                continue;
             }
 
             if (CalculateScore(player.Hand) == MAX) {
@@ -198,4 +214,33 @@ public class BlackjackManager
         
         return winners.Count > 0;
     }
+
+    public async UniTask UpdateWinners(CancellationToken token)
+    {
+        var winners = await CalculateWinner(token);
+
+        List<string> winnerStrings = new List<string>();
+        foreach (var winner in winners) {
+            winnerStrings.Add(winner.playerName);
+        }
+        
+        OnRoundWon.Invoke(winnerStrings.ToArray());
+
+        int delta = await _scoringStrategy.Score();
+        await ChangeScore(delta, token);
+        
+        if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
+            throw new GameOverException();
+        }
+    }
+
+    public UniTask ChangeScore(int delta, CancellationToken token)
+    {
+        _currentScore += delta;
+        OnScoreChange.Invoke(_currentScore);
+        Debug.Log($"Current score: {_currentScore}");
+        return UniTask.CompletedTask;
+    }
 }
+
+public class GameOverException : Exception { }
