@@ -51,6 +51,11 @@ public class CardInfo
     [Range(1, 10)] public int rank;
     public Suit suit;
     public SpecialEffect specialEffects;
+
+    public bool HasSpecialEffect(SpecialEffect effect)
+    {
+        return specialEffects.HasFlag(effect);
+    }
     
     public Color GetColour()
     {

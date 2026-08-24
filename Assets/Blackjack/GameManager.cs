@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
 
         while (destroyCancellationToken.IsCancellationRequested == false) {
             try {
-                await PlayRound();
+                await PlayRound(destroyCancellationToken);
                 await UniTask.WaitForSeconds(2, cancellationToken: destroyCancellationToken);
             }
             catch (GameOverException) {
@@ -31,9 +32,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private async Task PlayRound()
+    private async UniTask PlayRound(CancellationToken token)
     {
-        blackjackManager.Reshuffle();
+        await blackjackManager.Reshuffle(token);
 
         if (!blackjackManager.CheckForBlackjacks(out var blackjacks)) {
             while (!destroyCancellationToken.IsCancellationRequested) {

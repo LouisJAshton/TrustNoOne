@@ -21,7 +21,7 @@ public class AITurnStrategy : ITurnStrategy
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
 
         if (BlackjackManager.CalculateScore(_self.Hand) < 18) {
-            GameManager.Instance.blackjackManager.Draw(_self);
+            await GameManager.Instance.blackjackManager.Draw(_self, cancellationToken);
         }
         else {
             _self.IsStanding = true;
@@ -43,7 +43,7 @@ public class DealerTurnStrategy : ITurnStrategy
         await UniTask.Delay(1000, cancellationToken: cancellationToken);
 
         if (BlackjackManager.CalculateScore(_self.Hand) < 18) {
-            GameManager.Instance.blackjackManager.Draw(_self);
+            await GameManager.Instance.blackjackManager.Draw(_self, cancellationToken);
         }
         else {
             _self.IsStanding = true;
@@ -64,7 +64,7 @@ public class PlayerTurnStrategy : ITurnStrategy
     {
         while (!cancellationToken.IsCancellationRequested) {
             if (Input.GetKeyDown(KeyCode.Space)) {
-                GameManager.Instance.blackjackManager.Draw(_self);
+                await GameManager.Instance.blackjackManager.Draw(_self, cancellationToken);
                 break;
             }
 
@@ -74,7 +74,7 @@ public class PlayerTurnStrategy : ITurnStrategy
             }
             
             if (Input.GetKeyDown(KeyCode.Backspace)) {
-                GameManager.Instance.blackjackManager.Reshuffle();
+                await GameManager.Instance.blackjackManager.Reshuffle(cancellationToken);
                 break;
             }
             
