@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
                 print("Game Over");
                 break;
             }
+            catch (OperationCanceledException) {
+                
+            }
         }
     }
 
