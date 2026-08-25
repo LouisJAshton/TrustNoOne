@@ -15,6 +15,7 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image standingImage;
+    [SerializeField] private Image shieldedImage;
     [SerializeField] private ParticleSystem winParticles;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
@@ -43,6 +44,11 @@ public class HandDisplayManager : MonoBehaviour
     {
         // nameText.color = !isStanding ? Color.green : Color.red;
         standingImage.enabled = isStanding;
+    }
+
+    public void UpdateShielded(bool isShielded)
+    {
+        shieldedImage.enabled = isShielded;
     }
 
     public void Clear()

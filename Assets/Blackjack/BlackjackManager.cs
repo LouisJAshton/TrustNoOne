@@ -133,7 +133,6 @@ public class BlackjackManager
             Debug.Log("Drawing from empty deck");
             return;
         }
-
         
         //TODO Replace with actual draw
         var card = deck[Random.Range(0, deck.Count)];
@@ -141,7 +140,12 @@ public class BlackjackManager
         activePlayer.AddCards(card);
         
         await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
-
+        
+        if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
+            activePlayer.IsShielded = true;
+            await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+        }
+        
         if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
             await activePlayer.tutorStrategy.Tutor(token);
             activePlayer.RemoveCards(card);
@@ -245,6 +249,15 @@ public class BlackjackManager
         OnRoundWon.Invoke(winnerStrings.ToArray());
 
         int delta = await _scoringStrategy.Score();
+
+        if (player1.IsShielded) {
+            delta = Mathf.Max(0, delta);
+        }
+        
+        if (player2.IsShielded) {
+            delta = Mathf.Min(0, delta);
+        }
+        
         await ChangeScore(delta, token);
         
         if (Mathf.Abs(_currentScore) >= MAX_SCORE) {

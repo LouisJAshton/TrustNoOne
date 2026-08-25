@@ -15,12 +15,22 @@ public class PlayerData
     
     public ITutorStrategy tutorStrategy;
 
-    private bool isStanding = false;
+    private bool _isStanding = false;
+
+    public bool IsShielded {
+        get => _isShielded;
+        set {
+            _isShielded = value;
+            OnShieldedUpdated.Invoke(value);
+        }
+    }
+
+    private bool _isShielded = false;
 
     public bool IsStanding {
-        get => isStanding;
+        get => _isStanding;
         set {
-            isStanding = value;
+            _isStanding = value;
             OnStandingUpdated.Invoke(value);
         }
     }
@@ -29,6 +39,7 @@ public class PlayerData
     
     public UnityEvent<List<CardInfo>> OnHandUpdated;
     public UnityEvent<bool> OnStandingUpdated;
+    public UnityEvent<bool> OnShieldedUpdated;
     
     public void AddCards(params CardInfo[] cards)
     {
@@ -44,6 +55,7 @@ public class PlayerData
 
     public void Reset()
     {
+        IsShielded = false;
         IsStanding = false;
         _hand.Clear();
         OnHandUpdated?.Invoke(_hand);
