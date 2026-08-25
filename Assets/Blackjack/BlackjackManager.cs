@@ -140,15 +140,34 @@ public class BlackjackManager
         activePlayer.AddCards(card);
         
         await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
-        
-        if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
-            activePlayer.IsShielded = true;
-            await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
-        }
-        
-        if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
-            await activePlayer.tutorStrategy.Tutor(token);
-            activePlayer.RemoveCards(card);
+
+        if (card.specialEffects != 0) {
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
+                await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+                activePlayer.IsShielded = true;
+                activePlayer.RemoveCards(card);
+            }
+            
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
+                await activePlayer.tutorStrategy.Tutor(token);
+                activePlayer.RemoveCards(card);
+            }
+            
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
+                if (activePlayer == player1) {
+                    player2.AddCards(card);
+                }
+                else if (activePlayer == player2) {
+                    player1.AddCards(card);
+                }
+                else {
+                    player1.AddCards(card);
+                    player2.AddCards(card);
+                }
+                
+                activePlayer.RemoveCards(card);
+            }
+            
         }
     }
 

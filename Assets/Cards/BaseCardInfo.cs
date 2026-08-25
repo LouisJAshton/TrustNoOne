@@ -41,7 +41,7 @@ public class CardInfo
         Blessed = 2,
         Shield = 4,
         Tutor = 8,
-        SwapCard = 16,
+        Betray = 16,
         Lose = 32,
         SwapHand = 64,
     }
