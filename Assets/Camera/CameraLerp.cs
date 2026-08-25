@@ -30,8 +30,8 @@ public class CameraLerp : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0)) {
-            _targetTransformIndex += (_targetTransformIndex + 1) % positions.Count;
+        if (Input.GetMouseButtonDown(0)) {
+            SetTarget((_targetTransformIndex + 1) % positions.Count);
         }
     }
 
