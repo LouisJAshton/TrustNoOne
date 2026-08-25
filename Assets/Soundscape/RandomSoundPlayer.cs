@@ -52,12 +52,12 @@ public class RandomSoundPlayer : MonoBehaviour
 [Serializable]
 public struct SoundInfo
 {
+    public string name;
     public List<AudioClip> clipPool;
     public float minVolumeScalar;
     public float maxVolumeScalar;
     public float minPitchScalar;
     public float maxPitchScalar;
-
 
     public AudioClip GetClip()
     {
