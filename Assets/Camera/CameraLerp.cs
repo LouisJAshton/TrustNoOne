@@ -28,21 +28,23 @@ public class CameraLerp : MonoBehaviour
         _targetTransformIndex = index;
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
             SetTarget((_targetTransformIndex + 1) % positions.Count);
         }
-    }
-
-    private void FixedUpdate()
-    {
+        
         if (_targetTransformIndex >= positions.Count)
             return;
         
         var t = (Time.time - _lastTime) / transitionLength;
         
-        transform.position = Vector3.Lerp(_lastPosition, positions[_targetTransformIndex].position, t);
-        transform.rotation = Quaternion.Lerp(_lastRotation, positions[_targetTransformIndex].rotation, t);
+        transform.position = Vector3.Slerp(_lastPosition, positions[_targetTransformIndex].position, t);
+        transform.rotation = Quaternion.Slerp(_lastRotation, positions[_targetTransformIndex].rotation, t);
     }
 }
