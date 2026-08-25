@@ -26,8 +26,8 @@ public class RandomSoundPlayer : MonoBehaviour
 
     private async UniTask Cycle(CancellationToken token)
     {
+        await UniTask.WaitForSeconds(Random.Range(avgDelaySeconds - rangeDelaySeconds / 2, avgDelaySeconds + rangeDelaySeconds / 2), cancellationToken: token);
         PlaySound(sounds[Random.Range(0, sounds.Count)]);
-        await UniTask.WaitForSeconds(Random.Range(avgDelaySeconds - rangeDelaySeconds / 2, avgDelaySeconds - rangeDelaySeconds / 2), cancellationToken: token);
 
         if (token.IsCancellationRequested)
             return;
