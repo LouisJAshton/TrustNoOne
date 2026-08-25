@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
                 print("Game Over");
                 break;
             }
+            catch (OperationCanceledException) {
+                
+            }
         }
     }
 
@@ -37,18 +40,18 @@ public class GameManager : MonoBehaviour
         await blackjackManager.Reshuffle(token);
 
         if (!blackjackManager.CheckForBlackjacks(out var blackjacks)) {
-            while (!destroyCancellationToken.IsCancellationRequested) {
+            while (!token.IsCancellationRequested) {
                 try {
-                    await blackjackManager.TakeTurn(destroyCancellationToken);
+                    await blackjackManager.TakeTurn(token);
                 }
                 catch (RoundEndedException) {
                     break;
                 }
             }
             
-            await blackjackManager.Dealer(destroyCancellationToken);
+            await blackjackManager.Dealer(token);
         }
         
-        await blackjackManager.UpdateWinners(destroyCancellationToken);
+        await blackjackManager.UpdateWinners(token);
     }
 }
