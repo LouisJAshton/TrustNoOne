@@ -20,7 +20,7 @@ public class BlackjackManager
     
     private IScoringStrategy _scoringStrategy;
     
-    private List<CardInfo> deck;
+    public List<CardInfo> deck;
 
     [FormerlySerializedAs("player")] public PlayerData player1;
     public PlayerData player2;
@@ -30,12 +30,16 @@ public class BlackjackManager
     public UnityEvent<int> OnScoreChange;
     public UnityEvent<string[]> OnRoundWon;
 
-    public void Initialise()
+    public async UniTask Initialise(CancellationToken token)
     {
         player1.turnStrategy = new PlayerTurnStrategy(player1);
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
 
+        player1.tutorStrategy = new AITutorStrategy(player1, this);
+        player2.tutorStrategy = new AITutorStrategy(player2, this);
+        dealer.tutorStrategy = new AITutorStrategy(dealer, this);
+        
         _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
         
         deck = new List<CardInfo>();
@@ -46,12 +50,12 @@ public class BlackjackManager
             if (card) deck.Add(card.BaseInfo);
         }
         
-        Draw(player1);
-        Draw(player2);
-        Draw(player1);
-        Draw(player2);
+        await Draw(player1, token);
+        await Draw(player2, token);
+        await Draw(player1, token);
+        await Draw(player2, token);
         
-        Draw(dealer);
+        await Draw(dealer, token);
     }
 
     public async UniTask TakeTurn(CancellationToken cancellationToken)
@@ -66,8 +70,10 @@ public class BlackjackManager
 
     private async UniTask TurnCycle(PlayerData player, CancellationToken token)
     {
-        if (CalculateScore(player.Hand) > 21 || player.IsStanding)
+        if (CalculateScore(player.Hand) > 21 || player.IsStanding) {
+            player.IsStanding = true;
             return;
+        }
         
         await player.turnStrategy.TakeTurn(token);
         if (CalculateScore(player.Hand) > 21) {
@@ -92,8 +98,12 @@ public class BlackjackManager
 
         foreach (var card in totalHand) {
             
+            //Handle instant loss
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Lose)) {
+                return 666;
+            }
             //Handle non-aces
-            if (card.rank != 1) {
+            else if (card.rank != 1) {
                 total += card.rank;
             }
             //Handle aces
@@ -117,7 +127,7 @@ public class BlackjackManager
         return total;
     }
 
-    public void Draw(PlayerData activePlayer)
+    public async UniTask Draw(PlayerData activePlayer, CancellationToken token)
     {
         if (deck == null || deck.Count == 0) {
             Debug.Log("Drawing from empty deck");
@@ -128,15 +138,46 @@ public class BlackjackManager
         var card = deck[Random.Range(0, deck.Count)];
         deck.Remove(card);
         activePlayer.AddCards(card);
+        
+        await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+
+        if (card.specialEffects != 0) {
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
+                await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+                activePlayer.IsShielded = true;
+                activePlayer.RemoveCards(card);
+            }
+            
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
+                await activePlayer.tutorStrategy.Tutor(token);
+                activePlayer.RemoveCards(card);
+            }
+            
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
+                if (activePlayer == player1) {
+                    player2.AddCards(card);
+                }
+                else if (activePlayer == player2) {
+                    player1.AddCards(card);
+                }
+                else {
+                    player1.AddCards(card);
+                    player2.AddCards(card);
+                }
+                
+                activePlayer.RemoveCards(card);
+            }
+            
+        }
     }
 
     //TODO Use unitask for juice
-    public void Reshuffle()
+    public async UniTask Reshuffle(CancellationToken token)
     {
         player1.Reset();
         player2.Reset();
         dealer.Reset();
-        Initialise();
+        await Initialise(token);
     }
 
     public void DebugDealerHand()
@@ -164,7 +205,7 @@ public class BlackjackManager
 
     public async UniTask<List<PlayerData>> CalculateWinner(CancellationToken cancellationToken)
     {
-        await UniTask.Delay(1000, cancellationToken: cancellationToken);
+        await UniTask.Delay(100, cancellationToken: cancellationToken);
         
         List<PlayerData> winners = new List<PlayerData>();
         List<PlayerData> players = new List<PlayerData>()
@@ -227,6 +268,15 @@ public class BlackjackManager
         OnRoundWon.Invoke(winnerStrings.ToArray());
 
         int delta = await _scoringStrategy.Score();
+
+        if (player1.IsShielded) {
+            delta = Mathf.Max(0, delta);
+        }
+        
+        if (player2.IsShielded) {
+            delta = Mathf.Min(0, delta);
+        }
+        
         await ChangeScore(delta, token);
         
         if (Mathf.Abs(_currentScore) >= MAX_SCORE) {

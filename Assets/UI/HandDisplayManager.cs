@@ -15,6 +15,7 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image standingImage;
+    [SerializeField] private Image shieldedImage;
     [SerializeField] private ParticleSystem winParticles;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
@@ -45,6 +46,11 @@ public class HandDisplayManager : MonoBehaviour
         standingImage.enabled = isStanding;
     }
 
+    public void UpdateShielded(bool isShielded)
+    {
+        shieldedImage.enabled = isShielded;
+    }
+
     public void Clear()
     {
         foreach (var cardInfo in _cardObjects.ToList()) {
@@ -61,7 +67,7 @@ public class HandDisplayManager : MonoBehaviour
         var toRemove = new List<CardInfo>();
 
         var score = BlackjackManager.CalculateScore(cardInfos);
-        scoreText.text = score > 21 ? "BUST" : score.ToString();
+        scoreText.text = score > 21 ? score.ToString() +  " BUST" : score.ToString();
 
         foreach (var cardInfo in cardInfos) {
             if(!_cardObjects.ContainsKey(cardInfo))
@@ -73,13 +79,13 @@ public class HandDisplayManager : MonoBehaviour
                 toRemove.Add(kvp.Key);
         }
 
-        foreach (var card in toAdd) {
-            DrawCard(card);
-        }
-
         foreach (var card in toRemove) {
             Destroy(_cardObjects[card].gameObject);
             _cardObjects.Remove(card);
+        }
+
+        foreach (var card in toAdd) {
+            DrawCard(card);
         }
     }
 }
