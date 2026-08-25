@@ -21,6 +21,9 @@ public class PlayerInteract : MonoBehaviour
     { 
         if (InteractAction.WasPerformedThisFrame() && LookingAtSomeone)
         {
+            inputActions.FindActionMap("UI").Enable();
+            inputActions.FindActionMap("Player").Disable();
+
             lastseen.GetComponent<DialogueHandler>().StartTalk();
         }
     }
