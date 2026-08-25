@@ -79,13 +79,13 @@ public class HandDisplayManager : MonoBehaviour
                 toRemove.Add(kvp.Key);
         }
 
-        foreach (var card in toAdd) {
-            DrawCard(card);
-        }
-
         foreach (var card in toRemove) {
             Destroy(_cardObjects[card].gameObject);
             _cardObjects.Remove(card);
+        }
+
+        foreach (var card in toAdd) {
+            DrawCard(card);
         }
     }
 }
