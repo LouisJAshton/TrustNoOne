@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Betrayal 3
   m_EditorClassIdentifier: Assembly-CSharp::BaseCardInfo
   _cardInfo:
-    rankName: Evil 5
+    rankName: Evil 3
     texture: {fileID: 0}
-    rank: 5
+    rank: 3
     suit: 4
     specialEffects: 16
