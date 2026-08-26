@@ -33,6 +33,22 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         print("Loaded battle scene");
         _isBusy = false;
     }
+
+    public async UniTask UnloadCombat(CancellationToken token)
+    {
+        if (_isBusy)
+            return;
+        
+        _isBusy = true;
+        
+        var currentBattleScene = SceneManager.GetSceneByBuildIndex(scene.BuildIndex);
+        if (currentBattleScene.isLoaded) {
+            await SceneManager.UnloadSceneAsync(currentBattleScene);
+            print("Unloaded current battle scene");
+        }
+        
+        _isBusy = false;
+    }
     
     [Space]
     
@@ -45,6 +61,10 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         if (Input.GetKeyDown(KeyCode.E)) {
             LoadCombatWith(enemies[index], destroyCancellationToken).Forget();
             index = (index + 1) % enemies.Count;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            UnloadCombat(destroyCancellationToken).Forget();
         }
     }
 }
