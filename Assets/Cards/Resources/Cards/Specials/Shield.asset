@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: Assembly-CSharp::BaseCardInfo
   _cardInfo:
-    rankName: Hewwo
+    rankName: Shield
     texture: {fileID: 0}
     rank: 0
     suit: 8
