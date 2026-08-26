@@ -26,6 +26,16 @@ public class CameraLerp : MonoBehaviour
         _lastTime = Time.time;
     }
 
+    private void OnEnable()
+    {
+        if (Camera.main) Camera.main.enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        if (Camera.main) Camera.main.enabled = true;
+    }
+
     public void SetTarget(int index)
     {
         _lastPosition = transform.position;
@@ -34,10 +44,7 @@ public class CameraLerp : MonoBehaviour
         _targetTransformIndex = index;
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
+    //private async UniTask
 
     private void Update()
     {
