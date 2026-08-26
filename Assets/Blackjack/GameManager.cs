@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Combat.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,8 +32,15 @@ public class GameManager : MonoBehaviour
                 await PlayRound(token);
                 await UniTask.WaitForSeconds(1, cancellationToken: token);
             }
-            catch (GameOverException) {
-                print("Game Over");
+            catch (GameOverException e) {
+                if (e.Winner == PlayerData.Character.Player) {
+                    LogManager.Instance.Log(new LogData("Curse you - the luck of mortals...", "Lance"));
+                }
+                else {
+                    LogManager.Instance.Log(new LogData("You seek to escape riding fledgling wings. Filth.", e.WinnerName));
+                }
+                
+                CombatSceneLoader.Instance.UnloadCombat().Forget();
                 break;
             }
             catch (OperationCanceledException) {
@@ -58,12 +66,6 @@ public class GameManager : MonoBehaviour
             await blackjackManager.Dealer(token);
         }
 
-        try {
-            await blackjackManager.UpdateWinners(token);
-        }
-        catch (GameOverException goe) {
-            print($"{goe.WinnerName} wins!");
-            CombatSceneLoader.Instance.UnloadCombat().Forget();
-        }
+        await blackjackManager.UpdateWinners(token);
     }
 }

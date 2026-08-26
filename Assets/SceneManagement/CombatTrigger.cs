@@ -25,8 +25,6 @@ public class CombatTrigger : MonoBehaviour
             return;
         }
         
-        LogManager.Instance.Log(new LogData("Hello", "System"));
-        
         if(Application.isPlaying)
             CombatSceneLoader.Instance.LoadCombatWith(enemyData, targetTransform.position, targetTransform.rotation).Forget();
     }
