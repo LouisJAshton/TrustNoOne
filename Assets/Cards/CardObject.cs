@@ -32,8 +32,10 @@ public class CardObject : MonoBehaviour
         
         IsBeingDisposed = true;
 
-        float t = Time.time;
-        while (!token.IsCancellationRequested && Time.time - t < animLength) {
+        float time = Time.time;
+        while (!token.IsCancellationRequested && Time.time - time < animLength) {
+            var t = (Time.time - time) / animLength;
+            
             transform.position = Vector3.Lerp(transform.position, target.position, t);
             transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, t);
             await UniTask.Yield(cancellationToken: token);
