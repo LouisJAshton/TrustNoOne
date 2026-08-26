@@ -25,9 +25,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
         while (token.IsCancellationRequested == false) {
+            await UniTask.WaitForSeconds(1, cancellationToken: token);
+            
             try {
                 await PlayRound(token);
-                await UniTask.WaitForSeconds(2, cancellationToken: token);
+                await UniTask.WaitForSeconds(1, cancellationToken: token);
             }
             catch (GameOverException) {
                 print("Game Over");
