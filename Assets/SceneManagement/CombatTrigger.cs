@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -5,7 +6,16 @@ public class CombatTrigger : MonoBehaviour
 {
     [SerializeField] private EnemySetupData enemyData;
     [SerializeField] private Transform targetTransform;
-    
+
+    [SerializeField] private KeyCode testKey;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(testKey)) {
+            Trigger();
+        }
+    }
+
     [ContextMenu("Trigger")]
     public void Trigger()
     {

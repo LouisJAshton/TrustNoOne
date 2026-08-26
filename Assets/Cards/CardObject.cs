@@ -37,8 +37,8 @@ public class CardObject : MonoBehaviour
             await UniTask.Yield(cancellationToken: token);
             
             var t = (Time.time - time) / animLength;
-            transform.position = Vector3.Slerp(transform.position, target.position, t);
-            transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, t);
+            transform.position = Vector3.Lerp(transform.position, target.position, t);
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, t);
 
             if (Vector3.Distance(transform.position, target.position) < 0.01f)
                 break;

@@ -432,6 +432,7 @@ MonoBehaviour:
   scene:
     asset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
     guid: 99c9720ab356a0642a771bea13969a05
+  enemies: []
 --- !u!1001 &1897127493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,6 +444,10 @@ PrefabInstance:
     - target: {fileID: 3781902528982233317, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527732857404073724, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: testKey
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5527732857404073724, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
       propertyPath: enemyData
@@ -516,6 +521,10 @@ PrefabInstance:
     - target: {fileID: 3781902528982233317, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527732857404073724, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: testKey
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
       propertyPath: m_LocalPosition.x
