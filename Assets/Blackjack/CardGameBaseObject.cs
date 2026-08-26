@@ -8,5 +8,8 @@ public class CardGameBaseObject : Singleton<CardGameBaseObject>
     {
         Gizmos.color = Color.blueViolet;
         Gizmos.DrawSphere(transform.position, 0.5f);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
     }
 }

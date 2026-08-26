@@ -14,7 +14,7 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
     
     private bool _isBusy = false;
     
-    public async UniTask LoadCombatWith(EnemySetupData enemy, Vector3 position = default)
+    public async UniTask LoadCombatWith(EnemySetupData enemy, Vector3 position = default, Quaternion rotation = default)
     {
         if (_isBusy)
             return;
@@ -34,6 +34,7 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         var baseObject = FindAnyObjectByType<CardGameBaseObject>();
         if (baseObject) {
             baseObject.transform.position = position;
+            baseObject.transform.rotation = rotation;
         }
         
         print("Loaded battle scene");
@@ -56,21 +57,21 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         _isBusy = false;
     }
     
-    [Space]
-    
-    [SerializeField] private List<EnemySetupData> enemies;
-
-    private int index = 0;
-    
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            LoadCombatWith(enemies[index]).Forget();
-            index = (index + 1) % enemies.Count;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            UnloadCombat().Forget();
-        }
-    }
+    // [Space]
+    //
+    // [SerializeField] private List<EnemySetupData> enemies;
+    //
+    // private int index = 0;
+    //
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.E)) {
+    //         LoadCombatWith(enemies[index]).Forget();
+    //         index = (index + 1) % enemies.Count;
+    //     }
+    //
+    //     if (Input.GetKeyDown(KeyCode.Q)) {
+    //         UnloadCombat().Forget();
+    //     }
+    // }
 }
