@@ -1433,6 +1433,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: combatContext
+      value: 
+      objectReference: {fileID: 11400000, guid: adc33c4bf784a654a8272d077ebb4cda, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1715,6 +1719,14 @@ PrefabInstance:
     - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: playerName
       value: Dealer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.271
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

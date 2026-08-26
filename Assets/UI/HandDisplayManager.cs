@@ -18,11 +18,17 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private Image shieldedImage;
     [SerializeField] private ParticleSystem winParticles;
     
+    [SerializeField] private CombatContext combatContext;
+    
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
 
     private void Start()
     {
         GameManager.Instance.blackjackManager.OnRoundWon.AddListener(PlayParticles);
+        
+        //Messy way to only get opponent to change name
+        if (combatContext)
+            nameText.text = combatContext.EnemyData.enemyName;
     }
 
     private void PlayParticles(params PlayerData.Character[] player)
