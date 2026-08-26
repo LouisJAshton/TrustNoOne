@@ -15,16 +15,18 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        if(Instance && Instance != this)
+            Destroy(gameObject);
+        else
+            Instance = this;
+        
         RunBattle(destroyCancellationToken).Forget();
     }
 
     private async UniTask RunBattle(CancellationToken token)
     {
-        if(Instance && Instance != this)
-            Destroy(gameObject);
-        else
-            Instance = this;
-
+        LogManager.Instance.Log(new LogData("You stride up to the table with infernal confidence...", "Narrator"));
+        
         while (token.IsCancellationRequested == false) {
             await UniTask.WaitForSeconds(1, cancellationToken: token);
             
