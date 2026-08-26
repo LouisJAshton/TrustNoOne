@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 public class HandDisplayManager : MonoBehaviour
 {
     //TODO use shared serialised reference
-    [SerializeField] private string playerName;
+    [SerializeField] private PlayerData.Character character;
     
     [SerializeField] private CardObjectFactory cardObjectFactory;
     [SerializeField] private RectTransform handContainer;
@@ -17,17 +18,25 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private Image standingImage;
     [SerializeField] private Image shieldedImage;
     [SerializeField] private ParticleSystem winParticles;
+
+    [SerializeField] private Transform binTransform;
+    
+    [SerializeField] private CombatContext combatContext;
     
     private Dictionary<CardInfo, CardObject> _cardObjects = new();
 
     private void Start()
     {
         GameManager.Instance.blackjackManager.OnRoundWon.AddListener(PlayParticles);
+        
+        //Messy way to only get opponent to change name
+        if (combatContext)
+            nameText.text = combatContext.EnemyData.enemyName;
     }
 
-    private void PlayParticles(params string[] player)
+    private void PlayParticles(params PlayerData.Character[] player)
     {
-        if (player.Contains(playerName)) {
+        if (player.Contains(character)) {
             winParticles.Play();
         }
     }
@@ -36,7 +45,9 @@ public class HandDisplayManager : MonoBehaviour
     {
         var co = cardObjectFactory.Create(cardInfo);
         co.transform.SetParent(handContainer, false);
-        co.transform.position = Vector3.zero;
+        
+        //TODO Maybe set draw from animation elsewhere?
+        co.transform.position = CardGameBaseObject.Instance.transform.position;
         _cardObjects.Add(cardInfo, co);
     }
 
@@ -51,17 +62,16 @@ public class HandDisplayManager : MonoBehaviour
         shieldedImage.enabled = isShielded;
     }
 
-    public void Clear()
-    {
-        foreach (var cardInfo in _cardObjects.ToList()) {
-            Destroy(cardInfo.Value.gameObject);
-        }
-        
-        _cardObjects.Clear();
-    }
+    // public void Clear()
+    // {
+    //     foreach (var cardInfo in _cardObjects.ToList()) {
+    //         Destroy(cardInfo.Value.gameObject);
+    //     }
+    //     
+    //     _cardObjects.Clear();
+    // }
 
-    //TODO Integrate with unitask for juice
-    public void UpdateHand(List<CardInfo> cardInfos)
+    public async UniTask UpdateHand(List<CardInfo> cardInfos)
     {
         var toAdd = new List<CardInfo>();
         var toRemove = new List<CardInfo>();
@@ -79,8 +89,16 @@ public class HandDisplayManager : MonoBehaviour
                 toRemove.Add(kvp.Key);
         }
 
+        var disposedCardOps = new List<UniTask>();
+
         foreach (var card in toRemove) {
-            Destroy(_cardObjects[card].gameObject);
+            await UniTask.WaitForSeconds(0.1f, cancellationToken: destroyCancellationToken);
+            disposedCardOps.Add(_cardObjects[card].Dispose(binTransform, 1f, destroyCancellationToken));
+        }
+        
+        await UniTask.WhenAll(disposedCardOps);
+        
+        foreach (var card in toRemove) {
             _cardObjects.Remove(card);
         }
 

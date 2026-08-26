@@ -48,6 +48,7 @@ public class CardInfo
     
     public string rankName;
     public Texture texture;
+    [NonSerialized] public Texture CardBack;
     [Range(0, 10)] public int rank;
     public Suit suit;
     public SpecialEffect specialEffects;

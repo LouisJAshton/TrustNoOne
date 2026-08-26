@@ -39,7 +39,7 @@ public class AITutorStrategy : ITutorStrategy
     {
         Debug.Log("Tutoring...");
 
-        var deck = _blackjackManager.deck;
+        var deck = _playerData.deck;
         var currentScore = BlackjackManager.CalculateScore(_playerData);
         var delta = BlackjackManager.MAX - currentScore;
         
@@ -50,7 +50,7 @@ public class AITutorStrategy : ITutorStrategy
         await UniTask.WaitForSeconds(1, cancellationToken: token);
 
         if (card != null)
-            _playerData.AddCards(card);
+            await _playerData.AddCards(card);
         
         return;
 

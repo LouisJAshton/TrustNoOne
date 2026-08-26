@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f2fa17cfddd42d449fcf1f7a455d2ff, type: 3}
-  m_Name: TUTOR 1
-  m_EditorClassIdentifier: Assembly-CSharp::BaseCardInfo
-  _cardInfo:
-    rankName: TUTOR
-    texture: {fileID: 0}
-    rank: 0
-    suit: 8
-    specialEffects: 8
+  m_Script: {fileID: 11500000, guid: 8db33511c6fdb304183e3ac69500fecf, type: 3}
+  m_Name: Context
+  m_EditorClassIdentifier: Assembly-CSharp::CombatContext
+  EnemyData: {fileID: 11400000, guid: c573c599b440a9d48a54b599f7f085d0, type: 2}

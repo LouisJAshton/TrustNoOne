@@ -11,19 +11,25 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     [SerializeField] public BlackjackManager blackjackManager;
-
     
-    private async void Awake()
+    private void Awake()
+    {
+        RunBattle(destroyCancellationToken).Forget();
+    }
+
+    private async UniTask RunBattle(CancellationToken token)
     {
         if(Instance && Instance != this)
             Destroy(gameObject);
         else
             Instance = this;
 
-        while (destroyCancellationToken.IsCancellationRequested == false) {
+        while (token.IsCancellationRequested == false) {
+            await UniTask.WaitForSeconds(1, cancellationToken: token);
+            
             try {
-                await PlayRound(destroyCancellationToken);
-                await UniTask.WaitForSeconds(2, cancellationToken: destroyCancellationToken);
+                await PlayRound(token);
+                await UniTask.WaitForSeconds(1, cancellationToken: token);
             }
             catch (GameOverException) {
                 print("Game Over");
@@ -51,7 +57,13 @@ public class GameManager : MonoBehaviour
             
             await blackjackManager.Dealer(token);
         }
-        
-        await blackjackManager.UpdateWinners(token);
+
+        try {
+            await blackjackManager.UpdateWinners(token);
+        }
+        catch (GameOverException goe) {
+            print($"{goe.WinnerName} wins!");
+            CombatSceneLoader.Instance.UnloadCombat().Forget();
+        }
     }
 }

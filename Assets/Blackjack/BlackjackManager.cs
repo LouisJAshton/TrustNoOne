@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,23 +14,36 @@ public class BlackjackManager
 {
     public const int MAX = 21;
 
-    public const int MAX_SCORE = 7;
+    public const int MAX_SCORE = 5;
     private int _currentScore = 0;
     
     private IScoringStrategy _scoringStrategy;
     
-    public List<CardInfo> deck;
-
     [FormerlySerializedAs("player")] public PlayerData player1;
     public PlayerData player2;
     public PlayerData dealer;
     
+    public CombatContext combatContext;
 
     public UnityEvent<int> OnScoreChange;
-    public UnityEvent<string[]> OnRoundWon;
+    public UnityEvent<PlayerData.Character[]> OnRoundWon;
 
     public async UniTask Initialise(CancellationToken token)
     {
+        //Reads info from context SO
+        player2.baseDeck = combatContext.EnemyData.deck;
+        dealer.baseDeck = combatContext.EnemyData.dealerDeck;
+        
+        var resetTasks = new List<UniTask>();
+        
+        resetTasks.Add(player1.Reset());
+        await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
+        resetTasks.Add(player2.Reset());
+        await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
+        resetTasks.Add(dealer.Reset());
+
+        await UniTask.WhenAll(resetTasks);
+        
         player1.turnStrategy = new PlayerTurnStrategy(player1);
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
@@ -42,13 +54,12 @@ public class BlackjackManager
         
         _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
         
-        deck = new List<CardInfo>();
-        var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
-        foreach (var cardInfo in cards) {
-            var card = cardInfo as BaseCardInfo;
-            
-            if (card) deck.Add(card.BaseInfo);
-        }
+        // var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
+        // foreach (var cardInfo in cards) {
+        //     var card = cardInfo as BaseCardInfo;
+        //     
+        //     if (card) deck.Add(card.BaseInfo);
+        // }
         
         await Draw(player1, token);
         await Draw(player2, token);
@@ -129,6 +140,8 @@ public class BlackjackManager
 
     public async UniTask Draw(PlayerData activePlayer, CancellationToken token)
     {
+        var deck = activePlayer.deck;
+        
         if (deck == null || deck.Count == 0) {
             Debug.Log("Drawing from empty deck");
             return;
@@ -137,7 +150,7 @@ public class BlackjackManager
         //TODO Replace with actual draw
         var card = deck[Random.Range(0, deck.Count)];
         deck.Remove(card);
-        activePlayer.AddCards(card);
+        await activePlayer.AddCards(card);
         
         await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
 
@@ -145,27 +158,27 @@ public class BlackjackManager
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
                 await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
                 activePlayer.IsShielded = true;
-                activePlayer.RemoveCards(card);
+                await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
                 await activePlayer.tutorStrategy.Tutor(token);
-                activePlayer.RemoveCards(card);
+                await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
                 if (activePlayer == player1) {
-                    player2.AddCards(card);
+                    await player2.AddCards(card);
                 }
                 else if (activePlayer == player2) {
-                    player1.AddCards(card);
+                    await player1.AddCards(card);
                 }
                 else {
-                    player1.AddCards(card);
-                    player2.AddCards(card);
+                    await player1.AddCards(card);
+                    await player2.AddCards(card);
                 }
                 
-                activePlayer.RemoveCards(card);
+                await activePlayer.RemoveCards(card);
             }
             
         }
@@ -174,9 +187,6 @@ public class BlackjackManager
     //TODO Use unitask for juice
     public async UniTask Reshuffle(CancellationToken token)
     {
-        player1.Reset();
-        player2.Reset();
-        dealer.Reset();
         await Initialise(token);
     }
 
@@ -260,12 +270,12 @@ public class BlackjackManager
     {
         var winners = await CalculateWinner(token);
 
-        List<string> winnerStrings = new List<string>();
+        List<PlayerData.Character> winnerEnum = new();
         foreach (var winner in winners) {
-            winnerStrings.Add(winner.playerName);
+            winnerEnum.Add(winner.character);
         }
         
-        OnRoundWon.Invoke(winnerStrings.ToArray());
+        OnRoundWon.Invoke(winnerEnum.ToArray());
 
         int delta = await _scoringStrategy.Score();
 
@@ -280,7 +290,10 @@ public class BlackjackManager
         await ChangeScore(delta, token);
         
         if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
-            throw new GameOverException();
+            
+            var winner = Mathf.Sign(_currentScore) > 0 ? player1 : player2;
+            
+            throw new GameOverException(winner.character, winner.playerName);
         }
     }
 
@@ -293,4 +306,14 @@ public class BlackjackManager
     }
 }
 
-public class GameOverException : Exception { }
+public class GameOverException : Exception
+{
+    public readonly PlayerData.Character Winner;
+    public readonly string WinnerName;
+    
+    public GameOverException(PlayerData.Character winner, string winnerName)
+    {
+        this.Winner = winner;
+        WinnerName = winnerName;
+    }
+}
