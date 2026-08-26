@@ -91,12 +91,11 @@ public class HandDisplayManager : MonoBehaviour
 
         var disposedCardOps = new List<UniTask>();
 
-        for (var i = toRemove.Count - 1; i >= 0; i--) {
-            var card = toRemove[i];
+        foreach (var card in toRemove) {
             await UniTask.WaitForSeconds(0.1f, cancellationToken: destroyCancellationToken);
             disposedCardOps.Add(_cardObjects[card].Dispose(binTransform, 1f, destroyCancellationToken));
         }
-
+        
         await UniTask.WhenAll(disposedCardOps);
         
         foreach (var card in toRemove) {
