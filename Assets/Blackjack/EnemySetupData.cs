@@ -6,4 +6,5 @@ public class EnemySetupData : ScriptableObject
 {
     public string enemyName;
     public List<Sprite> sprites;
+    public DeckBase deck;
 }

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class HandDisplayManager : MonoBehaviour
 {
     //TODO use shared serialised reference
-    [SerializeField] private string playerName;
+    [SerializeField] private PlayerData.Character character;
     
     [SerializeField] private CardObjectFactory cardObjectFactory;
     [SerializeField] private RectTransform handContainer;
@@ -25,9 +25,9 @@ public class HandDisplayManager : MonoBehaviour
         GameManager.Instance.blackjackManager.OnRoundWon.AddListener(PlayParticles);
     }
 
-    private void PlayParticles(params string[] player)
+    private void PlayParticles(params PlayerData.Character[] player)
     {
-        if (player.Contains(playerName)) {
+        if (player.Contains(character)) {
             winParticles.Play();
         }
     }

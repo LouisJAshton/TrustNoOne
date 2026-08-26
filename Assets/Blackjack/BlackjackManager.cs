@@ -28,7 +28,7 @@ public class BlackjackManager
     
 
     public UnityEvent<int> OnScoreChange;
-    public UnityEvent<string[]> OnRoundWon;
+    public UnityEvent<PlayerData.Character[]> OnRoundWon;
 
     public async UniTask Initialise(CancellationToken token)
     {
@@ -260,12 +260,12 @@ public class BlackjackManager
     {
         var winners = await CalculateWinner(token);
 
-        List<string> winnerStrings = new List<string>();
+        List<PlayerData.Character> winnerEnum = new();
         foreach (var winner in winners) {
-            winnerStrings.Add(winner.playerName);
+            winnerEnum.Add(winner.character);
         }
         
-        OnRoundWon.Invoke(winnerStrings.ToArray());
+        OnRoundWon.Invoke(winnerEnum.ToArray());
 
         int delta = await _scoringStrategy.Score();
 

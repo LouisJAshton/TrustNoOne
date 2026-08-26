@@ -9,6 +9,9 @@ using UnityEngine.SocialPlatforms;
 public class PlayerData
 {
     [SerializeField] public string playerName;
+    [SerializeField] public DeckBase deck;
+    
+    public Character character;
     
     private List<CardInfo> _hand = new();
     public ITurnStrategy turnStrategy;
@@ -60,5 +63,11 @@ public class PlayerData
         _hand.Clear();
         OnHandUpdated?.Invoke(_hand);
     }
-    
+
+    public enum Character
+    {
+        Player,
+        Enemy,
+        Dealer
+    }
 }

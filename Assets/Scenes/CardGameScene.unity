@@ -1426,6 +1426,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: character
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: playerName
       value: Enemy
       objectReference: {fileID: 0}
@@ -1703,6 +1707,10 @@ PrefabInstance:
     - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: character
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: playerName
@@ -2209,6 +2217,8 @@ MonoBehaviour:
     deck: []
     player1:
       playerName: You
+      deck: {fileID: 0}
+      character: 0
       OnHandUpdated:
         m_PersistentCalls:
           m_Calls:
@@ -2256,6 +2266,8 @@ MonoBehaviour:
             m_CallState: 2
     player2:
       playerName: Enemy
+      deck: {fileID: 0}
+      character: 0
       OnHandUpdated:
         m_PersistentCalls:
           m_Calls:
@@ -2303,6 +2315,8 @@ MonoBehaviour:
             m_CallState: 2
     dealer:
       playerName: Dealer
+      deck: {fileID: 0}
+      character: 0
       OnHandUpdated:
         m_PersistentCalls:
           m_Calls:
