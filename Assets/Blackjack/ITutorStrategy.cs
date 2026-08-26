@@ -50,7 +50,7 @@ public class AITutorStrategy : ITutorStrategy
         await UniTask.WaitForSeconds(1, cancellationToken: token);
 
         if (card != null)
-            _playerData.AddCards(card);
+            await _playerData.AddCards(card);
         
         return;
 
