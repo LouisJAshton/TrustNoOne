@@ -18,7 +18,6 @@ public class CameraLerp : MonoBehaviour
     private bool _isFocused = true;
     private Camera _cameraMainCached;
     
-    
     private void Awake()
     {
         if (Camera.main) {
@@ -93,8 +92,6 @@ public class CameraLerp : MonoBehaviour
         
         transform.position = Vector3.Slerp(_lastPosition, targetTransform.position, t);
         transform.rotation = Quaternion.Slerp(_lastRotation, targetTransform.rotation, t);
-        
-        //return Vector3.Distance(transform.position, targetTransform.position) < 0.01f;
         
         return t >= 1;
     }
