@@ -36,11 +36,11 @@ public class BlackjackManager
         dealer.baseDeck = combatContext.EnemyData.dealerDeck;
         
         dealer.Reset();
-        await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
+        await UniTask.WaitForSeconds(0.1f, cancellationToken: token);
         player1.Reset();
-        await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
+        await UniTask.WaitForSeconds(0.1f, cancellationToken: token);
         player2.Reset();
-        await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
+        await UniTask.WaitForSeconds(0.1f, cancellationToken: token);
         
         player1.turnStrategy = new PlayerTurnStrategy(player1);
         player2.turnStrategy = new AITurnStrategy(player2);

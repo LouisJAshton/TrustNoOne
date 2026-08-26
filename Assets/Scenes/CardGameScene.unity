@@ -2360,6 +2360,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+    combatContext: {fileID: 11400000, guid: adc33c4bf784a654a8272d077ebb4cda, type: 2}
     OnScoreChange:
       m_PersistentCalls:
         m_Calls: []
