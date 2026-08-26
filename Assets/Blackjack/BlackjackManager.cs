@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +14,7 @@ public class BlackjackManager
 {
     public const int MAX = 21;
 
-    public const int MAX_SCORE = 7;
+    public const int MAX_SCORE = 5;
     private int _currentScore = 0;
     
     private IScoringStrategy _scoringStrategy;
@@ -288,7 +287,10 @@ public class BlackjackManager
         await ChangeScore(delta, token);
         
         if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
-            throw new GameOverException();
+            
+            var winner = Mathf.Sign(_currentScore) > 0 ? player1 : player2;
+            
+            throw new GameOverException(winner.character, winner.playerName);
         }
     }
 
@@ -301,4 +303,14 @@ public class BlackjackManager
     }
 }
 
-public class GameOverException : Exception { }
+public class GameOverException : Exception
+{
+    public readonly PlayerData.Character Winner;
+    public readonly string WinnerName;
+    
+    public GameOverException(PlayerData.Character winner, string winnerName)
+    {
+        this.Winner = winner;
+        WinnerName = winnerName;
+    }
+}

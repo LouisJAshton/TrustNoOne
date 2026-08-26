@@ -55,7 +55,13 @@ public class GameManager : MonoBehaviour
             
             await blackjackManager.Dealer(token);
         }
-        
-        await blackjackManager.UpdateWinners(token);
+
+        try {
+            await blackjackManager.UpdateWinners(token);
+        }
+        catch (GameOverException goe) {
+            print($"{goe.WinnerName} wins!");
+            CombatSceneLoader.Instance.UnloadCombat().Forget();
+        }
     }
 }

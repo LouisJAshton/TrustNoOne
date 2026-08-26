@@ -41,9 +41,7 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
 
         var lerpCam = FindAnyObjectByType<CameraLerp>();
         if (lerpCam && lerpCam.isActiveAndEnabled) {
-            print("MOVING BACK...");
             await lerpCam.MoveBack(Application.exitCancellationToken);
-            print("FINISHED MOVING BACK!");
         }
         
         if (currentBattleScene.isLoaded) {
