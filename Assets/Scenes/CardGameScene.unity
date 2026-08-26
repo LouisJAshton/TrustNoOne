@@ -1770,7 +1770,6 @@ MonoBehaviour:
   - {fileID: 764219168}
   - {fileID: 2089523074}
   - {fileID: 1568379092}
-  - {fileID: 1926122998}
   transitionLength: 1
 --- !u!4 &1179422437
 Transform:
@@ -2214,10 +2213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   blackjackManager:
-    deck: []
     player1:
       playerName: You
-      deck: {fileID: 0}
+      baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
       character: 0
       OnHandUpdated:
         m_PersistentCalls:
@@ -2266,8 +2264,8 @@ MonoBehaviour:
             m_CallState: 2
     player2:
       playerName: Enemy
-      deck: {fileID: 0}
-      character: 0
+      baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
+      character: 1
       OnHandUpdated:
         m_PersistentCalls:
           m_Calls:
@@ -2315,8 +2313,8 @@ MonoBehaviour:
             m_CallState: 2
     dealer:
       playerName: Dealer
-      deck: {fileID: 0}
-      character: 0
+      baseDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
+      character: 2
       OnHandUpdated:
         m_PersistentCalls:
           m_Calls:
