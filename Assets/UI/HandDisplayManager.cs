@@ -62,14 +62,14 @@ public class HandDisplayManager : MonoBehaviour
         shieldedImage.enabled = isShielded;
     }
 
-    public void Clear()
-    {
-        foreach (var cardInfo in _cardObjects.ToList()) {
-            Destroy(cardInfo.Value.gameObject);
-        }
-        
-        _cardObjects.Clear();
-    }
+    // public void Clear()
+    // {
+    //     foreach (var cardInfo in _cardObjects.ToList()) {
+    //         Destroy(cardInfo.Value.gameObject);
+    //     }
+    //     
+    //     _cardObjects.Clear();
+    // }
 
     public async UniTask UpdateHand(List<CardInfo> cardInfos)
     {
@@ -92,7 +92,7 @@ public class HandDisplayManager : MonoBehaviour
         var disposedCardOps = new List<UniTask>();
 
         foreach (var card in toRemove) {
-            disposedCardOps.Add(_cardObjects[card].Dispose(binTransform, 0.3f, destroyCancellationToken));
+            disposedCardOps.Add(_cardObjects[card].Dispose(binTransform, 0.5f, destroyCancellationToken));
             await UniTask.WaitForSeconds(0.1f, cancellationToken: destroyCancellationToken);
         }
         
