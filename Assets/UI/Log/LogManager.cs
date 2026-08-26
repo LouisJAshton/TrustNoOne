@@ -18,6 +18,8 @@ namespace Combat.UI
                 Instance = this;
             else
                 Destroy(gameObject);
+            
+            DontDestroyOnLoad(gameObject);
         }
         
         public void Log(LogData data)

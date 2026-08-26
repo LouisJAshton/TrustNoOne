@@ -1,4 +1,5 @@
 using System;
+using Combat.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class CombatTrigger : MonoBehaviour
             Debug.LogWarning("No enemy data provided", gameObject);
             return;
         }
+        
+        LogManager.Instance.Log(new LogData("Hello", "System"));
         
         if(Application.isPlaying)
             CombatSceneLoader.Instance.LoadCombatWith(enemyData, targetTransform.position, targetTransform.rotation).Forget();

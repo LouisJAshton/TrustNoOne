@@ -27,7 +27,7 @@ namespace Combat.UI
             nameText.text = data.title;
             imageComponent.sprite = data.icon;
 
-            //StartCoroutine(nameof(Fade));
+            StartCoroutine(nameof(Fade));
         }
 
         private IEnumerator Fade()
