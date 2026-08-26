@@ -24,12 +24,24 @@ public class BlackjackManager
     public PlayerData player2;
     public PlayerData dealer;
     
+    public CombatContext combatContext;
 
     public UnityEvent<int> OnScoreChange;
     public UnityEvent<PlayerData.Character[]> OnRoundWon;
 
     public async UniTask Initialise(CancellationToken token)
     {
+        //Reads info from context SO
+        player2.baseDeck = combatContext.EnemyData.deck;
+        dealer.baseDeck = combatContext.EnemyData.dealerDeck;
+        
+        dealer.Reset();
+        await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
+        player1.Reset();
+        await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
+        player2.Reset();
+        await UniTask.WaitForSeconds(0.5f, cancellationToken: token);
+        
         player1.turnStrategy = new PlayerTurnStrategy(player1);
         player2.turnStrategy = new AITurnStrategy(player2);
         dealer.turnStrategy = new DealerTurnStrategy(dealer);
@@ -173,9 +185,6 @@ public class BlackjackManager
     //TODO Use unitask for juice
     public async UniTask Reshuffle(CancellationToken token)
     {
-        player1.Reset();
-        player2.Reset();
-        dealer.Reset();
         await Initialise(token);
     }
 
