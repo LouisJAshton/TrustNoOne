@@ -15,8 +15,14 @@ public class CameraLerp : MonoBehaviour
     
     private void Awake()
     {
+        if (Camera.main) {
+            transform.position = Camera.main.transform.position;
+            transform.rotation = Camera.main.transform.rotation;
+        }
+
         _lastPosition = transform.position;
         _lastRotation = transform.rotation;
+        
         _lastTime = Time.time;
     }
 
