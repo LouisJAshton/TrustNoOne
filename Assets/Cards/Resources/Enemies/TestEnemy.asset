@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySetupData
   enemyName: Test Guy
   sprites: []
-  deck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
+  deck: {fileID: 11400000, guid: 9ef77ad750ebb0743bb87c6714f178c6, type: 2}
   dealerDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
