@@ -310,18 +310,18 @@ public class BlackjackManager
         _currentScore += delta;
         OnScoreChange.Invoke(_currentScore);
 
-        string message;
-        if (delta > 0) {
-            message = $"You gain {delta} points.";
-        }
-        else if (delta < 0) {
-            message = $"You lost {-delta} points.";
-        }
-        else {
-            message = "No score change";
-        }
-        
-        LogManager.Instance.Log(new LogData(message, "Dealer"));
+        // string message;
+        // if (delta > 0) {
+        //     message = $"You gain {delta} points.";
+        // }
+        // else if (delta < 0) {
+        //     message = $"You lost {-delta} points.";
+        // }
+        // else {
+        //     message = "No score change";
+        // }
+        //
+        // LogManager.Instance.Log(new LogData(message, "Dealer"));
         
         Debug.Log($"Current score: {_currentScore}");
         return UniTask.CompletedTask;

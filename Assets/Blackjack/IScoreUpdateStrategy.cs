@@ -71,7 +71,10 @@ public class WeightedScoringStrategy : IScoringStrategy
                 overallScore = -3;
             }
         }
-        
+        else if (overallScore == 0){
+            LogManager.Instance.Log(new LogData("A tie. No points.", "Dealer"));
+        }
+
         return UniTask.FromResult(overallScore);
     }
 }
