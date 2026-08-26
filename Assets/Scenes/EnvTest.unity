@@ -250,14 +250,29 @@ MonoBehaviour:
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
   CharName: Bar
-  DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here? : Heh,
-    yeah you were. You got hella crunk, too. Take this. : Drink it. It\u2019ll make
-    ya feel better. : Oh, you had some fun. Come to play some more? Don\u2019t tell
-    me you forgot how to play!"
-  ButtonText: "I don\u2019t think so\u2026 : I don\u2019t feel good, dude. : Uh,
-    what is this? : Thanks, bro. : So\u2026 what was I doing here last night? : Must
-    have been a good night. Tell me about it? : Um\u2026 remind me. : No, no, dude.
-    I know how to play. : "
+  DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here?: Heh,
+    yeah you were. You got hella crunk, too. Take this.: Drink it. It\u2019ll make
+    ya feel better.: Oh, you had some fun. Come to play some more? Don\u2019t tell
+    me you forgot how to play!: Need me to go over it again, scrub, or ya think ya
+    got it?: Good. I got things to do.: Like I said, I'm busy. But, I could go on
+    break if you wanna play. If you win, I'll tell you more about last night.: But
+    if I win? Well, I'm pretty sure you don't have anything left.: Sorry, kid. You
+    ain\u2019t got nothin\u2019 for me.: You're on, Ash.: I\u2019ll be damned.: There's
+    not much more to say, really. You came in last night with bright eyes, hopes,
+    and treasures to gamble.: You wanted something real bad. We could see the fire
+    in your eyes. You had a good streak there in the beginning...: But I guess your
+    luck fell short. It doesn\u2019t matter. It\u2019s just a game.: Look, kid, I
+    gotta get back to work."
+  ButtonText: "I don\u2019t think so\u2026: I don\u2019t feel good, dude.: Uh, what
+    is this?: Thanks, bro.: So\u2026 what was I doing here last night?: Must have
+    been a good night. Tell me about it?: Um\u2026 remind me.: No, no, dude. I know
+    how to play.: My head hurts\u2026 explain it again?: Yeah, no, I totally get
+    it.: What else happened last night?: So, I just got wasted and played cards?:
+    Well. You wanna play?: Okay...: I\u2019ve got a lil dust bunny in my pocket?:
+    I\u2019ll owe you a favour.: I\u2019ve got my name. Ash.: Begin: So? Tell me
+    more.: Good game. Now, what about last night?: ...: ...: It doesn\u2019t explain
+    why I\u2019m so dazed.: I lost so hard I blacked out?: What did I want? How much
+    did I lose?: But\u2013: Wait\u2013 "
   TextOBJ: {fileID: 1105010927}
 --- !u!1 &194756675
 GameObject:
@@ -341,19 +356,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 194756678}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 182360825}
-        m_TargetAssemblyTypeName: DialogueHandler, Assembly-CSharp
-        m_MethodName: ProgressText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &194756678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,19 +556,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 370744385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 182360825}
-        m_TargetAssemblyTypeName: DialogueHandler, Assembly-CSharp
-        m_MethodName: ProgressText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &370744385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,8 +679,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -727,7 +718,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.5765533, y: 1.3739319, z: 1.5169373, w: 8.775076}
+  m_margin: {x: 1.5765533, y: 1.3739319, z: 1.5169373, w: 4.9109497}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -823,19 +814,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 518966068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 182360825}
-        m_TargetAssemblyTypeName: DialogueHandler, Assembly-CSharp
-        m_MethodName: ProgressText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &518966068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,8 +937,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -997,7 +976,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.5765533, y: 1.3739319, z: 1.5169373, w: 8.775076}
+  m_margin: {x: 1.5765533, y: 1.3739319, z: 1.5169373, w: 4.658242}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1359,8 +1338,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1398,7 +1377,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -227.48071, y: -10.745808, z: -37.607666, w: -45.41391}
+  m_margin: {x: -229.73486, y: -10.745808, z: -43.643112, w: -45.41391}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1571,8 +1550,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1610,7 +1589,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.5765533, y: 1.3739319, z: 1.5169373, w: 8.775076}
+  m_margin: {x: 1.5765533, y: 1.3739319, z: 1.5169373, w: 4.6121397}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

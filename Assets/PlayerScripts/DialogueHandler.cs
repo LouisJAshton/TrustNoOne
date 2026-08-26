@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
-    private int[] BarButtons = new int[6] {2, 2, 2, 2, 2, 2};
+    private int[] BarButtons = new int[15] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2};
 
     [SerializeField] private InputActionAsset inputActions;
 
@@ -31,7 +32,21 @@ public class DialogueHandler : MonoBehaviour
 
     private void Start()
     {
+        ResetButtonClick();
         TextCanv.gameObject.SetActive(false);
+    }
+
+    private void ResetButtonClick()
+    {
+        Button1.TryGetComponent<Button>(out Button butt1);
+        butt1.onClick.RemoveAllListeners();
+        butt1.onClick.AddListener(ProgressText);
+        Button2.TryGetComponent<Button>(out Button butt2);
+        butt2.onClick.RemoveAllListeners();
+        butt2.onClick.AddListener(ProgressText);
+        Button3.TryGetComponent<Button>(out Button butt3);
+        butt3.onClick.RemoveAllListeners();
+        butt3.onClick.AddListener(ProgressText);
     }
 
     public void StartTalk()
@@ -98,7 +113,70 @@ public class DialogueHandler : MonoBehaviour
                 Debug.Log("No button 3, skipping");
             }
 
+            if (ButtNum == 8)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartTutorial);
+                Button2.TryGetComponent<Button>(out Button butt2);
+                butt2.onClick.RemoveAllListeners();
+                butt2.onClick.AddListener(SkipTutorial);
+            }
+            else if (ButtNum == 10)//count number of button texts starting from 1 to get this accurate
+            {
+                Button2.TryGetComponent<Button>(out Button butt2);
+                butt2.onClick.RemoveAllListeners();
+                butt2.onClick.AddListener(ProgressText);
+            }
+            else if (ButtNum == 13)//count number of button texts starting from 1 to get this accurate
+            {
+                ResetButtonClick(); 
+            }
+            else if (ButtNum == 17)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(RetryDeal);
+                Button2.TryGetComponent<Button>(out Button butt2);
+                butt2.onClick.RemoveAllListeners();
+                butt2.onClick.AddListener(RetryDeal);
+                Button3.TryGetComponent<Button>(out Button butt3);
+                butt3.onClick.RemoveAllListeners();
+                butt3.onClick.AddListener(DoDeal);
+            }
         }
+    }
+
+    private void StartTutorial()
+    {
+        Debug.Log("DOING TUTORIAL AAAAAA");
+        ButtNum = 8;
+        TextNum = 3;
+        ProgressText();
+    }
+    private void RetryDeal()
+    {
+        Debug.Log("WRONG!");
+        ButtNum = 14;
+        TextNum = 7;
+        ProgressText();
+    }
+
+    private void SkipTutorial()
+    {
+        Debug.Log("SKIPPED");
+        ProgressText();
+        ProgressText();
+    }
+    private void DoDeal()
+    {
+        ProgressText();
+        if (TextNum != 9)
+        {
+            ButtNum = ButtNum - 3;
+            ProgressText();
+        }
+        ResetButtonClick();
     }
 
     private void CloseText()
