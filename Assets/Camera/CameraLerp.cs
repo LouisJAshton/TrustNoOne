@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class CameraLerp : MonoBehaviour
@@ -12,12 +14,18 @@ public class CameraLerp : MonoBehaviour
     private float _lastTime = 0;
     private Vector3 _lastPosition;
     private Quaternion _lastRotation;
+
+    private bool _isFocused = true;
+    private Camera _cameraMainCached;
+    
     
     private void Awake()
     {
         if (Camera.main) {
             transform.position = Camera.main.transform.position;
             transform.rotation = Camera.main.transform.rotation;
+            
+            _cameraMainCached = Camera.main;
         }
 
         _lastPosition = transform.position;
@@ -29,11 +37,12 @@ public class CameraLerp : MonoBehaviour
     private void OnEnable()
     {
         if (Camera.main) Camera.main.enabled = false;
+        _isFocused = true;
     }
 
     private void OnDisable()
     {
-        if (Camera.main) Camera.main.enabled = true;
+        if(_cameraMainCached) _cameraMainCached.enabled = true;
     }
 
     public void SetTarget(int index)
@@ -44,20 +53,49 @@ public class CameraLerp : MonoBehaviour
         _targetTransformIndex = index;
     }
 
-    //private async UniTask
+    public async UniTask MoveBack(CancellationToken token)
+    {
+        if (!_isFocused)
+            return;
+        
+        _isFocused = false;
+
+        _lastPosition = transform.position;
+        _lastRotation = transform.rotation;
+        _lastTime = Time.time;
+        
+        while (!token.IsCancellationRequested && !destroyCancellationToken.IsCancellationRequested) {
+            if (!_cameraMainCached)
+                return;
+
+            if (LerpCamera(_cameraMainCached.transform)) {
+                return;
+            }
+            
+            await UniTask.Yield(cancellationToken: destroyCancellationToken);
+        }
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            SetTarget((_targetTransformIndex + 1) % positions.Count);
+        if (_isFocused) {
+            if (Input.GetMouseButtonDown(1)) {
+                SetTarget((_targetTransformIndex + 1) % positions.Count);
+            }
+            
+            LerpCamera(positions[_targetTransformIndex]);
         }
-        
-        if (_targetTransformIndex >= positions.Count)
-            return;
-        
+    }
+
+    private bool LerpCamera(Transform targetTransform)
+    {
         var t = (Time.time - _lastTime) / transitionLength;
         
-        transform.position = Vector3.Slerp(_lastPosition, positions[_targetTransformIndex].position, t);
-        transform.rotation = Quaternion.Slerp(_lastRotation, positions[_targetTransformIndex].rotation, t);
+        transform.position = Vector3.Slerp(_lastPosition, targetTransform.position, t);
+        transform.rotation = Quaternion.Slerp(_lastRotation, targetTransform.rotation, t);
+        
+        //return Vector3.Distance(transform.position, targetTransform.position) < 0.01f;
+        
+        return t >= 1;
     }
 }

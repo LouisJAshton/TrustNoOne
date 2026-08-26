@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using Eflatun.SceneReference;
 using LouisAshton.Singletons;
@@ -21,12 +19,8 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         
         _isBusy = true;
         
-        var currentBattleScene = SceneManager.GetSceneByBuildIndex(scene.BuildIndex);
-        if (currentBattleScene.isLoaded) {
-            await SceneManager.UnloadSceneAsync(currentBattleScene);
-            print("Unloaded current battle scene");
-        }
-        
+        await Unload();
+
         context.EnemyData = enemy;
         
         await SceneManager.LoadSceneAsync(scene.BuildIndex, LoadSceneMode.Additive);
@@ -41,37 +35,50 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         _isBusy = false;
     }
 
+    private async UniTask Unload()
+    {
+        var currentBattleScene = SceneManager.GetSceneByBuildIndex(scene.BuildIndex);
+
+        var lerpCam = FindAnyObjectByType<CameraLerp>();
+        if (lerpCam && lerpCam.isActiveAndEnabled) {
+            print("MOVING BACK...");
+            await lerpCam.MoveBack(Application.exitCancellationToken);
+            print("FINISHED MOVING BACK!");
+        }
+        
+        if (currentBattleScene.isLoaded) {
+            await SceneManager.UnloadSceneAsync(currentBattleScene);
+            print("Unloaded current battle scene");
+        }
+    }
+
     public async UniTask UnloadCombat()
     {
         if (_isBusy)
             return;
         
         _isBusy = true;
-        
-        var currentBattleScene = SceneManager.GetSceneByBuildIndex(scene.BuildIndex);
-        if (currentBattleScene.isLoaded) {
-            await SceneManager.UnloadSceneAsync(currentBattleScene);
-            print("Unloaded current battle scene");
-        }
+
+        await Unload();
         
         _isBusy = false;
     }
     
-    // [Space]
-    //
-    // [SerializeField] private List<EnemySetupData> enemies;
-    //
-    // private int index = 0;
-    //
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.E)) {
-    //         LoadCombatWith(enemies[index]).Forget();
-    //         index = (index + 1) % enemies.Count;
-    //     }
-    //
-    //     if (Input.GetKeyDown(KeyCode.Q)) {
-    //         UnloadCombat().Forget();
-    //     }
-    // }
+    [Space]
+    
+    [SerializeField] private List<EnemySetupData> enemies;
+    
+    private int index = 0;
+    
+    private void Update()
+    {
+        // if (Input.GetKeyDown(KeyCode.E)) {
+        //     LoadCombatWith(enemies[index]).Forget();
+        //     index = (index + 1) % enemies.Count;
+        // }
+    
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            UnloadCombat().Forget();
+        }
+    }
 }
