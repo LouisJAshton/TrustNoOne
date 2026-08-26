@@ -347,6 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282500819}
+  - component: {fileID: 1282500820}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -369,6 +370,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282500820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282500818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e090a3f4668d74096a8fe77cb7d35a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatSceneLoader
+  AutoUnparentOnAwake: 1
+  context: {fileID: 11400000, guid: adc33c4bf784a654a8272d077ebb4cda, type: 2}
+  scene:
+    asset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+    guid: 99c9720ab356a0642a771bea13969a05
+  enemies:
+  - {fileID: 11400000, guid: c573c599b440a9d48a54b599f7f085d0, type: 2}
+  - {fileID: 11400000, guid: 43a14df123f15aa4e812b407dafef3df, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
