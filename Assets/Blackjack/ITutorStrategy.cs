@@ -39,7 +39,7 @@ public class AITutorStrategy : ITutorStrategy
     {
         Debug.Log("Tutoring...");
 
-        var deck = _blackjackManager.deck;
+        var deck = _playerData.deck;
         var currentScore = BlackjackManager.CalculateScore(_playerData);
         var delta = BlackjackManager.MAX - currentScore;
         

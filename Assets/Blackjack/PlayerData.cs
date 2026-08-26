@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SocialPlatforms;
 
 [Serializable]
 public class PlayerData
 {
     [SerializeField] public string playerName;
-    [SerializeField] public DeckBase deck;
+    [SerializeField] public DeckBase baseDeck;
+    
+    [NonSerialized] public List<CardInfo> deck;
     
     public Character character;
     
@@ -60,6 +61,9 @@ public class PlayerData
     {
         IsShielded = false;
         IsStanding = false;
+
+        deck = baseDeck.GetDeck();
+        
         _hand.Clear();
         OnHandUpdated?.Invoke(_hand);
     }

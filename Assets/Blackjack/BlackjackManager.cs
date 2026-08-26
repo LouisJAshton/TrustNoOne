@@ -20,8 +20,6 @@ public class BlackjackManager
     
     private IScoringStrategy _scoringStrategy;
     
-    public List<CardInfo> deck;
-
     [FormerlySerializedAs("player")] public PlayerData player1;
     public PlayerData player2;
     public PlayerData dealer;
@@ -42,13 +40,12 @@ public class BlackjackManager
         
         _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
         
-        deck = new List<CardInfo>();
-        var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
-        foreach (var cardInfo in cards) {
-            var card = cardInfo as BaseCardInfo;
-            
-            if (card) deck.Add(card.BaseInfo);
-        }
+        // var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
+        // foreach (var cardInfo in cards) {
+        //     var card = cardInfo as BaseCardInfo;
+        //     
+        //     if (card) deck.Add(card.BaseInfo);
+        // }
         
         await Draw(player1, token);
         await Draw(player2, token);
@@ -129,6 +126,8 @@ public class BlackjackManager
 
     public async UniTask Draw(PlayerData activePlayer, CancellationToken token)
     {
+        var deck = activePlayer.deck;
+        
         if (deck == null || deck.Count == 0) {
             Debug.Log("Drawing from empty deck");
             return;
