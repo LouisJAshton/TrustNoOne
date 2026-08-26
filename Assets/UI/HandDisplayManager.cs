@@ -42,7 +42,9 @@ public class HandDisplayManager : MonoBehaviour
     {
         var co = cardObjectFactory.Create(cardInfo);
         co.transform.SetParent(handContainer, false);
-        co.transform.position = Vector3.zero;
+        
+        //TODO Maybe set draw from animation elsewhere?
+        co.transform.position = CardGameBaseObject.Instance.transform.position;
         _cardObjects.Add(cardInfo, co);
     }
 

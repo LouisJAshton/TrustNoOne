@@ -14,7 +14,7 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
     
     private bool _isBusy = false;
     
-    public async UniTask LoadCombatWith(EnemySetupData enemy, CancellationToken token)
+    public async UniTask LoadCombatWith(EnemySetupData enemy, Vector3 position = default)
     {
         if (_isBusy)
             return;
@@ -30,11 +30,17 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         context.EnemyData = enemy;
         
         await SceneManager.LoadSceneAsync(scene.BuildIndex, LoadSceneMode.Additive);
+        
+        var baseObject = FindAnyObjectByType<CardGameBaseObject>();
+        if (baseObject) {
+            baseObject.transform.position = position;
+        }
+        
         print("Loaded battle scene");
         _isBusy = false;
     }
 
-    public async UniTask UnloadCombat(CancellationToken token)
+    public async UniTask UnloadCombat()
     {
         if (_isBusy)
             return;
@@ -59,12 +65,12 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) {
-            LoadCombatWith(enemies[index], destroyCancellationToken).Forget();
+            LoadCombatWith(enemies[index]).Forget();
             index = (index + 1) % enemies.Count;
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) {
-            UnloadCombat(destroyCancellationToken).Forget();
+            UnloadCombat().Forget();
         }
     }
 }
