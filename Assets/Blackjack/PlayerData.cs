@@ -78,8 +78,6 @@ public class PlayerData
     private async UniTask UpdateHand()
     {
         await handDisplayManagers.UpdateHand(_hand);
-        
-        Debug.Log("Updated");
     }
 
     public enum Character
