@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private Image standingImage;
     [SerializeField] private Image shieldedImage;
     [SerializeField] private ParticleSystem winParticles;
+
+    [SerializeField] private Transform binTransform;
     
     [SerializeField] private CombatContext combatContext;
     
@@ -68,8 +71,7 @@ public class HandDisplayManager : MonoBehaviour
         _cardObjects.Clear();
     }
 
-    //TODO Integrate with unitask for juice
-    public void UpdateHand(List<CardInfo> cardInfos)
+    public async UniTask UpdateHand(List<CardInfo> cardInfos)
     {
         var toAdd = new List<CardInfo>();
         var toRemove = new List<CardInfo>();
@@ -87,8 +89,16 @@ public class HandDisplayManager : MonoBehaviour
                 toRemove.Add(kvp.Key);
         }
 
+        var disposedCardOps = new List<UniTask>();
+
         foreach (var card in toRemove) {
-            Destroy(_cardObjects[card].gameObject);
+            disposedCardOps.Add(_cardObjects[card].Dispose(binTransform, 0.5f, destroyCancellationToken));
+            await UniTask.WaitForSeconds(0.2f, cancellationToken: destroyCancellationToken);
+        }
+        
+        await UniTask.WhenAll(disposedCardOps);
+        
+        foreach (var card in toRemove) {
             _cardObjects.Remove(card);
         }
 

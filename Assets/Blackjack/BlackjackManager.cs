@@ -34,11 +34,11 @@ public class BlackjackManager
         player2.baseDeck = combatContext.EnemyData.deck;
         dealer.baseDeck = combatContext.EnemyData.dealerDeck;
         
-        dealer.Reset();
+        await dealer.Reset();
         await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
-        player1.Reset();
+        await player1.Reset();
         await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
-        player2.Reset();
+        await player2.Reset();
         await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
         
         player1.turnStrategy = new PlayerTurnStrategy(player1);
@@ -147,7 +147,7 @@ public class BlackjackManager
         //TODO Replace with actual draw
         var card = deck[Random.Range(0, deck.Count)];
         deck.Remove(card);
-        activePlayer.AddCards(card);
+        await activePlayer.AddCards(card);
         
         await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
 
@@ -155,27 +155,27 @@ public class BlackjackManager
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
                 await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
                 activePlayer.IsShielded = true;
-                activePlayer.RemoveCards(card);
+                await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
                 await activePlayer.tutorStrategy.Tutor(token);
-                activePlayer.RemoveCards(card);
+                await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
                 if (activePlayer == player1) {
-                    player2.AddCards(card);
+                    await player2.AddCards(card);
                 }
                 else if (activePlayer == player2) {
-                    player1.AddCards(card);
+                    await player1.AddCards(card);
                 }
                 else {
-                    player1.AddCards(card);
-                    player2.AddCards(card);
+                    await player1.AddCards(card);
+                    await player2.AddCards(card);
                 }
                 
-                activePlayer.RemoveCards(card);
+                await activePlayer.RemoveCards(card);
             }
             
         }

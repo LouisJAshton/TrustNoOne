@@ -298,6 +298,7 @@ Transform:
   - {fileID: 362608195}
   - {fileID: 710579118}
   - {fileID: 931248603}
+  - {fileID: 1961334229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &54939817
@@ -1351,6 +1352,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: binTransform
+      value: 
+      objectReference: {fileID: 1961334229}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: combatContext
       value: 
       objectReference: {fileID: 11400000, guid: adc33c4bf784a654a8272d077ebb4cda, type: 2}
@@ -1637,6 +1642,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Dealer
       objectReference: {fileID: 0}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: binTransform
+      value: 
+      objectReference: {fileID: 1961334229}
     - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0
@@ -2146,21 +2155,7 @@ MonoBehaviour:
       playerName: You
       baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
       character: 0
-      OnHandUpdated:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 450550884}
-            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
-            m_MethodName: UpdateHand
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+      handDisplayManagers: {fileID: 450550884}
       OnStandingUpdated:
         m_PersistentCalls:
           m_Calls:
@@ -2195,21 +2190,7 @@ MonoBehaviour:
       playerName: Enemy
       baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
       character: 1
-      OnHandUpdated:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 820667843}
-            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
-            m_MethodName: UpdateHand
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+      handDisplayManagers: {fileID: 820667843}
       OnStandingUpdated:
         m_PersistentCalls:
           m_Calls:
@@ -2244,21 +2225,7 @@ MonoBehaviour:
       playerName: Dealer
       baseDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
       character: 2
-      OnHandUpdated:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1177393735}
-            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
-            m_MethodName: UpdateHand
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+      handDisplayManagers: {fileID: 1177393735}
       OnStandingUpdated:
         m_PersistentCalls:
           m_Calls:
@@ -2311,6 +2278,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 54939816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1961334228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1961334229}
+  m_Layer: 0
+  m_Name: Bin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1961334229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961334228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 14.04, y: 0, z: 10.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 54939816}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2013236330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2554,10 @@ PrefabInstance:
       propertyPath: playerName
       value: You
       objectReference: {fileID: 0}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: binTransform
+      value: 
+      objectReference: {fileID: 1961334229}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

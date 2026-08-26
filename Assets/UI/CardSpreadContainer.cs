@@ -34,11 +34,13 @@ public class CardSpreadContainer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
         //TODO Call more sparingly if possible
         RefreshSpread();
         
         foreach (var kvp in _cardPositions) {
+            if (kvp.Key.IsBeingDisposed)
+                continue;
+            
             kvp.Key.transform.localPosition = Vector3.Lerp(kvp.Key.transform.localPosition, kvp.Value * Vector3.up * 0.5f, 0.3f);
             kvp.Key.transform.localRotation = Quaternion.Lerp(kvp.Key.transform.localRotation, kvp.Value, 0.3f);
         }

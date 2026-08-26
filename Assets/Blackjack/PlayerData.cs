@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -41,23 +42,28 @@ public class PlayerData
 
     public List<CardInfo> Hand => _hand;
     
-    public UnityEvent<List<CardInfo>> OnHandUpdated;
+    //public UnityEvent<List<CardInfo>> OnHandUpdated;
+
+    public HandDisplayManager handDisplayManagers;
+    
     public UnityEvent<bool> OnStandingUpdated;
     public UnityEvent<bool> OnShieldedUpdated;
     
-    public void AddCards(params CardInfo[] cards)
+    public async UniTask AddCards(params CardInfo[] cards)
     {
         _hand.AddRange(cards);
-        OnHandUpdated?.Invoke(_hand);
+
+        await UpdateHand();
     }
 
-    public void RemoveCards(params CardInfo[] cards)
+    public async UniTask RemoveCards(params CardInfo[] cards)
     {
         _hand.RemoveAll(cards.Contains);
-        OnHandUpdated?.Invoke(_hand);
+    
+        await UpdateHand();
     }
 
-    public void Reset()
+    public async UniTask Reset()
     {
         IsShielded = false;
         IsStanding = false;
@@ -65,7 +71,15 @@ public class PlayerData
         deck = baseDeck.GetDeck();
         
         _hand.Clear();
-        OnHandUpdated?.Invoke(_hand);
+        
+        await UpdateHand();
+    }
+
+    private async UniTask UpdateHand()
+    {
+        await handDisplayManagers.UpdateHand(_hand);
+        
+        Debug.Log("Updated");
     }
 
     public enum Character

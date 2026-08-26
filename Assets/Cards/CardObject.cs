@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +13,8 @@ public class CardObject : MonoBehaviour
     [SerializeField] private RawImage image;
     [SerializeField] private TMP_Text[] ranks;
 
+    [NonSerialized] public bool IsBeingDisposed = false;
+
     public void SetCardInfo(CardInfo cardInfo)
     {
         image.texture = cardInfo.texture;
@@ -19,5 +23,24 @@ public class CardObject : MonoBehaviour
             rank.color = cardInfo.GetColour();
             rank.text = cardInfo.rankName;
         }
+    }
+
+    public async UniTask Dispose(Transform target, float animLength, CancellationToken token)
+    {
+        if (IsBeingDisposed)
+            return;
+        
+        IsBeingDisposed = true;
+
+        float t = Time.time;
+        while (!token.IsCancellationRequested && Time.time - t < animLength) {
+            transform.position = Vector3.Lerp(transform.position, target.position, t);
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, t);
+            await UniTask.Yield(cancellationToken: token);
+        }
+        
+        Destroy(gameObject);
+
+        return;
     }
 }
