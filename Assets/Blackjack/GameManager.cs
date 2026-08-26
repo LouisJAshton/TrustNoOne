@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
                     LogManager.Instance.Log(new LogData("Curse you - the luck of mortals...", "Lance"));
                 }
                 else {
-                    LogManager.Instance.Log(new LogData("You seek to escape riding fledgling wings. Filth.", e.WinnerName));
+                    LogManager.Instance.Log(new LogData("You seek to escape on fledgling wings. Filth.", e.WinnerName));
                 }
                 
                 CombatSceneLoader.Instance.UnloadCombat().Forget();
@@ -66,6 +66,9 @@ public class GameManager : MonoBehaviour
             }
             
             await blackjackManager.Dealer(token);
+        }
+        else {
+            LogManager.Instance.Log(new LogData("21!", "Dealer"));
         }
 
         await blackjackManager.UpdateWinners(token);
