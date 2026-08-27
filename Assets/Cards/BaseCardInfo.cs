@@ -19,19 +19,10 @@ public class CardInfo
         var output = new CardInfo();
         output.rank = rank;
         output.rankName = rankName;
-        output.suit = suit;
         output.texture = texture;
         output.specialEffects = specialEffects;
         
         return output;
-    }
-    
-    public enum Suit
-    {
-        Heart = 1,
-        Diamond = 2,
-        Club = 4,
-        Spade = 8
     }
 
     [Flags]
@@ -50,7 +41,6 @@ public class CardInfo
     public Texture texture;
     [NonSerialized] public Texture CardBack;
     [Range(0, 10)] public int rank;
-    public Suit suit;
     public SpecialEffect specialEffects;
 
     public bool HasSpecialEffect(SpecialEffect effect)
@@ -60,13 +50,15 @@ public class CardInfo
     
     public Color GetColour()
     {
-        return suit switch
-        {
-            Suit.Heart => Color.red,
-            Suit.Diamond => Color.yellow,
-            Suit.Club => Color.blue,
-            Suit.Spade => Color.black,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        return specialEffects == 0 ? Color.clear : Color.black;
+
+        // return suit switch
+        // {
+        //     Suit.Heart => Color.red,
+        //     Suit.Diamond => Color.yellow,
+        //     Suit.Club => Color.blue,
+        //     Suit.Spade => Color.black,
+        //     _ => throw new ArgumentOutOfRangeException()
+        // };
     }
 }

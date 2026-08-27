@@ -54,6 +54,8 @@ MonoBehaviour:
   standingImage: {fileID: 5150522819699212733}
   shieldedImage: {fileID: 3785342938290802387}
   winParticles: {fileID: 9067432246763006857}
+  binTransform: {fileID: 0}
+  combatContext: {fileID: 0}
 --- !u!1 &2213814637189188109
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.278}
+  m_AnchoredPosition: {x: 0.71, y: -0.119}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7315088687048458959
@@ -5301,7 +5303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.202, y: -0.278}
+  m_AnchoredPosition: {x: 0.71, y: -0.11900002}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1094801497982931999
