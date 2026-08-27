@@ -8,4 +8,6 @@ public class EnemySetupData : ScriptableObject
     public List<Sprite> sprites;
     public DeckBase deck;
     public DeckBase dealerDeck;
+    
+    public DialogueHandler.CharacterName characterName;
 }

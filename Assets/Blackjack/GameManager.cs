@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] public BlackjackManager blackjackManager;
     
+    [SerializeField] private RoundOverEvent roundOverEvent;
+    
     private void Awake()
     {
         if(Instance && Instance != this)
@@ -37,9 +39,11 @@ public class GameManager : MonoBehaviour
             catch (GameOverException e) {
                 if (e.Winner == PlayerData.Character.Player) {
                     LogManager.Instance.Log(new LogData("Curse you - the luck of mortals...", "Lance"));
+                    roundOverEvent.Trigger(new RoundOverEventData(e.Opponent, true));
                 }
                 else {
                     LogManager.Instance.Log(new LogData("You seek to escape on fledgling wings. Filth.", e.WinnerName));
+                    roundOverEvent.Trigger(new RoundOverEventData(e.Opponent, false));
                 }
                 
                 CombatSceneLoader.Instance.UnloadCombat().Forget();

@@ -7,6 +7,11 @@ public class RoundOverEvent : ScriptableObject
 {
     private UnityEvent<RoundOverEventData> onRoundOverEvent = new UnityEvent<RoundOverEventData>();
 
+    public void Trigger(RoundOverEventData eventData)
+    {
+        onRoundOverEvent.Invoke(eventData);
+    }
+    
     public void Subscribe(UnityAction<RoundOverEventData> action)
     {
         onRoundOverEvent.RemoveListener(action);
@@ -26,6 +31,11 @@ public class RoundOverEvent : ScriptableObject
 
 public struct RoundOverEventData
 {
-    public DialogueHandler.CharacterName characterName;
-    public bool wasWon;
+    public readonly DialogueHandler.CharacterName CharacterName;
+    public readonly bool WasWon;
+    public RoundOverEventData(DialogueHandler.CharacterName characterName, bool wasWon)
+    {
+        this.CharacterName = characterName;
+        WasWon = wasWon;
+    }
 }

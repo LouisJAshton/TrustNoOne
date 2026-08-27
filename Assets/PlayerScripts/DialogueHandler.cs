@@ -47,10 +47,10 @@ public class DialogueHandler : MonoBehaviour
     private void OnRoundWon(RoundOverEventData data)
     {
         //If the round was not played against me, ignore this callback
-        if (data.characterName != CharName)
+        if (data.CharacterName != CharName)
             return;
 
-        if (data.wasWon) {
+        if (data.WasWon) {
             //TODO React to player winning
             print($"Player won against {CharName}");
         }
