@@ -371,6 +371,18 @@ MonoBehaviour:
     why I\u2019m so dazed.; I lost so hard I blacked out?; What did I want? How much
     did I lose?; But\u2013; Wait\u2013 "
   TextOBJ: {fileID: 1105010927}
+  roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
+--- !u!114 &186737153 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5527732857404073724, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+  m_PrefabInstance: {fileID: 141357277}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41a94a5088acd44483f9cd530bc515d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatTrigger
 --- !u!1 &194756675
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
-  combatTrigger: {fileID: 0}
+  combatTrigger: {fileID: 649356917}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   TextCanv: {fileID: 1394950306}
   Button1: {fileID: 194756675}
@@ -885,6 +897,7 @@ MonoBehaviour:
     have bet that!;  A gift?;  No! What did I even want?;  I want to know now!; I\u2019ll
     play you for my soul back!;  ... "
   TextOBJ: {fileID: 1105010927}
+  roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
 --- !u!65 &481098849
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1236,6 +1249,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636489531}
   m_CullTransparentMesh: 1
+--- !u!114 &649356917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5527732857404073724, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+  m_PrefabInstance: {fileID: 1693488602}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41a94a5088acd44483f9cd530bc515d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatTrigger
 --- !u!1 &669428188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2659,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
-  combatTrigger: {fileID: 0}
+  combatTrigger: {fileID: 186737153}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   TextCanv: {fileID: 1394950306}
   Button1: {fileID: 194756675}
@@ -2692,6 +2716,7 @@ MonoBehaviour:
     And what do you want?; You want my name, too?;  I don\u2019t know.; Uh, yeahhh,
     me too?;  Deal. ; I feel like I\u2019m going to regret this.;  ...;  Got it "
   TextOBJ: {fileID: 1105010927}
+  roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
 --- !u!65 &2129457625
 BoxCollider:
   m_ObjectHideFlags: 0

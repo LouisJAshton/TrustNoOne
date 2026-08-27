@@ -37,8 +37,31 @@ public class DialogueHandler : MonoBehaviour
 
     private bool doingText;
 
+    #region Round Over Event Handling
+    
+    [SerializeField] private RoundOverEvent roundOverEvent;
+    
+    private void OnEnable() => roundOverEvent?.Subscribe(OnRoundWon);
+    private void OnDisable() => roundOverEvent?.Unsubscribe(OnRoundWon);
 
-    private enum CharacterName
+    private void OnRoundWon(RoundOverEventData data)
+    {
+        //If the round was not played against me, ignore this callback
+        if (data.characterName != CharName)
+            return;
+
+        if (data.wasWon) {
+            //TODO React to player winning
+            print($"Player won against {CharName}");
+        }
+        else {
+            //TODO React to player losing
+            print($"{CharName} won");
+        }
+    }
+    #endregion
+
+    public enum CharacterName
     {
         Bar,
         Agalia,

@@ -26,6 +26,6 @@ public class RoundOverEvent : ScriptableObject
 
 public struct RoundOverEventData
 {
-    public EnemySetupData enemyData;
+    public DialogueHandler.CharacterName characterName;
     public bool wasWon;
 }
