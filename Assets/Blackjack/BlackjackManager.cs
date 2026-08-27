@@ -194,19 +194,6 @@ public class BlackjackManager
         await Initialise(token);
     }
 
-    public void DebugDealerHand()
-    {
-        StringBuilder sb = new();
-        foreach (var card in dealer.Hand) {
-            sb.Append(card.rankName);
-            sb.Append(" of ");
-            sb.Append(card.suit);
-            sb.Append("s | ");
-        }
-        
-        Debug.Log(sb.ToString());
-    }
-
     public async UniTask Dealer(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested) {
