@@ -37,14 +37,14 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (disableMovement == 0 && MoveAction.WasPerformedThisFrame())
+        if (disableMovement == 0 && MoveAction.IsPressed())
         {
             Debug.Log("MOVED");
             disableMovement = 10;
             NewPos = transform.position + transform.forward*4.5f;
             move = true;
         }
-        else if (disableMovement == 0 && RotateLAction.WasPerformedThisFrame())
+        else if (disableMovement == 0 && RotateLAction.IsPressed())
         {
             Debug.Log("ROTATE:L");
             disableMovement = 10;
@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
             NewRot.y = NewRot.y - 90;
             rotate = true;
         }
-        else if (disableMovement == 0 && RotateRAction.WasPerformedThisFrame())
+        else if (disableMovement == 0 && RotateRAction.IsPressed())
         {
             Debug.Log("ROTATE:R");
             disableMovement = 10;
