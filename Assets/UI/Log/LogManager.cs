@@ -19,7 +19,6 @@ namespace Combat.UI
             else
                 Destroy(gameObject);
             
-            DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(transform.parent.gameObject);
         }
         
