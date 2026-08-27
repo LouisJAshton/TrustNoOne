@@ -1,0 +1,328 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using Combat.UI;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+
+[Serializable]
+public class BlackjackManager
+{
+    public const int MAX = 21;
+
+    public const int MAX_SCORE = 5;
+    private int _currentScore = 0;
+    
+    private IScoringStrategy _scoringStrategy;
+    
+    [FormerlySerializedAs("player")] public PlayerData player1;
+    public PlayerData player2;
+    public PlayerData dealer;
+    
+    public CombatContext combatContext;
+
+    public UnityEvent<int> OnScoreChange;
+    public UnityEvent<PlayerData.Character[]> OnRoundWon;
+
+    public async UniTask Initialise(CancellationToken token)
+    {
+        //Reads info from context SO
+        player2.baseDeck = combatContext.EnemyData.deck;
+        dealer.baseDeck = combatContext.EnemyData.dealerDeck;
+        
+        var resetTasks = new List<UniTask>();
+        
+        resetTasks.Add(player1.Reset());
+        await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
+        resetTasks.Add(player2.Reset());
+        await UniTask.WaitForSeconds(0.2f, cancellationToken: token);
+        resetTasks.Add(dealer.Reset());
+
+        await UniTask.WhenAll(resetTasks);
+        
+        player1.turnStrategy = new PlayerTurnStrategy(player1);
+        player2.turnStrategy = new AITurnStrategy(player2);
+        dealer.turnStrategy = new DealerTurnStrategy(dealer);
+
+        player1.tutorStrategy = new AITutorStrategy(player1, this);
+        player2.tutorStrategy = new AITutorStrategy(player2, this);
+        dealer.tutorStrategy = new AITutorStrategy(dealer, this);
+        
+        _scoringStrategy = new WeightedScoringStrategy(player1, player2, dealer);
+        
+        // var cards = Resources.LoadAll($"Cards", typeof(BaseCardInfo));
+        // foreach (var cardInfo in cards) {
+        //     var card = cardInfo as BaseCardInfo;
+        //     
+        //     if (card) deck.Add(card.BaseInfo);
+        // }
+        
+        await Draw(player1, token);
+        await Draw(player2, token);
+        await Draw(player1, token);
+        await Draw(player2, token);
+        
+        await Draw(dealer, token);
+    }
+
+    public async UniTask TakeTurn(CancellationToken cancellationToken)
+    {
+        if (player1.IsStanding && player2.IsStanding) {
+            throw new BothStandingException();
+        }
+
+        await TurnCycle(player1, cancellationToken);
+        await TurnCycle(player2, cancellationToken);
+    }
+
+    private async UniTask TurnCycle(PlayerData player, CancellationToken token)
+    {
+        if (CalculateScore(player.Hand) > 21 || player.IsStanding) {
+            player.IsStanding = true;
+            return;
+        }
+        
+        await player.turnStrategy.TakeTurn(token);
+        if (CalculateScore(player.Hand) > 21) {
+            player.IsStanding = true;
+        }
+
+        await UniTask.Yield();
+    }
+
+    public static int CalculateScore(PlayerData player)
+    {
+        return CalculateScore(player.Hand);
+    }
+    
+    public static int CalculateScore(List<CardInfo> cards)
+    {
+        var total = 0;
+        var acesCount = 0;
+        
+        var totalHand = new List<CardInfo>();
+        totalHand.AddRange(cards);
+
+        foreach (var card in totalHand) {
+            
+            //Handle instant loss
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Lose)) {
+                return 666;
+            }
+            //Handle non-aces
+            else if (card.rank != 1) {
+                total += card.rank;
+            }
+            //Handle aces
+            else {
+                acesCount++;
+            }
+        }
+
+        for (var i = acesCount; i >= 1; i--) {
+            var acesValue = i * 11;
+            
+            if (acesValue + total <= 21) {
+                total += acesValue;
+                break;
+            }
+            else {
+                total += 1;
+            }
+        }
+        
+        return total;
+    }
+
+    public async UniTask Draw(PlayerData activePlayer, CancellationToken token)
+    {
+        var deck = activePlayer.deck;
+        
+        if (deck == null || deck.Count == 0) {
+            Debug.Log("Drawing from empty deck");
+            return;
+        }
+        
+        //TODO Replace with actual draw
+        var card = deck[Random.Range(0, deck.Count)];
+        deck.Remove(card);
+        await activePlayer.AddCards(card);
+        
+        await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+
+        if (card.specialEffects != 0) {
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
+                await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} uses a shield to prevent point loss this round", "Dealer"));
+                activePlayer.IsShielded = true;
+                await activePlayer.RemoveCards(card);
+            }
+            
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect draw", "Dealer"));
+                await activePlayer.tutorStrategy.Tutor(token);
+                await activePlayer.RemoveCards(card);
+            }
+            
+            if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName}'s own card flees their hand", "Dealer"));
+                if (activePlayer == player1) {
+                    await player2.AddCards(card);
+                }
+                else if (activePlayer == player2) {
+                    await player1.AddCards(card);
+                }
+                else {
+                    await player1.AddCards(card);
+                    await player2.AddCards(card);
+                }
+                
+                await activePlayer.RemoveCards(card);
+            }
+            
+        }
+    }
+
+    //TODO Use unitask for juice
+    public async UniTask Reshuffle(CancellationToken token)
+    {
+        await Initialise(token);
+    }
+
+    public async UniTask Dealer(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested) {
+            await dealer.turnStrategy.TakeTurn(cancellationToken);
+            if (dealer.IsStanding) {
+                return;
+            }
+        }
+    }
+
+    public async UniTask<List<PlayerData>> CalculateWinner(CancellationToken cancellationToken)
+    {
+        await UniTask.Delay(100, cancellationToken: cancellationToken);
+        
+        List<PlayerData> winners = new List<PlayerData>();
+        List<PlayerData> players = new List<PlayerData>()
+        {
+            player1, player2, dealer
+        };
+
+        foreach (var player in players.ToList().Where(player => CalculateScore(player.Hand) > 21)) {
+            players.Remove(player);
+        }
+
+        if (CheckForBlackjacks(players, out winners)) {
+            return winners;
+        }
+
+        if (!players.Contains(dealer)) {
+            return players;
+        }
+
+        foreach (var player in players) {
+            if (CalculateScore(player.Hand) > CalculateScore(dealer.Hand)) {
+                winners.Add(player);
+            }
+        }
+
+        return winners;
+    }
+
+    public bool CheckForBlackjacks(out List<PlayerData> winners)
+    {
+        return CheckForBlackjacks(new List<PlayerData>() {player1, player2, dealer}, out winners);
+    }
+    
+    public bool CheckForBlackjacks(List<PlayerData> players, out List<PlayerData> winners)
+    {
+        winners = new List<PlayerData>();
+        
+        foreach (var player in players) {
+            if (player.Hand.Count != 2) {
+                continue;
+            }
+
+            if (CalculateScore(player.Hand) == MAX) {
+                winners.Add(player);
+            }
+        }
+        
+        return winners.Count > 0;
+    }
+
+    public async UniTask UpdateWinners(CancellationToken token)
+    {
+        var winners = await CalculateWinner(token);
+
+        List<PlayerData.Character> winnerEnum = new();
+        foreach (var winner in winners) {
+            winnerEnum.Add(winner.character);
+        }
+        
+        OnRoundWon.Invoke(winnerEnum.ToArray());
+
+        int delta = await _scoringStrategy.Score();
+
+        if (player1.IsShielded) {
+            if(delta < 0)
+                LogManager.Instance.Log(new LogData("You are shielded from this loss", "Dealer"));
+            delta = Mathf.Max(0, delta);
+        }
+        
+        if (player2.IsShielded) {
+            if(delta > 0)
+                LogManager.Instance.Log(new LogData("Your opponent is shielded from this loss", "Dealer"));
+            delta = Mathf.Min(0, delta);
+        }
+        
+        await ChangeScore(delta, token);
+        
+        if (Mathf.Abs(_currentScore) >= MAX_SCORE) {
+            
+            var winner = Mathf.Sign(_currentScore) > 0 ? player1 : player2;
+            
+            throw new GameOverException(winner.character, winner.playerName);
+        }
+    }
+
+    public UniTask ChangeScore(int delta, CancellationToken token)
+    {
+        _currentScore += delta;
+        OnScoreChange.Invoke(_currentScore);
+
+        // string message;
+        // if (delta > 0) {
+        //     message = $"You gain {delta} points.";
+        // }
+        // else if (delta < 0) {
+        //     message = $"You lost {-delta} points.";
+        // }
+        // else {
+        //     message = "No score change";
+        // }
+        //
+        // LogManager.Instance.Log(new LogData(message, "Dealer"));
+        
+        Debug.Log($"Current score: {_currentScore}");
+        return UniTask.CompletedTask;
+    }
+}
+
+public class GameOverException : Exception
+{
+    public readonly PlayerData.Character Winner;
+    public readonly string WinnerName;
+    
+    public GameOverException(PlayerData.Character winner, string winnerName)
+    {
+        this.Winner = winner;
+        WinnerName = winnerName;
+    }
+}
