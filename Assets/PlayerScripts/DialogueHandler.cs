@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,7 +20,7 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private GameObject Button2;
     [SerializeField] private GameObject Button3;
 
-    [SerializeField] private string CharName;
+    [SerializeField] private CharacterName CharName;
     [SerializeField] private string DisplayText;
     [SerializeField] private string ButtonText;
     [SerializeField] private TMP_Text TextOBJ;
@@ -34,6 +35,13 @@ public class DialogueHandler : MonoBehaviour
 
     private bool doingText;
 
+
+    private enum CharacterName
+    {
+        Bar,
+        Agalia,
+        Lance
+    }
 
     private void Start()
     {
@@ -94,7 +102,7 @@ public class DialogueHandler : MonoBehaviour
 
         string[] SplitButt = ButtonText.Split(";");
         int ButtCount = 0;
-        if(ButtNum < SplitButt.Length && CharName == "Bar")
+        if(ButtNum < SplitButt.Length && CharName == CharacterName.Bar)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
             ButtNum++;
@@ -152,7 +160,7 @@ public class DialogueHandler : MonoBehaviour
                 butt3.onClick.AddListener(DoDeal);
             }
         }
-        else if (ButtNum < SplitButt.Length && CharName == "Aga")
+        else if (ButtNum < SplitButt.Length && CharName == CharacterName.Agalia)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
             ButtNum++;
@@ -179,7 +187,7 @@ public class DialogueHandler : MonoBehaviour
             }
 
         }
-        else if (ButtNum < SplitButt.Length && CharName == "Lan")
+        else if (ButtNum < SplitButt.Length && CharName == CharacterName.Lance)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
             ButtNum++;
@@ -267,15 +275,15 @@ public class DialogueHandler : MonoBehaviour
             else if (TextCharCount == TextLength)
             {
                 int ButtonSpawnCount = 0;
-                if (CharName =="Bar")
+                if (CharName == CharacterName.Bar)
                 {
                     ButtonSpawnCount = BarButtons[TextNum];
                 }
-                else if (CharName == "Aga")
+                else if (CharName == CharacterName.Agalia)
                 {
                     ButtonSpawnCount = AgaButtons[TextNum];
                 }
-                else if (CharName == "Lan")
+                else if (CharName == CharacterName.Lance)
                 {
                     ButtonSpawnCount = LanButtons[TextNum];
                 }

@@ -249,7 +249,7 @@ MonoBehaviour:
   Button1: {fileID: 194756675}
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
-  CharName: Bar
+  CharName: 0
   DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here?; Heh,
     yeah you were. You got hella crunk, too. Take this.; Drink it. It\u2019ll make
     ya feel better.; Oh, you had some fun. Come to play some more? Don\u2019t tell
@@ -769,7 +769,7 @@ MonoBehaviour:
   Button1: {fileID: 194756675}
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
-  CharName: Lan
+  CharName: 2
   DisplayText: "Th3 fuck U w4nt?;  4nd? U lo5t. D3al w1th 1t.;  8ruv, U d1dn\u2019t
     w4nt t0 kn0w. Th4t\u2019s Y y0u\u2019re 1n th1s me55. N0w, g3t th3 fuck 0ut my
     b4r.;  L1st3n, crust punk, I\u201911 giv3 y0u 0ne gam3. U w1n, 1\u2019ll t3ll
@@ -1751,6 +1751,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130530348}
   m_CullTransparentMesh: 1
+--- !u!1001 &1260190363
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.717
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.696
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611649609295681298, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
+      propertyPath: m_Name
+      value: Combat Trigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
 --- !u!1 &1394950303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,6 +2037,107 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!1001 &1997348761
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225159580595980449, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 894337105699353961, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700213597920296385, guid: af1064e92e1993c488089230303485ab, type: 3}
+      propertyPath: m_Name
+      value: Log Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af1064e92e1993c488089230303485ab, type: 3}
 --- !u!1001 &2026663219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2294,7 +2452,7 @@ MonoBehaviour:
   Button1: {fileID: 194756675}
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
-  CharName: Aga
+  CharName: 1
   DisplayText: "Heyyyy, bitch! Thought it would be a hot minute before you'd be back.
     You\u2019re full of spunk and moxie :3; Damn, you\u2019re not looking too hot.
     Otis! Get this cutie another drink. So anyway, you ready to party some more?
@@ -2426,3 +2584,5 @@ SceneRoots:
   - {fileID: 481098852}
   - {fileID: 1394950307}
   - {fileID: 360468341}
+  - {fileID: 1997348761}
+  - {fileID: 1260190363}
