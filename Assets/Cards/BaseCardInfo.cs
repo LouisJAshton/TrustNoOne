@@ -24,14 +24,6 @@ public class CardInfo
         
         return output;
     }
-    
-    public enum Suit
-    {
-        Heart = 1,
-        Diamond = 2,
-        Club = 4,
-        Spade = 8
-    }
 
     [Flags]
     public enum SpecialEffect
@@ -58,7 +50,7 @@ public class CardInfo
     
     public Color GetColour()
     {
-        return Color.black;
+        return specialEffects == 0 ? Color.clear : Color.black;
 
         // return suit switch
         // {
