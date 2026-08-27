@@ -5480,7 +5480,7 @@ Light:
   serializedVersion: 13
   m_Type: 2
   m_Color: {r: 0.8050314, g: 0.59631455, b: 0.18986578, a: 1}
-  m_Intensity: 4
+  m_Intensity: 10
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6319,7 +6319,7 @@ Light:
   serializedVersion: 13
   m_Type: 2
   m_Color: {r: 0.8490566, g: 0.6296485, b: 0.35510847, a: 1}
-  m_Intensity: 4
+  m_Intensity: 10
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10741,6 +10741,10 @@ PrefabInstance:
     - target: {fileID: 752660700611703769, guid: 3a21ea8f4a6bf0247a4d0834d3ea818e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639036026149959237, guid: 3a21ea8f4a6bf0247a4d0834d3ea818e, type: 3}
+      propertyPath: m_Intensity
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
