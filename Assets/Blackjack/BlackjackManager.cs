@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Combat.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -157,16 +158,19 @@ public class BlackjackManager
         if (card.specialEffects != 0) {
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
                 await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} uses a shield to prevent point loss this round", "Dealer"));
                 activePlayer.IsShielded = true;
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect draw", "Dealer"));
                 await activePlayer.tutorStrategy.Tutor(token);
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName}'s own card flees their hand", "Dealer"));
                 if (activePlayer == player1) {
                     await player2.AddCards(card);
                 }
@@ -280,10 +284,14 @@ public class BlackjackManager
         int delta = await _scoringStrategy.Score();
 
         if (player1.IsShielded) {
+            if(delta < 0)
+                LogManager.Instance.Log(new LogData("You are shielded from this loss", "Dealer"));
             delta = Mathf.Max(0, delta);
         }
         
         if (player2.IsShielded) {
+            if(delta > 0)
+                LogManager.Instance.Log(new LogData("Your opponent is shielded from this loss", "Dealer"));
             delta = Mathf.Min(0, delta);
         }
         
@@ -301,6 +309,20 @@ public class BlackjackManager
     {
         _currentScore += delta;
         OnScoreChange.Invoke(_currentScore);
+
+        // string message;
+        // if (delta > 0) {
+        //     message = $"You gain {delta} points.";
+        // }
+        // else if (delta < 0) {
+        //     message = $"You lost {-delta} points.";
+        // }
+        // else {
+        //     message = "No score change";
+        // }
+        //
+        // LogManager.Instance.Log(new LogData(message, "Dealer"));
+        
         Debug.Log($"Current score: {_currentScore}");
         return UniTask.CompletedTask;
     }

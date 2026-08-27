@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Combat.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,16 +15,18 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        if(Instance && Instance != this)
+            Destroy(gameObject);
+        else
+            Instance = this;
+        
         RunBattle(destroyCancellationToken).Forget();
     }
 
     private async UniTask RunBattle(CancellationToken token)
     {
-        if(Instance && Instance != this)
-            Destroy(gameObject);
-        else
-            Instance = this;
-
+        LogManager.Instance.Log(new LogData("You stride up to the table with infernal confidence...", "Narrator"));
+        
         while (token.IsCancellationRequested == false) {
             await UniTask.WaitForSeconds(1, cancellationToken: token);
             
@@ -31,8 +34,15 @@ public class GameManager : MonoBehaviour
                 await PlayRound(token);
                 await UniTask.WaitForSeconds(1, cancellationToken: token);
             }
-            catch (GameOverException) {
-                print("Game Over");
+            catch (GameOverException e) {
+                if (e.Winner == PlayerData.Character.Player) {
+                    LogManager.Instance.Log(new LogData("Curse you - the luck of mortals...", "Lance"));
+                }
+                else {
+                    LogManager.Instance.Log(new LogData("You seek to escape on fledgling wings. Filth.", e.WinnerName));
+                }
+                
+                CombatSceneLoader.Instance.UnloadCombat().Forget();
                 break;
             }
             catch (OperationCanceledException) {
@@ -57,13 +67,10 @@ public class GameManager : MonoBehaviour
             
             await blackjackManager.Dealer(token);
         }
+        else {
+            LogManager.Instance.Log(new LogData("21!", "Dealer"));
+        }
 
-        try {
-            await blackjackManager.UpdateWinners(token);
-        }
-        catch (GameOverException goe) {
-            print($"{goe.WinnerName} wins!");
-            CombatSceneLoader.Instance.UnloadCombat().Forget();
-        }
+        await blackjackManager.UpdateWinners(token);
     }
 }
