@@ -226,7 +226,7 @@ Transform:
   m_GameObject: {fileID: 182360820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3, y: 4.39, z: 0}
+  m_LocalPosition: {x: -3.98, y: 4.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -250,29 +250,29 @@ MonoBehaviour:
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
   CharName: Bar
-  DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here?: Heh,
-    yeah you were. You got hella crunk, too. Take this.: Drink it. It\u2019ll make
-    ya feel better.: Oh, you had some fun. Come to play some more? Don\u2019t tell
-    me you forgot how to play!: Need me to go over it again, scrub, or ya think ya
-    got it?: Good. I got things to do.: Like I said, I'm busy. But, I could go on
-    break if you wanna play. If you win, I'll tell you more about last night.: But
-    if I win? Well, I'm pretty sure you don't have anything left.: Sorry, kid. You
-    ain\u2019t got nothin\u2019 for me.: You're on, Ash.: I\u2019ll be damned.: There's
+  DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here?; Heh,
+    yeah you were. You got hella crunk, too. Take this.; Drink it. It\u2019ll make
+    ya feel better.; Oh, you had some fun. Come to play some more? Don\u2019t tell
+    me you forgot how to play!; Need me to go over it again, scrub, or ya think ya
+    got it?; Good. I got things to do.; Like I said, I'm busy. But, I could go on
+    break if you wanna play. If you win, I'll tell you more about last night.; But
+    if I win? Well, I'm pretty sure you don't have anything left.; Sorry, kid. You
+    ain\u2019t got nothin\u2019 for me.; You're on, Ash.; I\u2019ll be damned.; There's
     not much more to say, really. You came in last night with bright eyes, hopes,
-    and treasures to gamble.: You wanted something real bad. We could see the fire
-    in your eyes. You had a good streak there in the beginning...: But I guess your
-    luck fell short. It doesn\u2019t matter. It\u2019s just a game.: Look, kid, I
+    and treasures to gamble.; You wanted something real bad. We could see the fire
+    in your eyes. You had a good streak there in the beginning...; But I guess your
+    luck fell short. It doesn\u2019t matter. It\u2019s just a game.; Look, kid, I
     gotta get back to work."
-  ButtonText: "I don\u2019t think so\u2026: I don\u2019t feel good, dude.: Uh, what
-    is this?: Thanks, bro.: So\u2026 what was I doing here last night?: Must have
-    been a good night. Tell me about it?: Um\u2026 remind me.: No, no, dude. I know
-    how to play.: My head hurts\u2026 explain it again?: Yeah, no, I totally get
-    it.: What else happened last night?: So, I just got wasted and played cards?:
-    Well. You wanna play?: Okay...: I\u2019ve got a lil dust bunny in my pocket?:
-    I\u2019ll owe you a favour.: I\u2019ve got my name. Ash.: Begin: So? Tell me
-    more.: Good game. Now, what about last night?: ...: ...: It doesn\u2019t explain
-    why I\u2019m so dazed.: I lost so hard I blacked out?: What did I want? How much
-    did I lose?: But\u2013: Wait\u2013 "
+  ButtonText: "I don\u2019t think so\u2026; I don\u2019t feel good, dude.; Uh, what
+    is this?; Thanks, bro.; So\u2026 what was I doing here last night?; Must have
+    been a good night. Tell me about it?; Um\u2026 remind me.; No, no, dude. I know
+    how to play.; My head hurts\u2026 explain it again?; Yeah, no, I totally get
+    it.; What else happened last night?; So, I just got wasted and played cards?;
+    Well. You wanna play?; Okay...; I\u2019ve got a lil dust bunny in my pocket?;
+    I\u2019ll owe you a favour.; I\u2019ve got my name. Ash.; Begin; So? Tell me
+    more.; Good game. Now, what about last night?; ...; ...; It doesn\u2019t explain
+    why I\u2019m so dazed.; I lost so hard I blacked out?; What did I want? How much
+    did I lose?; But\u2013; Wait\u2013 "
   TextOBJ: {fileID: 1105010927}
 --- !u!1 &194756675
 GameObject:
@@ -732,6 +732,154 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403343621}
   m_CullTransparentMesh: 1
+--- !u!1 &481098847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481098852}
+  - component: {fileID: 481098851}
+  - component: {fileID: 481098850}
+  - component: {fileID: 481098849}
+  - component: {fileID: 481098848}
+  m_Layer: 0
+  m_Name: Lance
+  m_TagString: Interact
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &481098848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481098847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  TextCanv: {fileID: 1394950306}
+  Button1: {fileID: 194756675}
+  Button2: {fileID: 370744382}
+  Button3: {fileID: 518966065}
+  CharName: Lan
+  DisplayText: "Th3 fuck U w4nt?;  4nd? U lo5t. D3al w1th 1t.;  8ruv, U d1dn\u2019t
+    w4nt t0 kn0w. Th4t\u2019s Y y0u\u2019re 1n th1s me55. N0w, g3t th3 fuck 0ut my
+    b4r.;  L1st3n, crust punk, I\u201911 giv3 y0u 0ne gam3. U w1n, 1\u2019ll t3ll
+    y0u wh4t y0u l0st. 1 w1n, U d0n\u2019t com3 b4ck h3re aga1n.;  1 alr3ady g0t
+    wh4t 1 w4nt3d.;  \u2026;  Y0ur s0u1.;  Y3p. L0st ur m3mori3s, t00. 8ut th4t wa5
+    0n ur 0wn r3qu3st\u2013 a g1ft fr0m urs truly.;  La5t t1m3 I 0ff3rd 3nlight3nm3nt
+    I was d3t3st3d. Y0ur k1nd l1k3s to b3 d3ns3.;  Y0u t0ld m3 U d1dn\u2019t w4nt
+    t0 kn0w. T00 much sh4me.;  T00 lat3. 1f U r3ally w4nt t0 kn0w U sh0uld a5k y0urs3lf:
+    Wh4t c0uld h4v3 p0ss1bly b33n w0rth th15?"
+  ButtonText: "You're the one that beat my ass.; Well, aren't you a wet blanket?; 
+    I need to know what I wanted from you.; Dude, last night was a total blackout.;
+    I don\u2019t even know what I lost.;  I\u2019ll play you!; Come on, dude!; Scared
+    you\u2019ll lose?;  What am I wagering?; That's it, you just want me out?;  Begin; 
+    So? What did I lose?;  ... what?; No\u2013 I\u2019d remember!; I wouldn\u2019t
+    have bet that!;  A gift?;  No! What did I even want?;  I want to know now!; I\u2019ll
+    play you for my soul back!;  ... "
+  TextOBJ: {fileID: 1105010927}
+--- !u!65 &481098849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481098847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &481098850
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481098847}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &481098851
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481098847}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &481098852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481098847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.896, y: 4.39, z: 14.712}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518966065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1525,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -229.73486, y: -10.745808, z: -43.643112, w: -45.41391}
+  m_margin: {x: -232.5216, y: -10.745808, z: -43.643112, w: -45.41391}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2109,6 +2257,163 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 388f8df30925ed64395c8d0634e0af9b, type: 3}
+--- !u!1 &2129457623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129457628}
+  - component: {fileID: 2129457627}
+  - component: {fileID: 2129457626}
+  - component: {fileID: 2129457625}
+  - component: {fileID: 2129457624}
+  m_Layer: 0
+  m_Name: Agalia
+  m_TagString: Interact
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2129457624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129457623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  TextCanv: {fileID: 1394950306}
+  Button1: {fileID: 194756675}
+  Button2: {fileID: 370744382}
+  Button3: {fileID: 518966065}
+  CharName: Aga
+  DisplayText: "Heyyyy, bitch! Thought it would be a hot minute before you'd be back.
+    You\u2019re full of spunk and moxie :3; Damn, you\u2019re not looking too hot.
+    Otis! Get this cutie another drink. So anyway, you ready to party some more?
+    :); OTIS: Hey, kid, if you still don\u2019t got your shit figured out, she\u2019s
+    probably your best bet.; You two were playin\u2019 each other, drinkin\u2019,
+    dancin\u2019\u2013 almost all night.; Aahh, we had fun! I saw you tearing my
+    lackeys to shreds\u2013  I mean, you were one BAMF!; I had to let you play with
+    me and the other big dawgs.Not my fault you got a little carried away. But who
+    cares?; It was all in good fun :); Well, I definitely gave you a run for your
+    money, but I\u2019m not the one who beat your ass.; I couldn\u2019t give you
+    what you wanted, but I could get you the next best thing. So that's what I did.;
+    You know better than that! If you want something, you gotta play :3; I can\u2019t
+    tell you what you wanted, but if you win? I could tell you where to go next~
+    x; You know what I want? I wanna know why you came here last night.; No, silly!
+    I mean why here? You could have gone to so many other places, but you chose here.
+    I wanna know why.; Damn, bitch! Have another round on me :)  I was hoping you\u2019d
+    win. You need a little pick-me-up.; A deals a deal. You wanna speak to Lance
+    in the back. Don\u2019t be a stranger now, k?  "
+  ButtonText: "Are you talking to me?; Uh\u2026 Hi?; Hey, biatch!;  Do I know you?;
+    Sorry, I\u2019m a little busy right now.; You look like a mistake I already made.; 
+    ...;  I guess we really hit it off, huh?; Ah. You\u2019re probably why I feel
+    like shit.;  ...;  ...;  I hear I lost big time to ya.; Glad you enjoyed kicking
+    my ass.;  ...;  Who did then?; What did I want so bad?; What did I lose?;  ...; 
+    And what do you want?; You want my name, too?;  I don\u2019t know.; Uh, yeahhh,
+    me too?;  Deal. ; I feel like I\u2019m going to regret this.;  ...;  Got it "
+  TextOBJ: {fileID: 1105010927}
+--- !u!65 &2129457625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129457623}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2129457626
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129457623}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2129457627
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129457623}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2129457628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129457623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.92, y: 4.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2117,5 +2422,7 @@ SceneRoots:
   - {fileID: 669428190}
   - {fileID: 2026663219}
   - {fileID: 182360824}
+  - {fileID: 2129457628}
+  - {fileID: 481098852}
   - {fileID: 1394950307}
   - {fileID: 360468341}
