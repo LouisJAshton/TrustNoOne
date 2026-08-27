@@ -1,3 +1,4 @@
+using Eflatun.SceneReference;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject Menu;
 
+    [SerializeField] private SceneReference levelScene;
     [SerializeField] private AudioClip testclip;
     private void Start()
     {
@@ -14,7 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("UPDATE SCENE NAME TO LOAD");
         MainAudio.instance.PlaySFXClip(testclip, transform, 1);
-        //SceneManager.LoadScene("Office");
+        SceneManager.LoadScene(levelScene.BuildIndex);
     }
 
     public void ExitGame()
