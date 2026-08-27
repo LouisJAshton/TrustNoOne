@@ -34,20 +34,20 @@ public class PlayerInteract : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Interact"))
             {
-                Debug.Log("INTERACTABLE");
+                //Debug.Log("INTERACTABLE");
                 lastseen=hit.collider.gameObject;
                 LookingAtSomeone = true;
             }
             else
             {
-                Debug.Log("NON INTERACTABLE");
+                //Debug.Log("NON INTERACTABLE");
                 lastseen = null;
                 LookingAtSomeone = false;
             }
         }
         else
         {
-            Debug.Log("NO HIT");
+            //Debug.Log("NO HIT");
             lastseen = null;
             LookingAtSomeone = false;
         }

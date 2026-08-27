@@ -27,6 +27,8 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField, TextArea(5, 100)] private string ButtonText;
     [SerializeField] private TMP_Text TextOBJ;
 
+    [SerializeField] public int results = 2;
+
     private int TextNum;
     private int ButtNum;
     private int TextCharCount;
@@ -210,6 +212,15 @@ public class DialogueHandler : MonoBehaviour
             {
                 Debug.Log("No button 3, skipping");
             }
+            if (ButtNum == 24)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleAgalia);
+                Button2.TryGetComponent<Button>(out Button butt2);
+                butt2.onClick.RemoveAllListeners();
+                butt2.onClick.AddListener(StartBattleAgalia);
+            }
 
         }
         else if (ButtNum < SplitButt.Length && CharName == CharacterName.Lance)
@@ -238,16 +249,26 @@ public class DialogueHandler : MonoBehaviour
                 Debug.Log("No button 3, skipping");
             }
 
+            if (ButtNum == 11)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleLance);
+            }
+
         }
         doingText = true;
     }
 
-    private void StartTutorial()
+    private void ToggleCanvas()
     {
-        combatTrigger.Trigger();
-        Debug.Log("DOING TUTORIAL AAAAAA");
-        ButtNum = 8;
-        TextNum = 3;
+        bool active = TextCanv.gameObject.activeSelf;
+        TextCanv.gameObject.SetActive(!active);
+    }
+    private void SkipTutorial()
+    {
+        Debug.Log("SKIPPED");
+        ProgressText();
         ProgressText();
     }
     private void RetryDeal()
@@ -255,13 +276,6 @@ public class DialogueHandler : MonoBehaviour
         Debug.Log("WRONG!");
         ButtNum = 14;
         TextNum = 7;
-        ProgressText();
-    }
-
-    private void SkipTutorial()
-    {
-        Debug.Log("SKIPPED");
-        ProgressText();
         ProgressText();
     }
     private void DoDeal()
@@ -272,7 +286,42 @@ public class DialogueHandler : MonoBehaviour
             ButtNum = ButtNum - 3;
             ProgressText();
         }
+        Button1.TryGetComponent<Button>(out Button butt1);
+        butt1.onClick.RemoveAllListeners();
+        butt1.onClick.AddListener(StartBattleOtis);
+    }
+
+    private void StartTutorial()
+    {
+        //combatTrigger.Trigger();
+        Debug.Log("DOING TUTORIAL AAAAAA");
+        ButtNum = 8;
+        TextNum = 3;
+        //ToggleCanvas();
+    }
+    private void StartBattleOtis()
+    {
+        //ToggleCanvas();
+        //combatTrigger.Trigger();
+        Debug.Log("BATTLE WITH OTIS");
         ResetButtonClick();
+        ProgressText();
+    }
+    private void StartBattleAgalia()
+    {
+        //ToggleCanvas();
+        //combatTrigger.Trigger();
+        Debug.Log("BATTLE WITH AGALIA");
+        ResetButtonClick();
+        ProgressText();
+    }
+    private void StartBattleLance()
+    {
+        //ToggleCanvas();
+        //combatTrigger.Trigger();
+        Debug.Log("BATTLE WITH LANCE");
+        ResetButtonClick();
+        ProgressText();
     }
 
     private void CloseText()
@@ -288,7 +337,19 @@ public class DialogueHandler : MonoBehaviour
     {
         if (doingText)
         {
-            Debug.Log(gameObject);
+            if (!TextCanv.gameObject.activeSelf)
+            {
+                if (results == 1)
+                {
+                    TextCanv.gameObject.SetActive(true);
+                    ProgressText();
+                    results = 2;
+                }
+                if (results == 0)
+                {
+                    Debug.Log("YOU LOSE WOMP WOMP");
+                }
+            }
             if (TextCharCount < TextLength)
             {
                 //Debug.Log(TextLength);
