@@ -19,7 +19,7 @@ namespace Combat.UI
             else
                 Destroy(gameObject);
             
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.parent.gameObject);
         }
         
         public void Log(LogData data)

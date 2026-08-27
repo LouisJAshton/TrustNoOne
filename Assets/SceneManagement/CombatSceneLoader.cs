@@ -62,12 +62,6 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         _isBusy = false;
     }
     
-    [Space]
-    
-    [SerializeField] private List<EnemySetupData> enemies;
-    
-    private int index = 0;
-    
     private void Update()
     {
         // if (Input.GetKeyDown(KeyCode.E)) {

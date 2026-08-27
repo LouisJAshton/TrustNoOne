@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,8 @@ public class DialogueHandler : MonoBehaviour
     private int[] AgaButtons = new int[15] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1};
 
     private int[] LanButtons = new int[11] {2, 3, 3, 2, 1, 1, 3, 1, 1, 2, 1};
+    
+    [SerializeField] private CombatTrigger combatTrigger;
 
     [SerializeField] private InputActionAsset inputActions;
 
@@ -19,9 +22,9 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private GameObject Button2;
     [SerializeField] private GameObject Button3;
 
-    [SerializeField] private string CharName;
-    [SerializeField] private string DisplayText;
-    [SerializeField] private string ButtonText;
+    [SerializeField] private CharacterName CharName;
+    [SerializeField, TextArea(5, 100)] private string DisplayText;
+    [SerializeField, TextArea(5, 100)] private string ButtonText;
     [SerializeField] private TMP_Text TextOBJ;
 
     private int TextNum;
@@ -34,6 +37,13 @@ public class DialogueHandler : MonoBehaviour
 
     private bool doingText;
 
+
+    private enum CharacterName
+    {
+        Bar,
+        Agalia,
+        Lance
+    }
 
     private void Start()
     {
@@ -94,7 +104,7 @@ public class DialogueHandler : MonoBehaviour
 
         string[] SplitButt = ButtonText.Split(";");
         int ButtCount = 0;
-        if(ButtNum < SplitButt.Length && CharName == "Bar")
+        if(ButtNum < SplitButt.Length && CharName == CharacterName.Bar)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
             ButtNum++;
@@ -152,7 +162,7 @@ public class DialogueHandler : MonoBehaviour
                 butt3.onClick.AddListener(DoDeal);
             }
         }
-        else if (ButtNum < SplitButt.Length && CharName == "Aga")
+        else if (ButtNum < SplitButt.Length && CharName == CharacterName.Agalia)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
             ButtNum++;
@@ -179,7 +189,7 @@ public class DialogueHandler : MonoBehaviour
             }
 
         }
-        else if (ButtNum < SplitButt.Length && CharName == "Lan")
+        else if (ButtNum < SplitButt.Length && CharName == CharacterName.Lance)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
             ButtNum++;
@@ -211,6 +221,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void StartTutorial()
     {
+        combatTrigger.Trigger();
         Debug.Log("DOING TUTORIAL AAAAAA");
         ButtNum = 8;
         TextNum = 3;
@@ -266,19 +277,13 @@ public class DialogueHandler : MonoBehaviour
             }
             else if (TextCharCount == TextLength)
             {
-                int ButtonSpawnCount = 0;
-                if (CharName =="Bar")
+                int ButtonSpawnCount = CharName switch
                 {
-                    ButtonSpawnCount = BarButtons[TextNum];
-                }
-                else if (CharName == "Aga")
-                {
-                    ButtonSpawnCount = AgaButtons[TextNum];
-                }
-                else if (CharName == "Lan")
-                {
-                    ButtonSpawnCount = LanButtons[TextNum];
-                }
+                    CharacterName.Bar => BarButtons[TextNum],
+                    CharacterName.Agalia => AgaButtons[TextNum],
+                    CharacterName.Lance => LanButtons[TextNum],
+                    _ => 0
+                };
 
                 Button1.SetActive(true);
                 if (ButtonSpawnCount == 3)
