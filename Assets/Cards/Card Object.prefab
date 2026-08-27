@@ -248,7 +248,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 133.60655}
+  m_SizeDelta: {x: 100, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856826542454568001
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685a5df384199254aac5741c6e003373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardObject
-  baseCardInfo: {fileID: 11400000, guid: ce4e4cd89ef5e0443b490a6b3deb3ae0, type: 2}
+  baseCardInfo: {fileID: 0}
   image: {fileID: 8382296762889464450}
   ranks:
   - {fileID: 3477859400016153737}
