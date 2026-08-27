@@ -23,8 +23,8 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private GameObject Button3;
 
     [SerializeField] private CharacterName CharName;
-    [SerializeField] private string DisplayText;
-    [SerializeField] private string ButtonText;
+    [SerializeField, TextArea(5, 100)] private string DisplayText;
+    [SerializeField, TextArea(5, 100)] private string ButtonText;
     [SerializeField] private TMP_Text TextOBJ;
 
     private int TextNum;
