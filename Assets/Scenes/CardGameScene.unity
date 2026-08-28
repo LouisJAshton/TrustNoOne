@@ -2225,10 +2225,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 599691890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 512, y: 288}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2013236332
 MonoBehaviour:
@@ -2243,15 +2243,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f52e28421a0709c4a988b888dcd5b671, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2383,16 +2383,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 362608195}
     m_Modifications:
     - target: {fileID: 3533666184053831214, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533666184053831214, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3533666184053831214, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -232.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3533666184053831214, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175.4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557632114144485071, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557632114144485071, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557632114144485071, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3557632114144485071, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -175.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6195391862122535420, guid: ec52e8449fbaabf46984d091e869a946, type: 3}
       propertyPath: m_Name
