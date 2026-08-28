@@ -4,6 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using LouisAshton.Singletons;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
     public async UniTask<Response> GetPlayerInput(CancellationToken token)
     {
         CancellationTokenSource cts = new CancellationTokenSource();
+        
+        EventSystem.current.SetSelectedGameObject(null); 
         
         standButton.gameObject.SetActive(true);
         hitButton.gameObject.SetActive(true);
