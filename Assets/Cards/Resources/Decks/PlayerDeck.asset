@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckBase
   deck:
   - cardType: {fileID: 11400000, guid: 8f5e3d5f172302d499e22a4d961d2d58, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: 0b6cb27db4f5f2f46b8918f69e929eff, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: 1d11fbf2fe620484e8d65f2249af0a8c, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: c99590311168e7d4ca6c8467776a3e3a, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: f902d30b35a5e994ea35bd44d25e49ed, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: d088311d12bc5664899d5fbaf1815c40, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: 0cca6cc422393784893ed58da36c0144, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: 4bb0767136eb66c4c8ae625bf8df0266, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: 672e925f573feda499f0ed74215c95f9, type: 2}
-    amount: 4
+    amount: 2
   - cardType: {fileID: 11400000, guid: 507154be5fc5f4b429274b5fcb9f772f, type: 2}
-    amount: 8
+    amount: 2
   - cardType: {fileID: 11400000, guid: 746d9f3d255721a42b5b29f1dc3030e3, type: 2}
     amount: 1
   - cardType: {fileID: 11400000, guid: a6e5b60a913f54e49854942686c272ce, type: 2}
@@ -43,3 +43,23 @@ MonoBehaviour:
     amount: 1
   - cardType: {fileID: 11400000, guid: 98022de3fe7bc3e488d8977f5faf9697, type: 2}
     amount: 3
+  - cardType: {fileID: 11400000, guid: f868136c963d1cd4593adfb2cf5705c4, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 24c8abe77bfc0264ab1ba319ac9cfc83, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 2561b946b5ac20945b0f727a1b9d0af5, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: ddb1b6a4e01815847ace8f6e670bc8ec, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 8dc1e9a1ed9052e43b02e808ab73e65a, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 8334ed18ea6d0cc4aa7993ffbe67de0d, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: cb568cb6590c53140a0ad1b1e217feff, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 493e5f6624456044ba65f0f75c33f9b6, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 78548d95a9a2896408df25be6cc11fe2, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: 8d9828242043dd04fb431edbb7f5d731, type: 2}
+    amount: 2

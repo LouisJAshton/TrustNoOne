@@ -33,6 +33,7 @@ public class BlackjackManager
     {
         //Reads info from context SO
         player2.baseDeck = combatContext.EnemyData.deck;
+        player2.playerName = combatContext.EnemyData.enemyName;
         dealer.baseDeck = combatContext.EnemyData.dealerDeck;
         
         var resetTasks = new List<UniTask>();

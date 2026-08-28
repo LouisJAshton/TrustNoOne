@@ -1455,6 +1455,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   Menu: {fileID: 275354153}
+  levelScene:
+    asset: {fileID: 102900000, guid: 4b9bb0a0790431d45a08a74c1cc144fc, type: 3}
+    guid: 4b9bb0a0790431d45a08a74c1cc144fc
   testclip: {fileID: 8300000, guid: 194e13506212d2f418c9dbacc4102ed4, type: 3}
 --- !u!114 &620126338
 MonoBehaviour:

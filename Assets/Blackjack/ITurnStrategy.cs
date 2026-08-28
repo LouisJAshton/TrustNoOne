@@ -62,23 +62,22 @@ public class PlayerTurnStrategy : ITurnStrategy
     
     public async UniTask TakeTurn(CancellationToken cancellationToken)
     {
-        while (!cancellationToken.IsCancellationRequested) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                await GameManager.Instance.blackjackManager.Draw(_self, cancellationToken);
-                break;
-            }
 
-            if (Input.GetKeyDown(KeyCode.Return)) {
-                _self.IsStanding = true;
-                break;
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Backspace)) {
-                await GameManager.Instance.blackjackManager.Reshuffle(cancellationToken);
-                break;
-            }
-            
-            await UniTask.Yield();
+        var input = await BlackjackPlayerButtonManager.Instance.GetPlayerInput(cancellationToken);
+        
+        if (input == BlackjackPlayerButtonManager.Response.Hit) {
+            await GameManager.Instance.blackjackManager.Draw(_self, cancellationToken);
+            return;
         }
+
+        if (input == BlackjackPlayerButtonManager.Response.Stand) {
+            _self.IsStanding = true;
+            return;
+        }
+        
+        // if (Input.GetKeyDown(KeyCode.Backspace)) {
+        //     await GameManager.Instance.blackjackManager.Reshuffle(cancellationToken);
+        //     break;
+        // }
     }
 }
