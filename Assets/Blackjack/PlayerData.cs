@@ -48,6 +48,7 @@ public class PlayerData
     
     public UnityEvent<bool> OnStandingUpdated;
     public UnityEvent<bool> OnShieldedUpdated;
+    public UnityEvent<bool> OnBustUpdated;
     
     public async UniTask AddCards(params CardInfo[] cards)
     {
@@ -78,6 +79,8 @@ public class PlayerData
     private async UniTask UpdateHand()
     {
         await handDisplayManagers.UpdateHand(_hand);
+
+        OnBustUpdated.Invoke(BlackjackManager.CalculateScore(Hand) > BlackjackManager.MAX);
     }
 
     public enum Character

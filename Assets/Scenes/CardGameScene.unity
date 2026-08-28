@@ -1084,6 +1084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Hand Display
       objectReference: {fileID: 0}
+    - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.543
+      objectReference: {fileID: 0}
     - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1375,6 +1379,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dealer Hand Display
       objectReference: {fileID: 0}
+    - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.473
+      objectReference: {fileID: 0}
     - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1427,6 +1447,10 @@ PrefabInstance:
       propertyPath: binTransform
       value: 
       objectReference: {fileID: 1961334229}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: combatContext
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0
@@ -2069,6 +2093,21 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      OnBustUpdated:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 450550884}
+            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
+            m_MethodName: UpdateBust
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     player2:
       playerName: Enemy
       baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
@@ -2104,6 +2143,21 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      OnBustUpdated:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 820667843}
+            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
+            m_MethodName: UpdateBust
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     dealer:
       playerName: Dealer
       baseDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
@@ -2130,6 +2184,21 @@ MonoBehaviour:
           - m_Target: {fileID: 1177393735}
             m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
             m_MethodName: UpdateShielded
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      OnBustUpdated:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1177393735}
+            m_TargetAssemblyTypeName: HandDisplayManager, Assembly-CSharp
+            m_MethodName: UpdateBust
             m_Mode: 0
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -2571,6 +2640,10 @@ PrefabInstance:
       propertyPath: binTransform
       value: 
       objectReference: {fileID: 1961334229}
+    - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: combatContext
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -17,6 +17,7 @@ public class HandDisplayManager : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image standingImage;
     [SerializeField] private Image shieldedImage;
+    [SerializeField] private Image bustImage;
     [SerializeField] private ParticleSystem winParticles;
 
     [SerializeField] private Transform binTransform;
@@ -60,6 +61,14 @@ public class HandDisplayManager : MonoBehaviour
     public void UpdateShielded(bool isShielded)
     {
         shieldedImage.enabled = isShielded;
+    }
+
+    public void UpdateBust(bool isBust)
+    {
+        bustImage.enabled = isBust;
+        
+        if(isBust)
+            standingImage.enabled = false;
     }
 
     // public void Clear()
