@@ -69,8 +69,8 @@ public class CombatSceneLoader : PersistentSingleton<CombatSceneLoader>
         //     index = (index + 1) % enemies.Count;
         // }
     
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            UnloadCombat().Forget();
-        }
+        // if (Input.GetKeyDown(KeyCode.Q)) {
+        //     UnloadCombat().Forget();
+        // }
     }
 }
