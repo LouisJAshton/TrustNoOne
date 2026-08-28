@@ -358,7 +358,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200605794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1086,7 +1086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.543
+      value: 0.679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755933624857309021, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.15899998
       objectReference: {fileID: 0}
     - target: {fileID: 6610331610013769974, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1375,6 +1379,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Dealer
       objectReference: {fileID: 0}
+    - target: {fileID: 1040348432363142104, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.515
+      objectReference: {fileID: 0}
     - target: {fileID: 2093869264226077898, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_Name
       value: Dealer Hand Display
@@ -1435,6 +1443,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7107384089877089005, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107384089877089005, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107384089877089005, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7842048777901127452, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: character
       value: 2
@@ -1452,12 +1472,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8435854813372159389, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.271
+      value: -1.168
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
