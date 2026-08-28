@@ -289,7 +289,7 @@ public class BlackjackManager
             
             var winner = Mathf.Sign(_currentScore) > 0 ? player1 : player2;
             
-            throw new GameOverException(winner.character, winner.playerName);
+            throw new GameOverException(winner.character, winner.playerName, combatContext.EnemyData.characterName);
         }
     }
 
@@ -320,10 +320,12 @@ public class GameOverException : Exception
 {
     public readonly PlayerData.Character Winner;
     public readonly string WinnerName;
+    public readonly DialogueHandler.CharacterName Opponent;
     
-    public GameOverException(PlayerData.Character winner, string winnerName)
+    public GameOverException(PlayerData.Character winner, string winnerName, DialogueHandler.CharacterName opponent)
     {
         this.Winner = winner;
         WinnerName = winnerName;
+        Opponent = opponent;
     }
 }

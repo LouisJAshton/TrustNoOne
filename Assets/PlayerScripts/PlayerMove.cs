@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActions;
+
+    [SerializeField] private LayerMask mask;
+
+
     private InputAction MoveAction;
     private InputAction RotateLAction;
     private InputAction RotateRAction;
@@ -19,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     private int disableMovement;
     private bool move = false;
     private bool rotate = false;
+    private bool blocked = false;
 
     private void Awake()
     {
@@ -37,17 +43,27 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (disableMovement == 0 && MoveAction.IsPressed())
+        if (Physics.Raycast(transform.position - new Vector3(0, 0.45f, 0), transform.forward * 3, out RaycastHit hit, mask))
+        {
+            blocked = true;
+        }
+        else
+        {
+            blocked = false;
+        }
+
+
+        if (disableMovement == 0 && MoveAction.IsPressed() && !blocked)
         {
             Debug.Log("MOVED");
-            disableMovement = 15;
-            NewPos = transform.position + transform.forward*4.5f;
+            disableMovement = 22;
+            NewPos = transform.position + transform.forward * 4.5f;
             move = true;
         }
         else if (disableMovement == 0 && RotateLAction.IsPressed())
         {
             Debug.Log("ROTATE:L");
-            disableMovement = 15;
+            disableMovement = 35;
             NewRot = currentRot.eulerAngles;
             NewRot.y = NewRot.y - 90;
             rotate = true;
@@ -55,7 +71,7 @@ public class PlayerMove : MonoBehaviour
         else if (disableMovement == 0 && RotateRAction.IsPressed())
         {
             Debug.Log("ROTATE:R");
-            disableMovement = 15;
+            disableMovement = 35;
             NewRot = currentRot.eulerAngles;
             NewRot.y = NewRot.y + 90;
             rotate = true;
@@ -80,7 +96,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (disableMovement>0)
+        if (disableMovement > 0)
         {
             disableMovement--;
         }
@@ -91,5 +107,10 @@ public class PlayerMove : MonoBehaviour
             move = false;
             rotate = false;
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position - new Vector3(0, 0.45f, 0), transform.forward * 4f);
     }
 }

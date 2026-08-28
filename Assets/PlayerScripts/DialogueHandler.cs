@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
-    private int[] BarButtons = new int[15] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2};
+    private int[] BarButtons = new int[16] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2, 2};
 
-    private int[] AgaButtons = new int[15] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1};
+    private int[] AgaButtons = new int[16] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1, 2};
 
-    private int[] LanButtons = new int[11] {2, 3, 3, 2, 1, 1, 3, 1, 1, 2, 1};
+    private int[] LanButtons = new int[12] {2, 3, 3, 2, 1, 1, 3, 1, 1, 2, 1, 2};
     
     [SerializeField] private CombatTrigger combatTrigger;
 
@@ -36,9 +36,62 @@ public class DialogueHandler : MonoBehaviour
     private string PartText;
 
     private bool doingText;
+    private bool tutorial;
 
+    #region Round Over Event Handling
+    
+    [SerializeField] private RoundOverEvent roundOverEvent;
+    
+    private void OnEnable() => roundOverEvent?.Subscribe(OnRoundWon);
+    private void OnDisable() => roundOverEvent?.Unsubscribe(OnRoundWon);
 
-    private enum CharacterName
+    private void OnRoundWon(RoundOverEventData data)
+    {
+        //If the round was not played against me, ignore this callback
+        if (data.CharacterName != CharName)
+            return;
+
+        if (data.WasWon) {
+            //TODO React to player winning
+            print($"Player won against {CharName}");
+            ToggleCanvas();
+            ProgressText();
+        }
+        else {
+            //TODO React to player losing
+            print($"{CharName} won");
+            if (CharName == CharacterName.Bar && tutorial) 
+            {
+                ToggleCanvas();
+                ProgressText();
+            }
+            else if (CharName == CharacterName.Bar && !tutorial)
+            {
+                ButtNum = 27;
+                TextNum = 14;
+                ToggleCanvas();
+                ProgressText();
+            }
+
+            else if (CharName == CharacterName.Agalia)
+            {
+                ButtNum = 26;
+                TextNum = 14;
+                ToggleCanvas();
+                ProgressText();
+            }
+            else if (CharName == CharacterName.Lance)
+            {
+                ButtNum = 20;
+                TextNum = 10;
+                ToggleCanvas();
+                ProgressText();
+            }
+        }
+    }
+    #endregion
+
+    public enum CharacterName
     {
         Bar,
         Agalia,
@@ -137,7 +190,7 @@ public class DialogueHandler : MonoBehaviour
                 butt1.onClick.AddListener(StartTutorial);
                 Button2.TryGetComponent<Button>(out Button butt2);
                 butt2.onClick.RemoveAllListeners();
-                butt2.onClick.AddListener(SkipTutorial);
+                butt2.onClick.AddListener(Skip);
             }
             else if (ButtNum == 10)//count number of button texts starting from 1 to get this accurate
             {
@@ -161,7 +214,25 @@ public class DialogueHandler : MonoBehaviour
                 butt3.onClick.RemoveAllListeners();
                 butt3.onClick.AddListener(DoDeal);
             }
+            else if (ButtNum == 27)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(Skip);
+                Button2.TryGetComponent<Button>(out Button butt2);
+                butt2.onClick.RemoveAllListeners();
+                butt2.onClick.AddListener(Skip);
+            }
+            else if (ButtNum == 29)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleOtis);
+            }
         }
+
+
+
         else if (ButtNum < SplitButt.Length && CharName == CharacterName.Agalia)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
@@ -187,8 +258,27 @@ public class DialogueHandler : MonoBehaviour
             {
                 Debug.Log("No button 3, skipping");
             }
+            if (ButtNum == 24)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleAgalia);
+                Button2.TryGetComponent<Button>(out Button butt2);
+                butt2.onClick.RemoveAllListeners();
+                butt2.onClick.AddListener(StartBattleAgalia);
+            }
+
+            if (ButtNum == 28)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleAgalia);
+            }
 
         }
+
+
+
         else if (ButtNum < SplitButt.Length && CharName == CharacterName.Lance)
         {
             Button1.GetComponentInChildren<TMP_Text>().SetText(SplitButt[ButtNum]);
@@ -215,16 +305,32 @@ public class DialogueHandler : MonoBehaviour
                 Debug.Log("No button 3, skipping");
             }
 
+            if (ButtNum == 11)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleLance);
+            }
+            if (ButtNum == 22)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleLance);
+            }
+
         }
         doingText = true;
     }
 
-    private void StartTutorial()
+    private void ToggleCanvas()
     {
-        combatTrigger.Trigger();
-        Debug.Log("DOING TUTORIAL AAAAAA");
-        ButtNum = 8;
-        TextNum = 3;
+        bool active = TextCanv.gameObject.activeSelf;
+        TextCanv.gameObject.SetActive(!active);
+    }
+    private void Skip()
+    {
+        Debug.Log("SKIPPED");
+        ProgressText();
         ProgressText();
     }
     private void RetryDeal()
@@ -232,13 +338,6 @@ public class DialogueHandler : MonoBehaviour
         Debug.Log("WRONG!");
         ButtNum = 14;
         TextNum = 7;
-        ProgressText();
-    }
-
-    private void SkipTutorial()
-    {
-        Debug.Log("SKIPPED");
-        ProgressText();
         ProgressText();
     }
     private void DoDeal()
@@ -249,6 +348,39 @@ public class DialogueHandler : MonoBehaviour
             ButtNum = ButtNum - 3;
             ProgressText();
         }
+        Button1.TryGetComponent<Button>(out Button butt1);
+        butt1.onClick.RemoveAllListeners();
+        butt1.onClick.AddListener(StartBattleOtis);
+    }
+    private void StartTutorial()
+    {
+        tutorial = true;
+        combatTrigger.Trigger();
+        Debug.Log("DOING TUTORIAL AAAAAA");
+        ButtNum = 8;
+        TextNum = 3;
+        ToggleCanvas();
+    }
+    private void StartBattleOtis()
+    {
+        tutorial = false;
+        ToggleCanvas();
+        combatTrigger.Trigger();
+        Debug.Log("BATTLE WITH OTIS");
+        ResetButtonClick();
+    }
+    private void StartBattleAgalia()
+    {
+        ToggleCanvas();
+        combatTrigger.Trigger();
+        Debug.Log("BATTLE WITH AGALIA");
+        ResetButtonClick();
+    }
+    private void StartBattleLance()
+    {
+        ToggleCanvas();
+        combatTrigger.Trigger();
+        Debug.Log("BATTLE WITH LANCE");
         ResetButtonClick();
     }
 
@@ -265,7 +397,6 @@ public class DialogueHandler : MonoBehaviour
     {
         if (doingText)
         {
-            Debug.Log(gameObject);
             if (TextCharCount < TextLength)
             {
                 //Debug.Log(TextLength);
