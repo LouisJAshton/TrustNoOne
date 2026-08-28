@@ -171,9 +171,9 @@ RectTransform:
   - {fileID: 1692177971713723004}
   m_Father: {fileID: 8927984094688401635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5912758095902395923
@@ -292,9 +292,9 @@ RectTransform:
   - {fileID: 792127326391073726}
   m_Father: {fileID: 8927984094688401635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232.4, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8796032441983326505
@@ -389,6 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8927984094688401635}
   - component: {fileID: 3179580406661231364}
+  - component: {fileID: 346803391115919531}
   m_Layer: 5
   m_Name: PlayerControlButtons
   m_TagString: Untagged
@@ -431,6 +432,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlackjackPlayerButtonManager
   standButton: {fileID: 6807183073578833531}
   hitButton: {fileID: 8993136360361489534}
+--- !u!114 &346803391115919531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195391862122535420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 30
+  m_ChildAlignment: 7
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &7711662055516947051
 GameObject:
   m_ObjectHideFlags: 0
