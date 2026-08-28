@@ -35,13 +35,14 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
 
     private async UniTask<Response> CheckForClick()
     {
-        while (!Application.exitCancellationToken.IsCancellationRequested) {
-            await UniTask.Yield(cancellationToken: Application.exitCancellationToken);
+        while (!destroyCancellationToken.IsCancellationRequested) {
             
-            if(standButton.IsPressed())
+            if(standButton && standButton.IsPressed())
                 return Response.Stand;
-            if(hitButton.IsPressed())
+            if(hitButton && hitButton.IsPressed())
                 return Response.Hit;
+            
+            await UniTask.Yield(cancellationToken: destroyCancellationToken);
         }
 
         return Response.Stand;
