@@ -23,6 +23,9 @@ namespace Combat.UI
 
         public void Set(LogData data)
         {
+            if(!data.icon)
+                imageComponent.enabled = false;
+            
             text.text = data.message;
             nameText.text = data.title;
             imageComponent.sprite = data.icon;

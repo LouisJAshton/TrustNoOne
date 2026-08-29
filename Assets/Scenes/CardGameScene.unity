@@ -2091,7 +2091,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882657550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
@@ -2135,7 +2135,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882657550}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &1926122997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,6 +2200,7 @@ MonoBehaviour:
     player1:
       playerName: Ash
       baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
+      sprite: {fileID: 0}
       character: 0
       handDisplayManagers: {fileID: 450550884}
       OnStandingUpdated:
@@ -2250,6 +2251,7 @@ MonoBehaviour:
     player2:
       playerName: Enemy
       baseDeck: {fileID: 11400000, guid: 3ebf2045c0a8a434c9bdf0a964bac79e, type: 2}
+      sprite: {fileID: 0}
       character: 1
       handDisplayManagers: {fileID: 820667843}
       OnStandingUpdated:
@@ -2300,6 +2302,7 @@ MonoBehaviour:
     dealer:
       playerName: Dealer
       baseDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
+      sprite: {fileID: 21300000, guid: bf205dd66843eb6459e1e321526d0d50, type: 3}
       character: 2
       handDisplayManagers: {fileID: 1177393735}
       OnStandingUpdated:
@@ -2357,6 +2360,7 @@ MonoBehaviour:
     drawsfx: {fileID: 8300000, guid: 69500687e3978de44a6a9cf9fcd0b9c5, type: 3}
     playsfx: {fileID: 8300000, guid: 051848db4a1ce544c869b084274ce32c, type: 3}
     soundposition: {fileID: 1179422437}
+    dealerSprite: {fileID: 21300000, guid: bf205dd66843eb6459e1e321526d0d50, type: 3}
   roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
 --- !u!4 &1934027155
 Transform:
@@ -2728,7 +2732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 606957450912778744, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_fontSize
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2093869264226077898, guid: bab5864e7ed5b764ba97ddce4d29dd9b, type: 3}
       propertyPath: m_Name

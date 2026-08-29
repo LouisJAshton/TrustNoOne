@@ -33,6 +33,8 @@ public class BlackjackManager
     [SerializeField] private AudioClip playsfx;
     [SerializeField] private Transform soundposition;
 
+    [SerializeField] private Sprite dealerSprite;
+
     public async UniTask Initialise(CancellationToken token)
     {
         //Reads info from context SO
@@ -164,21 +166,19 @@ public class BlackjackManager
         if (card.specialEffects != 0) {
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Shield)) {
                 await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
-                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} uses a shield to prevent point loss this round", "Dealer"));
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} uses a shield to prevent point loss this round", "Dealer", dealerSprite));
                 activePlayer.IsShielded = true;
-                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
-                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect card...", "Dealer"));
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect card...", "Dealer", dealerSprite));
                 await activePlayer.tutorStrategy.Tutor(token);
-                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
-                LogManager.Instance.Log(new LogData($"{activePlayer.playerName}'s trades loyalties...", "Dealer"));
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName}'s card trades loyalties...", "Dealer", dealerSprite));
                 if (activePlayer == player1) {
                     await player2.AddCards(card);
                 }
@@ -189,7 +189,6 @@ public class BlackjackManager
                     await player1.AddCards(card);
                     await player2.AddCards(card);
                 }
-                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
@@ -280,13 +279,13 @@ public class BlackjackManager
 
         if (player1.IsShielded) {
             if(delta < 0)
-                LogManager.Instance.Log(new LogData("You are shielded from this loss", "Dealer"));
+                LogManager.Instance.Log(new LogData("You are shielded from this loss", "Dealer", dealerSprite));
             delta = Mathf.Max(0, delta);
         }
         
         if (player2.IsShielded) {
             if(delta > 0)
-                LogManager.Instance.Log(new LogData("Your opponent is shielded from this loss", "Dealer"));
+                LogManager.Instance.Log(new LogData("Your opponent is shielded from this loss", "Dealer", dealerSprite));
             delta = Mathf.Min(0, delta);
         }
         
@@ -296,7 +295,7 @@ public class BlackjackManager
             
             var winner = Mathf.Sign(_currentScore) > 0 ? player1 : player2;
             
-            throw new GameOverException(winner.character, winner.playerName, combatContext.EnemyData.characterName);
+            throw new GameOverException(winner.character, winner.playerName, combatContext.EnemyData.characterName, combatContext.EnemyData);
         }
     }
 
@@ -328,11 +327,13 @@ public class GameOverException : Exception
     public readonly PlayerData.Character Winner;
     public readonly string WinnerName;
     public readonly DialogueHandler.CharacterName Opponent;
+    public readonly EnemySetupData OpponentData;
     
-    public GameOverException(PlayerData.Character winner, string winnerName, DialogueHandler.CharacterName opponent)
+    public GameOverException(PlayerData.Character winner, string winnerName, DialogueHandler.CharacterName opponent, EnemySetupData opponentData)
     {
         this.Winner = winner;
         WinnerName = winnerName;
         Opponent = opponent;
+        OpponentData = opponentData;
     }
 }
