@@ -21,6 +21,7 @@ public class CardInfo
         output.rankName = rankName;
         output.texture = texture;
         output.specialEffects = specialEffects;
+        output.shaderInfo = shaderInfo;
         
         return output;
     }
@@ -42,6 +43,7 @@ public class CardInfo
     [NonSerialized] public Texture CardBack;
     [Range(0, 10)] public int rank;
     public SpecialEffect specialEffects;
+    public CardShaderInfo shaderInfo;
 
     public bool HasSpecialEffect(SpecialEffect effect)
     {
@@ -51,14 +53,12 @@ public class CardInfo
     public Color GetColour()
     {
         return specialEffects == 0 ? Color.clear : Color.black;
+    }
 
-        // return suit switch
-        // {
-        //     Suit.Heart => Color.red,
-        //     Suit.Diamond => Color.yellow,
-        //     Suit.Club => Color.blue,
-        //     Suit.Spade => Color.black,
-        //     _ => throw new ArgumentOutOfRangeException()
-        // };
+    [Serializable]
+    public struct CardShaderInfo
+    {
+        [SerializeField] public Color shimmerColour;
+        [SerializeField, Range(0, 1)] public float opacity;
     }
 }
