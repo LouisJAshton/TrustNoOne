@@ -5,7 +5,7 @@ public class MainAudio : MonoBehaviour
     public static MainAudio instance;//can be called anywhere
 
     public AudioSource SFXObj;
-    public AudioSource VoiceObj;
+    public AudioSource MusicObj;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class MainAudio : MonoBehaviour
 
     public void PlayVoiceClip(AudioClip Clip, Transform spawnpoint, float volume)
     {
-        AudioSource audioSource = Instantiate(VoiceObj, spawnpoint.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(MusicObj, spawnpoint.position, Quaternion.identity);
 
         audioSource.clip = Clip;
 

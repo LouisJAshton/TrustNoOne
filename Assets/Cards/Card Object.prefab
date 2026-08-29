@@ -267,6 +267,8 @@ MonoBehaviour:
   ranks:
   - {fileID: 3477859400016153737}
   - {fileID: 944460390089526355}
+  drawsfx: {fileID: 8300000, guid: 69500687e3978de44a6a9cf9fcd0b9c5, type: 3}
+  soundposition: {fileID: 8340345974520814623}
 --- !u!222 &4042165747504906576
 CanvasRenderer:
   m_ObjectHideFlags: 0

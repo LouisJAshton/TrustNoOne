@@ -29,6 +29,10 @@ public class BlackjackManager
     public UnityEvent<int> OnScoreChange;
     public UnityEvent<PlayerData.Character[]> OnRoundWon;
 
+    [SerializeField] private AudioClip drawsfx;
+    [SerializeField] private AudioClip playsfx;
+    [SerializeField] private Transform soundposition;
+
     public async UniTask Initialise(CancellationToken token)
     {
         //Reads info from context SO
@@ -76,7 +80,6 @@ public class BlackjackManager
         if (player1.IsStanding && player2.IsStanding) {
             throw new BothStandingException();
         }
-
         await TurnCycle(player1, cancellationToken);
         await TurnCycle(player2, cancellationToken);
     }
@@ -142,6 +145,8 @@ public class BlackjackManager
 
     public async UniTask Draw(PlayerData activePlayer, CancellationToken token)
     {
+        MainAudio.instance.PlaySFXClip(drawsfx, soundposition, 1);
+
         var deck = activePlayer.deck;
         
         if (deck == null || deck.Count == 0) {
@@ -161,12 +166,14 @@ public class BlackjackManager
                 await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
                 LogManager.Instance.Log(new LogData($"{activePlayer.playerName} uses a shield to prevent point loss this round", "Dealer"));
                 activePlayer.IsShielded = true;
+                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
                 LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect card...", "Dealer"));
                 await activePlayer.tutorStrategy.Tutor(token);
+                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
@@ -182,7 +189,7 @@ public class BlackjackManager
                     await player1.AddCards(card);
                     await player2.AddCards(card);
                 }
-                
+                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             

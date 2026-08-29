@@ -121,12 +121,122 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MenuButtonsSheet_1
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1969
+        width: 2084
+        height: 517
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e129223a363fc940b250ff35f843f9f
+      internalID: 1521656283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MenuButtonsSheet_2
+      rect:
+        serializedVersion: 2
+        x: 2294
+        y: 1969
+        width: 2060
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f3a9db8125ddb478515d332781f4b1
+      internalID: 1526574374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MenuButtonsSheet_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1341
+        width: 2084
+        height: 515
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4906a8c9e7818244a8f1bb8664861524
+      internalID: -1611139682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MenuButtonsSheet_5
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 749
+        width: 2085
+        height: 515
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5023e3baf6db5c44a8e5abffb6d6ca2
+      internalID: -379682493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MenuButtonsSheet_6
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 116
+        width: 2085
+        height: 524
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c204d991ac7ebd41b9571849492bf58
+      internalID: -1485818711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 365fa4545d9c76b4aaaa568abeb28820
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +244,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      MenuButtonsSheet_0: 1851242920
+      MenuButtonsSheet_1: 1521656283
+      MenuButtonsSheet_2: 1526574374
+      MenuButtonsSheet_3: -1455261426
+      MenuButtonsSheet_4: -1611139682
+      MenuButtonsSheet_5: -379682493
+      MenuButtonsSheet_6: -1485818711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
