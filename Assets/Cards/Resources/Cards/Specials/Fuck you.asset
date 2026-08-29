@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseCardInfo
   _cardInfo:
     rankName: FUCK YOU!!!
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 617681d3e8903d14a9d6da926a4ec0a3, type: 3}
     rank: 0
-    suit: 4
     specialEffects: 32
