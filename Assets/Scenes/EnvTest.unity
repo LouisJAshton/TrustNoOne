@@ -4367,6 +4367,7 @@ GameObject:
   - component: {fileID: 1478224550}
   - component: {fileID: 1478224551}
   - component: {fileID: 1478224552}
+  - component: {fileID: 1478224553}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4515,6 +4516,19 @@ MonoBehaviour:
   MasterVol: 0
   MusVol: 0
   SFXVol: 0
+--- !u!114 &1478224553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478224543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8380bba1736b7f74cac03a58c1ac930e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainAudio
+  SFXObj: {fileID: 3795119375853008849, guid: 5c9bb1c017581544cbaad1c145309a1c, type: 3}
 --- !u!1 &1636943564
 GameObject:
   m_ObjectHideFlags: 0
