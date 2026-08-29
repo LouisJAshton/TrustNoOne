@@ -372,7 +372,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.72373456, z: -0, w: 0.69007856}
   m_LocalPosition: {x: -2.259, y: 0, z: -0.074}
-  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_LocalScale: {x: 0.49, y: 0.49, z: 0.49}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 182360824}
@@ -606,8 +606,8 @@ MonoBehaviour:
     why I\u2019m so dazed.; I lost so hard I blacked out?; What did I want? How much
     did I lose?; But\u2013; Wait\u2013; Retry; ... "
   TextOBJ: {fileID: 1105010927}
-  BarMusicOBJ: {fileID: 0}
-  BattleMusicOBJ: {fileID: 0}
+  BarMusicOBJ: {fileID: 255530400}
+  BattleMusicOBJ: {fileID: 116659735}
   OtisBattleTheme: {fileID: 0}
   AgaliaBattleTheme: {fileID: 0}
   LanceBattleTheme: {fileID: 0}
@@ -1018,7 +1018,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.72373456, z: -0, w: 0.69007856}
   m_LocalPosition: {x: 2.4, y: 0, z: -0.01}
-  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_LocalScale: {x: 0.49, y: 0.49, z: 0.49}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2129457628}
@@ -1410,8 +1410,8 @@ MonoBehaviour:
     have bet that!;  A gift?;  No! What did I even want?;  I want to know now!; I\u2019ll
     play you for my soul back!;  ...; Retry; ... "
   TextOBJ: {fileID: 1105010927}
-  BarMusicOBJ: {fileID: 0}
-  BattleMusicOBJ: {fileID: 0}
+  BarMusicOBJ: {fileID: 255530400}
+  BattleMusicOBJ: {fileID: 116659735}
   OtisBattleTheme: {fileID: 0}
   AgaliaBattleTheme: {fileID: 0}
   LanceBattleTheme: {fileID: 0}
@@ -5222,8 +5222,8 @@ MonoBehaviour:
     me too?;  Deal. ; I feel like I\u2019m going to regret this.;  ...;  Got it;
     Retry; ... "
   TextOBJ: {fileID: 1105010927}
-  BarMusicOBJ: {fileID: 0}
-  BattleMusicOBJ: {fileID: 0}
+  BarMusicOBJ: {fileID: 255530400}
+  BattleMusicOBJ: {fileID: 116659735}
   OtisBattleTheme: {fileID: 0}
   AgaliaBattleTheme: {fileID: 0}
   LanceBattleTheme: {fileID: 0}
