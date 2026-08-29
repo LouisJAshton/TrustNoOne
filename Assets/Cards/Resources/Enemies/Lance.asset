@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lance
   m_EditorClassIdentifier: Assembly-CSharp::EnemySetupData
   enemyName: Lance
-  sprites: []
+  sprite: {fileID: 0}
   deck: {fileID: 11400000, guid: 1d39327ccaa375e44a7036680fa8a803, type: 2}
   dealerDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
+  characterName: 2
