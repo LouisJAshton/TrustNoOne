@@ -12,6 +12,7 @@ public class PlayerData
     [SerializeField] public DeckBase baseDeck;
     
     [NonSerialized] public List<CardInfo> deck;
+    [SerializeField] public Sprite sprite;
     
     public Character character;
     
