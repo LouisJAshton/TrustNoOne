@@ -32,7 +32,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.45f, 0), transform.forward * 3, out RaycastHit hit, mask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.45f, 0), transform.forward * 5, out RaycastHit hit, mask))
         {
             if (hit.collider.gameObject.CompareTag("Interact"))
             {
