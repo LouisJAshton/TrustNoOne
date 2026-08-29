@@ -113,8 +113,8 @@ public class DialogueHandler : MonoBehaviour
 
     private void Start()
     {
-        BarMusicOBJ.SetActive(true);
-        BattleMusicOBJ.SetActive(false);
+        BarMusicOBJ?.SetActive(true);
+        BattleMusicOBJ?.SetActive(false);
         ResetButtonClick();
         TextCanv.gameObject.SetActive(false);
     }
