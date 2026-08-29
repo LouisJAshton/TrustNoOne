@@ -173,6 +173,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f5f6e43cbdab240a06c4d0cf2b461d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardGameBaseObject
+--- !u!1 &62015799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62015800}
+  - component: {fileID: 62015802}
+  - component: {fileID: 62015801}
+  m_Layer: 0
+  m_Name: Box Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &62015800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62015799}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6423349, y: -0, z: -0, w: 0.7664242}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 764219168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &62015801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62015799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 0
+  priority: 1
+  blendDistance: 1
+  weight: 0.9
+  sharedProfile: {fileID: 11400000, guid: f956b519ab8e59f46a5d4d89a9deffd5, type: 2}
+--- !u!65 &62015802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62015799}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.090907216, y: 4.2287636, z: 3.0183406}
 --- !u!1 &87203795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1149,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 7.05, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 62015800}
   m_Father: {fileID: 931248603}
   m_LocalEulerAnglesHint: {x: 79.932, y: 0, z: 0}
 --- !u!1001 &820667841
@@ -1564,7 +1636,7 @@ MonoBehaviour:
   - {fileID: 764219168}
   - {fileID: 2089523074}
   - {fileID: 1568379092}
-  transitionLength: 1
+  transitionLength: 1.5
 --- !u!4 &1179422437
 Transform:
   m_ObjectHideFlags: 0
@@ -2775,7 +2847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2034000183
 RectTransform:
   m_ObjectHideFlags: 0
