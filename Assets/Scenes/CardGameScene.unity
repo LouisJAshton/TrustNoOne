@@ -1850,48 +1850,48 @@ MonoBehaviour:
     Stand: Draw
     no more cards this round
 
-    
+
 
     === Points ===
 
-    If neither player
-    beats the dealer, the player with the higher score gets 1 point
+    If neither player beats the
+    dealer, the player with the higher score gets 1 point
 
-    If both
-    players beat the dealer, the player with the higher score gets 2 points
+    If both players beat
+    the dealer, the player with the higher score gets 2 points
 
-    If
-    only one player beats the dealer, that player gets 3 points
+    If only one player
+    beats the dealer, that player gets 3 points
 
-    
 
-    ===
-    Special rules ===
 
-    1s count as 1 OR 11
+    === Special rules ===
 
-    If an opening hand has two
-    cards that add to 21, the round ends early
+    1s
+    count as 1 OR 11
 
-    A score above 21 is worth 0
-    (Bust)
+    If an opening hand has two cards that add to 21, the round
+    ends early
 
-    The dealer stands on 18 or above
+    A score above 21 is worth 0 (Bust)
 
-    
+    The dealer stands on
+    18 or above
 
-    === Special Cards
-    ===
 
-    Safe: You cannot lose points this round
 
-    Time''s Up: Instantly
-    go bust
+    === Special Cards ===
 
-    Disloyal Cards: When drawn, goes to the other player''s hand instead
+    Safe: You cannot lose points this
+    round
 
-    Lucky
-    You: Finds the non-special card that gets you closest to 21'
+    Time''s Up: Instantly go bust
+
+    Disloyal Cards: When drawn, goes
+    to the other player''s hand instead
+
+    Lucky You: Finds the non-special card
+    that gets you closest to 21'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0ed414847f8c174189886adfee396cd, type: 2}
   m_sharedMaterial: {fileID: -7839442833721158867, guid: c0ed414847f8c174189886adfee396cd, type: 2}
@@ -1918,7 +1918,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.35
+  m_fontSize: 11.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2260,7 +2260,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882657550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -2327,7 +2327,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainAudio
   SFXObj: {fileID: 3795119375853008849, guid: 5c9bb1c017581544cbaad1c145309a1c, type: 3}
-  MusicObj: {fileID: 0}
 --- !u!81 &1882657555
 AudioListener:
   m_ObjectHideFlags: 0

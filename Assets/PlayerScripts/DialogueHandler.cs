@@ -38,8 +38,18 @@ public class DialogueHandler : MonoBehaviour
     private bool doingText;
     private bool tutorial;
 
+    [SerializeField] private GameObject BarMusicOBJ;
+    [SerializeField] private GameObject BattleMusicOBJ;
+
+    [SerializeField] private AudioClip OtisBattleTheme;
+    [SerializeField] private AudioClip AgaliaBattleTheme;
+    [SerializeField] private AudioClip LanceBattleTheme;
+
+    [SerializeField] private AudioClip WinTheme;
+    [SerializeField] private AudioClip LossTheme;
+
     #region Round Over Event Handling
-    
+
     [SerializeField] private RoundOverEvent roundOverEvent;
     
     private void OnEnable() => roundOverEvent?.Subscribe(OnRoundWon);
@@ -51,15 +61,18 @@ public class DialogueHandler : MonoBehaviour
         if (data.CharacterName != CharName)
             return;
 
+        BarMusicOBJ.SetActive(true);
+        BattleMusicOBJ.SetActive(false);
+
         if (data.WasWon) {
-            //TODO React to player winning
+            MainAudio.instance.PlaySFXClip(WinTheme, transform, 1);
             print($"Player won against {CharName}");
             ToggleCanvas();
             ProgressText();
         }
         else {
-            //TODO React to player losing
             print($"{CharName} won");
+            MainAudio.instance.PlaySFXClip(LossTheme, transform, 1);
             if (CharName == CharacterName.Bar && tutorial) 
             {
                 ToggleCanvas();
@@ -100,6 +113,8 @@ public class DialogueHandler : MonoBehaviour
 
     private void Start()
     {
+        BarMusicOBJ?.SetActive(true);
+        BattleMusicOBJ?.SetActive(false);
         ResetButtonClick();
         TextCanv.gameObject.SetActive(false);
     }
@@ -116,7 +131,26 @@ public class DialogueHandler : MonoBehaviour
         butt3.onClick.RemoveAllListeners();
         butt3.onClick.AddListener(gameObject.GetComponent<DialogueHandler>().ProgressText);
     }
-    
+
+    private void UpdateMusic()
+    {
+        if (CharName == CharacterName.Bar)
+        {
+            BattleMusicOBJ.GetComponent<AudioSource>().generator = OtisBattleTheme;
+        }
+        if (CharName == CharacterName.Agalia)
+        {
+            BattleMusicOBJ.GetComponent<AudioSource>().generator = AgaliaBattleTheme;
+        }
+        if (CharName == CharacterName.Lance)
+        {
+            BattleMusicOBJ.GetComponent<AudioSource>().generator = LanceBattleTheme;
+        }
+
+        BattleMusicOBJ.SetActive(true);
+        BarMusicOBJ.SetActive(false);
+    }
+
     public void StartTalk()
     {
         ResetButtonClick();
@@ -355,6 +389,7 @@ public class DialogueHandler : MonoBehaviour
     private void StartTutorial()
     {
         tutorial = true;
+        UpdateMusic();
         combatTrigger.Trigger();
         Debug.Log("DOING TUTORIAL AAAAAA");
         ButtNum = 8;
@@ -364,6 +399,7 @@ public class DialogueHandler : MonoBehaviour
     private void StartBattleOtis()
     {
         tutorial = false;
+        UpdateMusic();
         ToggleCanvas();
         combatTrigger.Trigger();
         Debug.Log("BATTLE WITH OTIS");
@@ -372,6 +408,7 @@ public class DialogueHandler : MonoBehaviour
     private void StartBattleAgalia()
     {
         ToggleCanvas();
+        UpdateMusic();
         combatTrigger.Trigger();
         Debug.Log("BATTLE WITH AGALIA");
         ResetButtonClick();
@@ -379,6 +416,7 @@ public class DialogueHandler : MonoBehaviour
     private void StartBattleLance()
     {
         ToggleCanvas();
+        UpdateMusic();
         combatTrigger.Trigger();
         Debug.Log("BATTLE WITH LANCE");
         ResetButtonClick();
