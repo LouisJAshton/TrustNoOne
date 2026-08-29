@@ -191,7 +191,8 @@ public class BlackjackManager
                 }
                 await activePlayer.RemoveCards(card);
             }
-            
+            MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
+
         }
     }
 

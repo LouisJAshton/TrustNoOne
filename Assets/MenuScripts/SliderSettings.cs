@@ -17,6 +17,10 @@ public class SliderSettings : MonoBehaviour
         {
             PlayerPrefs.SetFloat("VoiceSoundVol", 1);
         }
+        if (!PlayerPrefs.HasKey("CameraSensitivity"))
+        {
+            PlayerPrefs.SetFloat("CameraSensitivity", 1);
+        }
     }
 
 

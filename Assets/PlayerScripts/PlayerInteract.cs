@@ -9,6 +9,7 @@ public class PlayerInteract : MonoBehaviour
 
     private GameObject lastseen;
     private bool LookingAtSomeone;
+    public bool istalking = false;
 
     private void Awake()
     {
@@ -23,7 +24,8 @@ public class PlayerInteract : MonoBehaviour
         {
             inputActions.FindActionMap("UI").Enable();
             inputActions.FindActionMap("Player").Disable();
-
+            istalking = true;
+            Cursor.lockState = CursorLockMode.None;
             lastseen.GetComponent<DialogueHandler>().StartTalk();
         }
     }

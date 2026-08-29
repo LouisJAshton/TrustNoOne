@@ -28,15 +28,22 @@ public class PauseMenu : MonoBehaviour
     }
     public void OpenPause()
     {
+        gameObject.GetComponent<PlayerMovement>().ispaused = true;
         paused = true;
         Pause.SetActive(true);
         PausedMenu.SetActive(true);
         SettingsMenu.SetActive(false);
         CreditsMenu.SetActive(false);
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void ClosePause()
     {
+        gameObject.GetComponent<PlayerMovement>().ispaused = false;
+        if (!gameObject.GetComponent<PlayerInteract>().istalking)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         paused = false;
         Pause.SetActive(false);
         PausedMenu.SetActive(false);

@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
-    private int[] BarButtons = new int[16] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2, 2};
+    private int[] BarButtons = new int[16] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2, 1};
 
-    private int[] AgaButtons = new int[16] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1, 2};
+    private int[] AgaButtons = new int[16] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1, 1};
 
-    private int[] LanButtons = new int[12] {2, 3, 3, 2, 1, 1, 3, 1, 1, 2, 1, 2};
+    private int[] LanButtons = new int[12] {2, 3, 3, 2, 1, 1, 3, 1, 1, 2, 1, 1};
     
     [SerializeField] private CombatTrigger combatTrigger;
 
     [SerializeField] private InputActionAsset inputActions;
 
     [SerializeField] private Canvas TextCanv;
+
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject LanceBlock;
 
     [SerializeField] private GameObject Button1;
     [SerializeField] private GameObject Button2;
@@ -67,8 +70,33 @@ public class DialogueHandler : MonoBehaviour
         if (data.WasWon) {
             MainAudio.instance.PlaySFXClip(WinTheme, transform, 1);
             print($"Player won against {CharName}");
-            ToggleCanvas();
-            ProgressText();
+            if (CharName == CharacterName.Bar && tutorial)
+            {
+                ToggleCanvas();
+                ProgressText();
+            }
+            else if (CharName == CharacterName.Bar && !tutorial)
+            {
+                ButtNum = 18;
+                TextNum = 9;
+                ToggleCanvas();
+                ProgressText();
+            }
+
+            else if (CharName == CharacterName.Agalia)
+            {
+                ButtNum = 24;
+                TextNum = 12;
+                ToggleCanvas();
+                ProgressText();
+            }
+            else if (CharName == CharacterName.Lance)
+            {
+                ButtNum = 11;
+                TextNum = 4;
+                ToggleCanvas();
+                ProgressText();
+            }
         }
         else {
             print($"{CharName} won");
@@ -257,7 +285,7 @@ public class DialogueHandler : MonoBehaviour
                 butt2.onClick.RemoveAllListeners();
                 butt2.onClick.AddListener(Skip);
             }
-            else if (ButtNum == 29)//count number of button texts starting from 1 to get this accurate
+            else if (ButtNum == 28)//count number of button texts starting from 1 to get this accurate
             {
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
@@ -302,7 +330,15 @@ public class DialogueHandler : MonoBehaviour
                 butt2.onClick.AddListener(StartBattleAgalia);
             }
 
-            if (ButtNum == 28)//count number of button texts starting from 1 to get this accurate
+            if (ButtNum == 26)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(Skip);
+                LanceBlock.SetActive(false);
+            }
+
+            if (ButtNum == 27)//count number of button texts starting from 1 to get this accurate
             {
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
@@ -345,7 +381,15 @@ public class DialogueHandler : MonoBehaviour
                 butt1.onClick.RemoveAllListeners();
                 butt1.onClick.AddListener(StartBattleLance);
             }
-            if (ButtNum == 22)//count number of button texts starting from 1 to get this accurate
+
+            if (ButtNum == 20)//count number of button texts starting from 1 to get this accurate
+            {
+                Button1.TryGetComponent<Button>(out Button butt1);
+                butt1.onClick.RemoveAllListeners();
+                butt1.onClick.AddListener(StartBattleAgalia);
+            }
+
+            if (ButtNum == 21)//count number of button texts starting from 1 to get this accurate
             {
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
@@ -425,6 +469,7 @@ public class DialogueHandler : MonoBehaviour
     private void CloseText()
     {
         doingText = false;
+        Player.GetComponent<PlayerInteract>().istalking = false;
         inputActions.FindActionMap("Player").Enable();
         inputActions.FindActionMap("UI").Disable();
         TextCanv.gameObject.SetActive(false);
