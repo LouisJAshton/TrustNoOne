@@ -13,6 +13,9 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
     [SerializeField] private Button standButton;
     [SerializeField] private Button hitButton;
 
+    [SerializeField] private AudioClip HitSfx;
+    [SerializeField] private AudioClip StandSfx;
+
     private void Awake()
     {
         standButton.gameObject.SetActive(false);
@@ -39,12 +42,17 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
     private async UniTask<Response> CheckForClick()
     {
         while (!destroyCancellationToken.IsCancellationRequested) {
-            
-            if(standButton && standButton.IsPressed())
+
+            if (standButton && standButton.IsPressed())
+            {
+                MainAudio.instance.PlaySFXClip(StandSfx, transform, 1);
                 return Response.Stand;
-            if(hitButton && hitButton.IsPressed())
+            }
+            if (hitButton && hitButton.IsPressed())
+            { 
+                MainAudio.instance.PlaySFXClip(StandSfx, transform, 1);
                 return Response.Hit;
-            
+            }
             await UniTask.Yield(cancellationToken: destroyCancellationToken);
         }
 

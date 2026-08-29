@@ -432,6 +432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlackjackPlayerButtonManager
   standButton: {fileID: 6807183073578833531}
   hitButton: {fileID: 8993136360361489534}
+  HitSfx: {fileID: 8300000, guid: 9a286315cb52c204ea85946171d6a1c6, type: 3}
+  StandSfx: {fileID: 8300000, guid: 97075be43d436544e929ef3e7f7edd6b, type: 3}
 --- !u!114 &346803391115919531
 MonoBehaviour:
   m_ObjectHideFlags: 0

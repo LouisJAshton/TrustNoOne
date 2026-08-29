@@ -15,6 +15,9 @@ public class CardObject : MonoBehaviour
 
     [NonSerialized] public bool IsBeingDisposed = false;
 
+    [SerializeField] private AudioClip drawsfx;
+    [SerializeField] private Transform soundposition;
+
     public void SetCardInfo(CardInfo cardInfo)
     {
         image.texture = cardInfo.texture;
@@ -31,6 +34,8 @@ public class CardObject : MonoBehaviour
             return;
         
         IsBeingDisposed = true;
+
+        MainAudio.instance.PlaySFXClip(drawsfx, soundposition, 1);
 
         float time = Time.time;
         while (!token.IsCancellationRequested && Time.time - time < animLength) {

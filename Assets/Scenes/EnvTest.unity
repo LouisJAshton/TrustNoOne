@@ -1219,7 +1219,7 @@ Transform:
   m_GameObject: {fileID: 565404948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.94, y: 3.73, z: -12.78}
+  m_LocalPosition: {x: 2.48, y: 3.73, z: -12.78}
   m_LocalScale: {x: 1.7203, y: 1.3306, z: 18.154161}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2746,7 +2746,7 @@ PrefabInstance:
     - target: {fileID: 5527732857404073724, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: 43a14df123f15aa4e812b407dafef3df, type: 2}
+      objectReference: {fileID: 11400000, guid: c573c599b440a9d48a54b599f7f085d0, type: 2}
     - target: {fileID: 8366960648342145276, guid: 7319cad2da90aed4ca611350cc025fc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.881
