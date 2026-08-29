@@ -35,7 +35,7 @@ public class CardObject : MonoBehaviour
         
         IsBeingDisposed = true;
 
-        MainAudio.instance.PlaySFXClip(drawsfx, soundposition, 1);
+        MainAudio.instance.PlaySFXClip(drawsfx, soundposition, 0.1f);
 
         float time = Time.time;
         while (!token.IsCancellationRequested && Time.time - time < animLength) {

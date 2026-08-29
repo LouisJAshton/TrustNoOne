@@ -45,12 +45,12 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
 
             if (standButton && standButton.IsPressed())
             {
-                MainAudio.instance.PlaySFXClip(StandSfx, transform, 1);
+                MainAudio.instance.PlaySFXClip(StandSfx, transform, 0.01f);
                 return Response.Stand;
             }
             if (hitButton && hitButton.IsPressed())
             { 
-                MainAudio.instance.PlaySFXClip(StandSfx, transform, 1);
+                MainAudio.instance.PlaySFXClip(StandSfx, transform, 0.01f);
                 return Response.Hit;
             }
             await UniTask.Yield(cancellationToken: destroyCancellationToken);
