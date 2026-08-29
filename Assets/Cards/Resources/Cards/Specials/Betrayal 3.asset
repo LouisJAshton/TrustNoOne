@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f2fa17cfddd42d449fcf1f7a455d2ff, type: 3}
-  m_Name: Betrayal 2
+  m_Name: Betrayal 3
   m_EditorClassIdentifier: Assembly-CSharp::BaseCardInfo
   _cardInfo:
     rankName: Evil 2
