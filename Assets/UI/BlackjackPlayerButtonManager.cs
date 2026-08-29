@@ -16,8 +16,9 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
     [SerializeField] private AudioClip HitSfx;
     [SerializeField] private AudioClip StandSfx;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         standButton.gameObject.SetActive(false);
         hitButton.gameObject.SetActive(false);
     }

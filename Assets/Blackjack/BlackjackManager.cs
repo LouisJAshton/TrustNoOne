@@ -166,14 +166,12 @@ public class BlackjackManager
                 await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
                 LogManager.Instance.Log(new LogData($"{activePlayer.playerName} uses a shield to prevent point loss this round", "Dealer"));
                 activePlayer.IsShielded = true;
-                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
                 LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect card...", "Dealer"));
                 await activePlayer.tutorStrategy.Tutor(token);
-                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
@@ -189,7 +187,6 @@ public class BlackjackManager
                     await player1.AddCards(card);
                     await player2.AddCards(card);
                 }
-                MainAudio.instance.PlaySFXClip(playsfx, soundposition, 1);
                 await activePlayer.RemoveCards(card);
             }
             
