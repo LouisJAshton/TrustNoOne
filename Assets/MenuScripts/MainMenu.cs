@@ -63,7 +63,7 @@ public class MainMenu : MonoBehaviour
         if (startdelay >0)
         {
             startdelay++;
-            if (startdelay > 170)
+            if (startdelay > 160)
             {
                 SceneManager.LoadScene(levelScene.BuildIndex);
             }
