@@ -608,11 +608,11 @@ MonoBehaviour:
   TextOBJ: {fileID: 1105010927}
   BarMusicOBJ: {fileID: 255530400}
   BattleMusicOBJ: {fileID: 116659735}
-  OtisBattleTheme: {fileID: 0}
-  AgaliaBattleTheme: {fileID: 0}
-  LanceBattleTheme: {fileID: 0}
-  WinTheme: {fileID: 0}
-  LossTheme: {fileID: 0}
+  OtisBattleTheme: {fileID: 8300000, guid: a28e441d20a59514fb9bb9ae21157ecc, type: 3}
+  AgaliaBattleTheme: {fileID: 8300000, guid: d119bedc2b913cd478398470ba301e1e, type: 3}
+  LanceBattleTheme: {fileID: 8300000, guid: a14895e4e21ea4d44afebc9be7b641da, type: 3}
+  WinTheme: {fileID: 8300000, guid: 3e5f757bbbbbda64195ab53b83bcc148, type: 3}
+  LossTheme: {fileID: 8300000, guid: 43706cb1364d5e6468a15139b4f621ac, type: 3}
   roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
 --- !u!114 &186737153 stripped
 MonoBehaviour:
@@ -1412,11 +1412,11 @@ MonoBehaviour:
   TextOBJ: {fileID: 1105010927}
   BarMusicOBJ: {fileID: 255530400}
   BattleMusicOBJ: {fileID: 116659735}
-  OtisBattleTheme: {fileID: 0}
-  AgaliaBattleTheme: {fileID: 0}
-  LanceBattleTheme: {fileID: 0}
-  WinTheme: {fileID: 0}
-  LossTheme: {fileID: 0}
+  OtisBattleTheme: {fileID: 8300000, guid: a28e441d20a59514fb9bb9ae21157ecc, type: 3}
+  AgaliaBattleTheme: {fileID: 8300000, guid: d119bedc2b913cd478398470ba301e1e, type: 3}
+  LanceBattleTheme: {fileID: 8300000, guid: a14895e4e21ea4d44afebc9be7b641da, type: 3}
+  WinTheme: {fileID: 8300000, guid: 3e5f757bbbbbda64195ab53b83bcc148, type: 3}
+  LossTheme: {fileID: 8300000, guid: 43706cb1364d5e6468a15139b4f621ac, type: 3}
   roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
 --- !u!65 &481098849
 BoxCollider:
@@ -5224,11 +5224,11 @@ MonoBehaviour:
   TextOBJ: {fileID: 1105010927}
   BarMusicOBJ: {fileID: 255530400}
   BattleMusicOBJ: {fileID: 116659735}
-  OtisBattleTheme: {fileID: 0}
-  AgaliaBattleTheme: {fileID: 0}
-  LanceBattleTheme: {fileID: 0}
-  WinTheme: {fileID: 0}
-  LossTheme: {fileID: 0}
+  OtisBattleTheme: {fileID: 8300000, guid: a28e441d20a59514fb9bb9ae21157ecc, type: 3}
+  AgaliaBattleTheme: {fileID: 8300000, guid: d119bedc2b913cd478398470ba301e1e, type: 3}
+  LanceBattleTheme: {fileID: 8300000, guid: a14895e4e21ea4d44afebc9be7b641da, type: 3}
+  WinTheme: {fileID: 8300000, guid: 3e5f757bbbbbda64195ab53b83bcc148, type: 3}
+  LossTheme: {fileID: 8300000, guid: 43706cb1364d5e6468a15139b4f621ac, type: 3}
   roundOverEvent: {fileID: 11400000, guid: fabf0db1727fdc84d8d0f8e93f55048e, type: 2}
 --- !u!65 &2129457625
 BoxCollider:
