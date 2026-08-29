@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         if (rot.z > 1)//upside down for whatever reason
         {
             rot.z = 0;
-            Debug.LogWarning("CAM INVERTED AND CONTROLS ARE NOW INVERTED");
+            //Debug.LogWarning("CAM INVERTED AND CONTROLS ARE NOW INVERTED");
         }
 
         Cam.rotation = Quaternion.Euler(rot);
@@ -72,11 +72,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Look();
         }
+        
     }
 
     private void FixedUpdate()
     {        
         Movement();
-        RB.MovePosition(transform.position + transform.TransformDirection(moveDirect) * movespeed * Time.deltaTime);
+        RB.MovePosition(transform.position + transform.TransformDirection(moveDirect) * (movespeed * Time.fixedDeltaTime));
     }
 }
