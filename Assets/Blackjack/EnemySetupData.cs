@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySetupData : ScriptableObject
 {
     public string enemyName;
-    public List<Sprite> sprites;
+    public Sprite sprite;
     public DeckBase deck;
     public DeckBase dealerDeck;
     
