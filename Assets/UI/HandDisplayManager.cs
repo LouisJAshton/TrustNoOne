@@ -71,22 +71,20 @@ public class HandDisplayManager : MonoBehaviour
             standingImage.enabled = false;
     }
 
-    // public void Clear()
-    // {
-    //     foreach (var cardInfo in _cardObjects.ToList()) {
-    //         Destroy(cardInfo.Value.gameObject);
-    //     }
-    //     
-    //     _cardObjects.Clear();
-    // }
-
     public async UniTask UpdateHand(List<CardInfo> cardInfos)
     {
         var toAdd = new List<CardInfo>();
         var toRemove = new List<CardInfo>();
 
         var score = BlackjackManager.CalculateScore(cardInfos);
-        scoreText.text = score > 21 ? score.ToString() +  " BUST" : score.ToString();
+        scoreText.text = score.ToString();
+        
+        scoreText.color = score switch
+        {
+            > BlackjackManager.MAX => Color.darkRed,
+            BlackjackManager.MAX => Color.darkGoldenRod,
+            _ => Color.white
+        };
 
         foreach (var cardInfo in cardInfos) {
             if(!_cardObjects.ContainsKey(cardInfo))

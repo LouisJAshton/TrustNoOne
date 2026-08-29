@@ -17,3 +17,6 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: a82ea84fce239f143adc405268d4f16f, type: 3}
     rank: 1
     specialEffects: 0
+    shaderInfo:
+      shimmerColour: {r: 1, g: 0.07058824, b: 0.13725491, a: 1}
+      opacity: 0.03

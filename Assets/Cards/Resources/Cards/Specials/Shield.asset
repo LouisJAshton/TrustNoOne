@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseCardInfo
   _cardInfo:
     rankName: Shield
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: f9676fbe8daf95a439a147737300f4b3, type: 3}
     rank: 0
-    suit: 8
     specialEffects: 4
+    shaderInfo:
+      shimmerColour: {r: 0, g: 1, b: 0.8979103, a: 1}
+      opacity: 0.03

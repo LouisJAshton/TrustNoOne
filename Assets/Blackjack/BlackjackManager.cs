@@ -165,13 +165,13 @@ public class BlackjackManager
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Tutor)) {
-                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect draw", "Dealer"));
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName} beseeches the deck for the perfect card...", "Dealer"));
                 await activePlayer.tutorStrategy.Tutor(token);
                 await activePlayer.RemoveCards(card);
             }
             
             if (card.HasSpecialEffect(CardInfo.SpecialEffect.Betray)) {
-                LogManager.Instance.Log(new LogData($"{activePlayer.playerName}'s own card flees their hand", "Dealer"));
+                LogManager.Instance.Log(new LogData($"{activePlayer.playerName}'s trades loyalties...", "Dealer"));
                 if (activePlayer == player1) {
                     await player2.AddCards(card);
                 }
