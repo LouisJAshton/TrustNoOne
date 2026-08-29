@@ -8,9 +8,12 @@ public class MainAudio : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (!instance)
         {
             instance = this;
+        }
+        else {
+            Destroy(gameObject);
         }
     }
 

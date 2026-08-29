@@ -16,8 +16,9 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
     [SerializeField] private AudioClip HitSfx;
     [SerializeField] private AudioClip StandSfx;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         standButton.gameObject.SetActive(false);
         hitButton.gameObject.SetActive(false);
     }
@@ -45,12 +46,12 @@ public class BlackjackPlayerButtonManager : Singleton<BlackjackPlayerButtonManag
 
             if (standButton && standButton.IsPressed())
             {
-                MainAudio.instance.PlaySFXClip(StandSfx, transform, 1);
+                MainAudio.instance.PlaySFXClip(StandSfx, transform, 0.01f);
                 return Response.Stand;
             }
             if (hitButton && hitButton.IsPressed())
             { 
-                MainAudio.instance.PlaySFXClip(StandSfx, transform, 1);
+                MainAudio.instance.PlaySFXClip(StandSfx, transform, 0.01f);
                 return Response.Hit;
             }
             await UniTask.Yield(cancellationToken: destroyCancellationToken);

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b22e1da9014f90a9723482e52a1365, type: 3}
   m_Name: Barkeeper
   m_EditorClassIdentifier: Assembly-CSharp::EnemySetupData
-  enemyName: Barkeeper
-  sprites: []
+  enemyName: Otis
+  sprite: {fileID: 21300000, guid: f44573d90bb9db741acf0e11d2737d83, type: 3}
   deck: {fileID: 11400000, guid: 9ef77ad750ebb0743bb87c6714f178c6, type: 2}
   dealerDeck: {fileID: 11400000, guid: 3fa5cd2ca520cc94a99235d80062e5ff, type: 2}
+  characterName: 0

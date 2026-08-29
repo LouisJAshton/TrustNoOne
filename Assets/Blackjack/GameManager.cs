@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private async UniTask RunBattle(CancellationToken token)
     {
-        LogManager.Instance.Log(new LogData("You stride up to the table with infernal confidence...", "Narrator"));
+        LogManager.Instance.Log(new LogData("Let's play", blackjackManager.combatContext.EnemyData.enemyName, blackjackManager.combatContext.EnemyData.sprite));
         
         while (token.IsCancellationRequested == false) {
             await UniTask.WaitForSeconds(1, cancellationToken: token);
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
                     roundOverEvent.Trigger(new RoundOverEventData(e.Opponent, true));
                 }
                 else {
-                    LogManager.Instance.Log(new LogData("Pathetic", e.WinnerName));
+                    LogManager.Instance.Log(new LogData("Pathetic", e.WinnerName, e.OpponentData.sprite));
                     roundOverEvent.Trigger(new RoundOverEventData(e.Opponent, false));
                 }
                 
