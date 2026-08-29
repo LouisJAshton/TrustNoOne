@@ -38,11 +38,23 @@ public class GameManager : MonoBehaviour
             }
             catch (GameOverException e) {
                 if (e.Winner == PlayerData.Character.Player) {
-                    LogManager.Instance.Log(new LogData("Curse you - the luck of mortals...", "Lance"));
+                    switch (e.Opponent) {
+                        case DialogueHandler.CharacterName.Bar:
+                            LogManager.Instance.Log(new LogData("You feel emboldened by this first victory", "Narrator"));
+                            break;
+                        case DialogueHandler.CharacterName.Agalia:
+                            LogManager.Instance.Log(new LogData("Once was luck. Twice is a hot streak. You can't quit now...", "Narrator"));
+                            break;
+                        case DialogueHandler.CharacterName.Lance:
+                            LogManager.Instance.Log(new LogData("...", "Narrator"));
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                     roundOverEvent.Trigger(new RoundOverEventData(e.Opponent, true));
                 }
                 else {
-                    LogManager.Instance.Log(new LogData("You seek to escape on fledgling wings. Filth.", e.WinnerName));
+                    LogManager.Instance.Log(new LogData("Pathetic", e.WinnerName));
                     roundOverEvent.Trigger(new RoundOverEventData(e.Opponent, false));
                 }
                 
@@ -72,7 +84,7 @@ public class GameManager : MonoBehaviour
             await blackjackManager.Dealer(token);
         }
         else {
-            LogManager.Instance.Log(new LogData("21!", "Dealer"));
+            LogManager.Instance.Log(new LogData("21! The round ends at once.", "Dealer"));
         }
 
         await blackjackManager.UpdateWinners(token);
