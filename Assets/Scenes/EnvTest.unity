@@ -1012,19 +1012,19 @@ MonoBehaviour:
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
   CharName: 0
-  DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here?; Heh,
-    yeah you were. You got hella crunk, too. Take this.; Drink it. It\u2019ll make
-    ya feel better.; Oh, you had some fun. Come to play some more? Don\u2019t tell
-    me you forgot how to play!; Need me to go over it again, scrub, or ya think ya
-    got it?; Good. I got things to do.; Like I said, I'm busy. But, I could go on
-    break if you wanna play. If you win, I'll tell you more about last night.; But
-    if I win? Well, I'm pretty sure you don't have anything left.; Sorry, kid. You
-    ain\u2019t got nothin\u2019 for me.; You're on, Ash.; I\u2019ll be damned.; There's
-    not much more to say, really. You came in last night with bright eyes, hopes,
-    and treasures to gamble.; You wanted something real bad. We could see the fire
-    in your eyes. You had a good streak there in the beginning...; But I guess your
-    luck fell short. It doesn\u2019t matter. It\u2019s just a game.; Look, kid, I
-    gotta get back to work.; Poor sap. Better luck next time."
+  DisplayText: "What can I get for\u2013 hey, weren\u2019t you just in here?;Heh,
+    yeah you were. You got hella crunk, too. Take this.;Drink it. It\u2019ll make
+    ya feel better.;Oh, you had some fun. Come to play some more? Don\u2019t tell
+    me you forgot how to play!;Need me to go over it again, scrub, or ya think ya
+    got it?;Good. I got things to do.;Like I said, I'm busy. But, I could go on break
+    if you wanna play. If you win, I'll tell you more about last night.;But if I
+    win? Well, I'm pretty sure you don't have anything left.;Sorry, kid. You ain\u2019t
+    got nothin\u2019 for me.;You're on, Ash.;I\u2019ll be damned.;There's not much
+    more to say, really. You came in last night with bright eyes, hopes, and treasures
+    to gamble.;You wanted something real bad. We could see the fire in your eyes.
+    You had a good streak there in the beginning...;But I guess your luck fell short.
+    It doesn\u2019t matter. It\u2019s just a game.;Look, kid, I gotta get back to
+    work.;Poor sap. Better luck next time."
   ButtonText: "I don\u2019t think so\u2026; I don\u2019t feel good, dude.; Uh, what
     is this?; Thanks, bro.; So\u2026 what was I doing here last night?; Must have
     been a good night. Tell me about it?; Um\u2026 remind me.; No, no, dude. I know
@@ -2546,16 +2546,15 @@ MonoBehaviour:
   Button2: {fileID: 370744382}
   Button3: {fileID: 518966065}
   CharName: 2
-  DisplayText: "Th3 fuck U w4nt?;  4nd? U lo5t. D3al w1th 1t.;  8ruv, U d1dn\u2019t
-    w4nt t0 kn0w. Th4t\u2019s Y y0u\u2019re 1n th1s me55. N0w, g3t th3 fuck 0ut my
-    b4r.;  L1st3n, crust punk, I\u201911 giv3 y0u 0ne gam3. U w1n, 1\u2019ll t3ll
-    y0u wh4t y0u l0st. 1 w1n, U d0n\u2019t com3 b4ck h3re aga1n.;  1 alr3ady g0t
-    wh4t 1 w4nt3d.;  \u2026;  Y0ur s0u1.;  Y3p. L0st ur m3mori3s, t00. 8ut th4t wa5
-    0n ur 0wn r3qu3st\u2013 a g1ft fr0m urs truly.;  La5t t1m3 I 0ff3rd 3nlight3nm3nt
-    I was d3t3st3d. Y0ur k1nd l1k3s to b3 d3ns3.;  Y0u t0ld m3 U d1dn\u2019t w4nt
-    t0 kn0w. T00 much sh4me.;  T00 lat3. 1f U r3ally w4nt t0 kn0w U sh0uld a5k y0urs3lf:
-    Wh4t c0uld h4v3 p0ss1bly b33n w0rth th15?; Th4ts y y0u\u2019r3 n0t th3 K1NG.
-    N0w, g3t l0st. N3v3r c0m3 8ack. "
+  DisplayText: "Th3 fuck U w4nt?;4nd? U lo5t. D3al w1th 1t.;8ruv, U d1dn\u2019t w4nt
+    t0 kn0w. Th4t\u2019s Y y0u\u2019re 1n th1s me55. N0w, g3t th3 fuck 0ut my b4r.;L1st3n,
+    crust punk, I\u201911 giv3 y0u 0ne gam3. U w1n, 1\u2019ll t3ll y0u wh4t y0u l0st.
+    1 w1n, U d0n\u2019t com3 b4ck h3re aga1n.;1 alr3ady g0t wh4t 1 w4nt3d.;\u2026;Y0ur
+    s0u1.;Y3p. L0st ur m3mori3s, t00. 8ut th4t wa5 0n ur 0wn r3qu3st\u2013 a g1ft
+    fr0m urs truly.;La5t t1m3 I 0ff3rd 3nlight3nm3nt I was d3t3st3d. Y0ur k1nd l1k3s
+    to b3 d3ns3.;Y0u t0ld m3 U d1dn\u2019t w4nt t0 kn0w. T00 much sh4me.;T00 lat3.
+    1f U r3ally w4nt t0 kn0w U sh0uld a5k y0urs3lf: Wh4t c0uld h4v3 p0ss1bly b33n
+    w0rth th15?;Th4ts y y0u\u2019r3 n0t th3 K1NG. N0w, g3t l0st. N3v3r c0m3 8ack. "
   ButtonText: "You're the one that beat my ass.; Well, aren't you a wet blanket?; 
     I need to know what I wanted from you.; Dude, last night was a total blackout.;
     I don\u2019t even know what I lost.;  I\u2019ll play you!; Come on, dude!; Scared
@@ -5342,11 +5341,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 21.8
+  m_fontSizeBase: 21.8
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -9426,24 +9425,24 @@ MonoBehaviour:
   Button3: {fileID: 518966065}
   CharName: 1
   DisplayText: "Heyyyy, bitch! Thought it would be a hot minute before you'd be back.
-    You\u2019re full of spunk and moxie!; Damn, you\u2019re not looking too hot.
-    Otis! Get this cutie another drink. So anyway, you ready to party some more?;
-    OTIS: Hey, kid, if you still don\u2019t got your shit figured out, she\u2019s
-    probably your best bet.; You two were playin\u2019 each other, drinkin\u2019,
-    dancin\u2019\u2013 almost all night.; Aahh, we had fun! I saw you tearing my
-    lackeys to shreds \u2013  I mean, you were one BAMF!; I had to let you play with
-    me and the other big dawgs. Not my fault you got a little carried away. But who
-    cares?; It was all in good fun.; Well, I definitely gave you a run for your money,
-    but I\u2019m not the one who beat your ass.; I couldn\u2019t give you what you
-    wanted, but I could get you the next best thing. So that's what I did.; You know
-    better than that! If you want something, you gotta play.; I can\u2019t tell you
-    what you wanted, but if you win? I could tell you where to go next~; You know
-    what I want? I wanna know why you came here last night.; No, silly! I mean why
-    here? You could have gone to so many other places, but you chose here. I wanna
-    know why.; Damn, bitch! Have another round on me :)  I was hoping you\u2019d
-    win. You need a little pick-me-up.; A deals a deal. You wanna speak to Lance
-    in the back. Don\u2019t be a stranger now, k? ; You really don\u2019t know when
-    to quit, do you? Of all the places, why here? "
+    You\u2019re full of spunk and moxie!;Damn, you\u2019re not looking too hot. Otis!
+    Get this cutie another drink. So anyway, you ready to party some more?;OTIS:
+    Hey, kid, if you still don\u2019t got your shit figured out, she\u2019s probably
+    your best bet.;You two were playin\u2019 each other, drinkin\u2019, dancin\u2019\u2013
+    almost all night.;Aahh, we had fun! I saw you tearing my lackeys to shreds \u2013 
+    I mean, you were one BAMF!;I had to let you play with me and the other big dawgs.
+    Not my fault you got a little carried away. But who cares?;It was all in good
+    fun.;Well, I definitely gave you a run for your money, but I\u2019m not the one
+    who beat your ass.;I couldn\u2019t give you what you wanted, but I could get
+    you the next best thing. So that's what I did.;You know better than that! If
+    you want something, you gotta play.;I can\u2019t tell you what you wanted, but
+    if you win? I could tell you where to go next~;You know what I want? I wanna
+    know why you came here last night.;No, silly! I mean why here? You could have
+    gone to so many other places, but you chose here. I wanna know why.;Damn, bitch!
+    Have another round on me. I was hoping you\u2019d win. You need a little pick-me-up.;A
+    deals a deal. You wanna speak to Lance in the back. Don\u2019t be a stranger
+    now, k? ;You really don\u2019t know when to quit, do you? Of all the places,
+    why here? "
   ButtonText: "Are you talking to me?; Uh\u2026 Hi?; Hey, biatch!;  Do I know you?;
     Sorry, I\u2019m a little busy right now.; You look like a mistake I already made.; 
     ...;  I guess we really hit it off, huh?; Ah. You\u2019re probably why I feel
