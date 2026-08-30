@@ -648,6 +648,7 @@ GameObject:
   - component: {fileID: 142051834}
   - component: {fileID: 142051836}
   - component: {fileID: 142051835}
+  - component: {fileID: 142051837}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -742,6 +743,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &142051837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142051833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e44ab64e913a64b95421110724d890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteLookReactor
+  sprites:
+  - {fileID: 21300000, guid: 4346558c353c0174a9f612d834fa7d09, type: 3}
+  - {fileID: 21300000, guid: c5e02a299d2169e44988df09f81f36e2, type: 3}
 --- !u!1 &179009742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,6 +1891,7 @@ GameObject:
   - component: {fileID: 363365013}
   - component: {fileID: 363365015}
   - component: {fileID: 363365014}
+  - component: {fileID: 363365016}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Untagged
@@ -1969,6 +1986,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &363365016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363365012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e44ab64e913a64b95421110724d890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteLookReactor
+  sprites:
+  - {fileID: 21300000, guid: 2953bf977f4b3534f8b26699a98808a7, type: 3}
+  - {fileID: 21300000, guid: c73189b6c82e20640901e4d10a02d44a, type: 3}
 --- !u!1 &370744382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7488,6 +7520,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  lastseen: {fileID: 0}
   istalking: 0
 --- !u!114 &1478224551
 MonoBehaviour:

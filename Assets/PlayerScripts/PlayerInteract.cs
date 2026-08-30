@@ -7,7 +7,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     private InputAction InteractAction;
 
-    private GameObject lastseen;
+    public GameObject lastseen;
     private bool LookingAtSomeone;
     public bool istalking = false;
 
