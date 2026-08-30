@@ -7,7 +7,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     private InputAction InteractAction;
 
-    private GameObject lastseen;
+    public GameObject lastseen;
     private bool LookingAtSomeone;
     public bool istalking = false;
 
@@ -26,13 +26,14 @@ public class PlayerInteract : MonoBehaviour
             inputActions.FindActionMap("Player").Disable();
             istalking = true;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             lastseen.GetComponent<DialogueHandler>().StartTalk();
         }
     }
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.45f, 0), transform.forward * 3, out RaycastHit hit, mask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.45f, 0), transform.forward * 5, out RaycastHit hit, mask))
         {
             if (hit.collider.gameObject.CompareTag("Interact"))
             {

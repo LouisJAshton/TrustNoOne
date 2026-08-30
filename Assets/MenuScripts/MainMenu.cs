@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         Menu.SetActive(true);
         Credits.SetActive(false);
+        Cursor.visible = true;
     }
     public void StartGame()
     {
@@ -63,7 +64,7 @@ public class MainMenu : MonoBehaviour
         if (startdelay >0)
         {
             startdelay++;
-            if (startdelay > 160)
+            if (startdelay > 0)
             {
                 SceneManager.LoadScene(levelScene.BuildIndex);
             }

@@ -41,7 +41,5 @@ MonoBehaviour:
     amount: 2
   - cardType: {fileID: 11400000, guid: 886e1d0a223959e428daf2f21404c3ce, type: 2}
     amount: 1
-  - cardType: {fileID: 11400000, guid: 7248bf260a912f04f9692794dd40dc86, type: 2}
-    amount: 1
   - cardType: {fileID: 11400000, guid: 746d9f3d255721a42b5b29f1dc3030e3, type: 2}
     amount: 2

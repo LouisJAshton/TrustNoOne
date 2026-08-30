@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8596df97299bd38449f2975f126b7492, type: 3}
+  m_Name: Agalia
+  m_EditorClassIdentifier: Assembly-CSharp::DeckBase
+  deck:
+  - cardType: {fileID: 11400000, guid: 8f5e3d5f172302d499e22a4d961d2d58, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 0b6cb27db4f5f2f46b8918f69e929eff, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 1d11fbf2fe620484e8d65f2249af0a8c, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: c99590311168e7d4ca6c8467776a3e3a, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: f902d30b35a5e994ea35bd44d25e49ed, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: d088311d12bc5664899d5fbaf1815c40, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 0cca6cc422393784893ed58da36c0144, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 4bb0767136eb66c4c8ae625bf8df0266, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 672e925f573feda499f0ed74215c95f9, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 507154be5fc5f4b429274b5fcb9f772f, type: 2}
+    amount: 8
+  - cardType: {fileID: 11400000, guid: a6e5b60a913f54e49854942686c272ce, type: 2}
+    amount: 2
+  - cardType: {fileID: 11400000, guid: d28e62c83ba23e748809ebd6c687ce93, type: 2}
+    amount: 4
+  - cardType: {fileID: 11400000, guid: 886e1d0a223959e428daf2f21404c3ce, type: 2}
+    amount: 2

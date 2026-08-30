@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraLerp : MonoBehaviour
 {
@@ -78,9 +79,9 @@ public class CameraLerp : MonoBehaviour
     private void Update()
     {
         if (_isFocused) {
-            if (Input.GetMouseButtonDown(1)) {
-                SetTarget((_targetTransformIndex + 1) % positions.Count);
-            }
+            // if (Input.GetMouseButtonDown(1)) {
+            //     SetTarget((_targetTransformIndex + 1) % positions.Count);
+            // }
             
             LerpCamera(positions[_targetTransformIndex]);
         }

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        Cursor.visible = true;
+        
         if(Instance && Instance != this)
             Destroy(gameObject);
         else

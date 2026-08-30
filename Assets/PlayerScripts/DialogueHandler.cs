@@ -1,11 +1,15 @@
 using System;
+using Eflatun.SceneReference;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
+    [SerializeField] private SceneReference gameWonScene;
+    
     private int[] BarButtons = new int[16] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2, 1};
 
     private int[] AgaButtons = new int[16] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1, 1};
@@ -20,6 +24,8 @@ public class DialogueHandler : MonoBehaviour
 
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject LanceBlock;
+    [SerializeField] private SpriteRenderer AgaliaSprite;
+    [SerializeField] private Collider AgaliaCollider;
 
     [SerializeField] private GameObject Button1;
     [SerializeField] private GameObject Button2;
@@ -56,7 +62,11 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private RoundOverEvent roundOverEvent;
     
     private void OnEnable() => roundOverEvent?.Subscribe(OnRoundWon);
-    private void OnDisable() => roundOverEvent?.Unsubscribe(OnRoundWon);
+    private void OnDisable()
+    {
+        Cursor.visible = false;
+        roundOverEvent?.Unsubscribe(OnRoundWon);
+    }
 
     private void OnRoundWon(RoundOverEventData data)
     {
@@ -79,6 +89,10 @@ public class DialogueHandler : MonoBehaviour
             {
                 ButtNum = 18;
                 TextNum = 9;
+                
+                AgaliaCollider.enabled = true;
+                AgaliaSprite.enabled = true;
+                
                 ToggleCanvas();
                 ProgressText();
             }
@@ -214,6 +228,10 @@ public class DialogueHandler : MonoBehaviour
         else 
         {
             Debug.Log("OUT OF RANGE/NO MORE TEXT");
+            
+            if(CharName == CharacterName.Lance)
+                SceneManager.LoadScene(gameWonScene.BuildIndex, LoadSceneMode.Single);
+            
             CloseText();
         }
 
@@ -384,6 +402,7 @@ public class DialogueHandler : MonoBehaviour
 
             if (ButtNum == 20)//count number of button texts starting from 1 to get this accurate
             {
+                SceneManager.LoadScene(gameWonScene.BuildIndex, LoadSceneMode.Single);
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
                 butt1.onClick.AddListener(StartBattleAgalia);
@@ -391,6 +410,7 @@ public class DialogueHandler : MonoBehaviour
 
             if (ButtNum == 21)//count number of button texts starting from 1 to get this accurate
             {
+                
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
                 butt1.onClick.AddListener(StartBattleLance);
@@ -473,10 +493,11 @@ public class DialogueHandler : MonoBehaviour
         inputActions.FindActionMap("Player").Enable();
         inputActions.FindActionMap("UI").Disable();
         TextCanv.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        GetComponent<Collider>().enabled = false;
+        this.enabled = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (doingText)
         {

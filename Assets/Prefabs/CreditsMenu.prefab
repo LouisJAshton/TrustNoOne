@@ -448,8 +448,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Environment Artist: \r\n3D Artists: \r\n2D Artists: \r\nProgrammers: \r\nGame
-    Designer: \r\nWriter:\r\nMusic & SFX:"
+  m_text: "Environment Artist: Bethan Shirley\r\n3D Character Artists: Bella James,
+    Ella Winstanley\r\n2D Artists: \r\nProgrammers: \r\nGame Designer: \r\nWriter:\r\nMusic
+    & SFX:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0ed414847f8c174189886adfee396cd, type: 2}
   m_sharedMaterial: {fileID: -7839442833721158867, guid: c0ed414847f8c174189886adfee396cd, type: 2}
