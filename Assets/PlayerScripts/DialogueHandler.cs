@@ -110,8 +110,6 @@ public class DialogueHandler : MonoBehaviour
                 TextNum = 4;
                 ToggleCanvas();
                 ProgressText();
-
-                SceneManager.LoadScene(gameWonScene.BuildIndex, LoadSceneMode.Single);
             }
         }
         else {
@@ -230,6 +228,10 @@ public class DialogueHandler : MonoBehaviour
         else 
         {
             Debug.Log("OUT OF RANGE/NO MORE TEXT");
+            
+            if(CharName == CharacterName.Lance)
+                SceneManager.LoadScene(gameWonScene.BuildIndex, LoadSceneMode.Single);
+            
             CloseText();
         }
 
@@ -400,6 +402,7 @@ public class DialogueHandler : MonoBehaviour
 
             if (ButtNum == 20)//count number of button texts starting from 1 to get this accurate
             {
+                SceneManager.LoadScene(gameWonScene.BuildIndex, LoadSceneMode.Single);
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
                 butt1.onClick.AddListener(StartBattleAgalia);
@@ -407,6 +410,7 @@ public class DialogueHandler : MonoBehaviour
 
             if (ButtNum == 21)//count number of button texts starting from 1 to get this accurate
             {
+                
                 Button1.TryGetComponent<Button>(out Button butt1);
                 butt1.onClick.RemoveAllListeners();
                 butt1.onClick.AddListener(StartBattleLance);
