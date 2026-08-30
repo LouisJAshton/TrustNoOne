@@ -58,7 +58,11 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private RoundOverEvent roundOverEvent;
     
     private void OnEnable() => roundOverEvent?.Subscribe(OnRoundWon);
-    private void OnDisable() => roundOverEvent?.Unsubscribe(OnRoundWon);
+    private void OnDisable()
+    {
+        Cursor.visible = false;
+        roundOverEvent?.Unsubscribe(OnRoundWon);
+    }
 
     private void OnRoundWon(RoundOverEventData data)
     {
@@ -483,7 +487,7 @@ public class DialogueHandler : MonoBehaviour
         this.enabled = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (doingText)
         {

@@ -26,6 +26,7 @@ public class PlayerInteract : MonoBehaviour
             inputActions.FindActionMap("Player").Disable();
             istalking = true;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
             lastseen.GetComponent<DialogueHandler>().StartTalk();
         }
     }
