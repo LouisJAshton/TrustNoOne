@@ -982,6 +982,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
+  gameWonScene:
+    asset: {fileID: 0}
+    guid: 00000000000000000000000000000000
   combatTrigger: {fileID: 10651265}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   TextCanv: {fileID: 1394950306}
@@ -2497,6 +2500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
+  gameWonScene:
+    asset: {fileID: 102900000, guid: bf1d05866282b0848ae1983a2cb27c59, type: 3}
+    guid: bf1d05866282b0848ae1983a2cb27c59
   combatTrigger: {fileID: 649356917}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   TextCanv: {fileID: 1394950306}
@@ -9372,6 +9378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f14511c1ca30b44b628a00196b299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
+  gameWonScene:
+    asset: {fileID: 0}
+    guid: 00000000000000000000000000000000
   combatTrigger: {fileID: 186737153}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   TextCanv: {fileID: 1394950306}

@@ -1,11 +1,15 @@
 using System;
+using Eflatun.SceneReference;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
+    [SerializeField] private SceneReference gameWonScene;
+    
     private int[] BarButtons = new int[16] {2, 2, 2, 2, 2, 3, 1, 3, 3, 1, 2, 1, 1, 3, 2, 1};
 
     private int[] AgaButtons = new int[16] {3, 3, 1, 2, 1, 1, 2, 1, 3, 1, 2, 2, 2, 1, 1, 1};
@@ -106,6 +110,8 @@ public class DialogueHandler : MonoBehaviour
                 TextNum = 4;
                 ToggleCanvas();
                 ProgressText();
+
+                SceneManager.LoadScene(gameWonScene.BuildIndex, LoadSceneMode.Single);
             }
         }
         else {
