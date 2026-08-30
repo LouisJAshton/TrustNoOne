@@ -479,7 +479,8 @@ public class DialogueHandler : MonoBehaviour
         inputActions.FindActionMap("Player").Enable();
         inputActions.FindActionMap("UI").Disable();
         TextCanv.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        GetComponent<Collider>().enabled = false;
+        this.enabled = false;
     }
 
     private void FixedUpdate()
