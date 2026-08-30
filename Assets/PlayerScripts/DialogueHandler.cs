@@ -20,6 +20,8 @@ public class DialogueHandler : MonoBehaviour
 
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject LanceBlock;
+    [SerializeField] private SpriteRenderer AgaliaSprite;
+    [SerializeField] private Collider AgaliaCollider;
 
     [SerializeField] private GameObject Button1;
     [SerializeField] private GameObject Button2;
@@ -79,6 +81,10 @@ public class DialogueHandler : MonoBehaviour
             {
                 ButtNum = 18;
                 TextNum = 9;
+                
+                AgaliaCollider.enabled = true;
+                AgaliaSprite.enabled = true;
+                
                 ToggleCanvas();
                 ProgressText();
             }
